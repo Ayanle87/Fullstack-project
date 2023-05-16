@@ -1,10 +1,9 @@
-// import React from 'react';
+import React from 'react';
 import { Button } from "react-bootstrap";
 
 const CustomNavbar: React.FC = () => {
-  // return <h1>Navbar</h1>;
   return (
-    <div className="navbar">
+    <nav className="navbar">
       <Button variant="link" className="text-decoration-none left-button">
         Logga in
       </Button>
@@ -16,7 +15,7 @@ const CustomNavbar: React.FC = () => {
           Kontakt
         </Button>
       </div>
-    </div>
+    </nav>
   );
 };
 

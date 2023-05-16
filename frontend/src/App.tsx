@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import Home from './Home';
+import CustomNavbar from './Navbar';
+import './navbar.css';
 
 import {
   createHashRouter,
@@ -8,6 +10,15 @@ import {
   // Outlet,
   RouterProvider,
 } from "react-router-dom";
+
+
+const Root: React.FC = () => {
+  return (
+    <div className="App">
+      <CustomNavbar />
+    </div>
+  );
+}
 
 
 const App: React.FC = () => {
@@ -20,6 +31,8 @@ const App: React.FC = () => {
   ]);
 
   return <RouterProvider router={router} />;
+
+
 }
 
 export default App;

@@ -1,0 +1,20 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  
+  .navbar .left-button,
+  .navbar .right-buttons .button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .navbar .right-buttons .button {
+    margin-left: 1rem;
+  }
+  

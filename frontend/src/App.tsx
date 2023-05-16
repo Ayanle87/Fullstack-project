@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import Navbar from './Navbar';
+import CustomNavbar from './Navbar';
+import './navbar.css';
+
 
 const App: React.FC = () => {
   return (
@@ -10,7 +12,7 @@ const App: React.FC = () => {
         style={{ width: "100%", height: "700px", border: "none" }}
         src="https://snazzymaps.com/embed/490724"
       ></iframe>
-      <Navbar /> {/* Include Navbar component */}
+      <CustomNavbar />
     </div>
   );
 }

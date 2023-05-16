@@ -1,16 +1,25 @@
 import React from 'react';
 import './App.css';
+import Home from './Home';
+
+import {
+  createHashRouter,
+  // Link,
+  // Outlet,
+  RouterProvider,
+} from "react-router-dom";
+
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-<iframe
-title = "Snaazy Maps"
-style={{ width: "100%", height: "700px",border:"none"}}
-src="https://snazzymaps.com/embed/490724">
-   </iframe>
-    </div>
-  );
+  const router = createHashRouter([
+    {
+      children: [
+        { element: <Home />, path: "/" },
+            ],
+         },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

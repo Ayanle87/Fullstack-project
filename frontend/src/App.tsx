@@ -6,33 +6,26 @@ import './navbar.css';
 
 import {
   createHashRouter,
-  // Link,
+    // Link,
   // Outlet,
   RouterProvider,
 } from "react-router-dom";
-
-
-const Root: React.FC = () => {
-  return (
-    <div className="App">
-      <CustomNavbar />
-    </div>
-  );
-}
-
 
 const App: React.FC = () => {
   const router = createHashRouter([
     {
       children: [
         { element: <Home />, path: "/" },
-            ],
-         },
+      ],
+    },
   ]);
 
-  return <RouterProvider router={router} />;
-
-
+  return (
+    <div className="App">
+      <CustomNavbar />
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;

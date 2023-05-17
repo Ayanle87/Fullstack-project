@@ -1,20 +1,61 @@
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.navbar .left-buttons,
+.navbar .right-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .left-buttons .left-button,
+.navbar .right-buttons .button,
+.navbar .mobile-menu .button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: black;
+}
+
+.navbar .right-buttons .button {
+  margin-left: 1rem;
+}
+
+.navbar .mobile-toggle {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .navbar .left-buttons,
+  .navbar .right-buttons {
+    display: none;
+  }
+
+  .navbar .mobile-toggle {
     display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+    align-items: center;
   }
-  
-  .navbar .left-button,
-  .navbar .right-buttons .button {
-    background: none;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    color: black;
+
+  .navbar .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
-  
-  .navbar .right-buttons .button {
-    margin-left: 1rem;
+}
+
+@media (min-width: 781px) {
+  .navbar .mobile-toggle,
+  .navbar .mobile-menu {
+    display: none;
   }
-  
+
+  .navbar .left-buttons,
+  .navbar .right-buttons {
+    display: flex;
+    align-items: center;
+  }
+}

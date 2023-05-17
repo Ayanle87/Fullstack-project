@@ -4,32 +4,42 @@ import Home from "./Home";
 import "./navbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import TestView from "./views/TestView";
-
-import Root from "./Root";
 // import ObjectCard from "./components/ObjectCard";
+import Root from "./Root";
+import CustomNavbar from "./Navbar";
+import MobileNavbar from "./MobileNavbar";
+
 
 const App: React.FC = () => {
-    const router = createHashRouter([
+  const router = createHashRouter([
+    {
+      children: [
         {
-            children: [
-                {
-                    element: <Home />,
-                    path: "/",
-                },
-                {
-                    element: <TestView />,
-                    path: "/object",
-                },
-            ],
-            element: <Root />,
+          element: <Home />,
+          path: "/",
         },
-    ]);
-    return (
-        <div className="App">
-            {/* <TestView /> */}
-            <RouterProvider router={router} />
-        </div>
-    );
+        {
+          element: <TestView />,
+          path: "/object",
+        },
+      ],
+      element: <Root />,
+    },
+  ]);
+
+  return (
+    <div className="App">
+      <div>
+        <MobileNavbar />
+      </div>
+      <div className="content-wrapper">
+        <RouterProvider router={router} />
+      </div>
+      <div>
+        <CustomNavbar />
+      </div>
+    </div>
+  );
 };
 
 export default App;

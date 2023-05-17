@@ -26,7 +26,7 @@ const App: React.FC = () => {
     ]);
     return (
         <div className="App">
-            <TestView />
+            {/* <TestView /> */}
             <RouterProvider router={router} />
         </div>
     );

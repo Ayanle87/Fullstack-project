@@ -3,79 +3,88 @@ import styles from "./MobileFooter.module.css";
 
 const icons = [
   {
-    src: "icon1.png",
-    alt: "Icon 1",
+    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ElectronicsToggleSmallOn50px.png",
+    alt: "Elektronik",
     onClick: () => {
     },
   },
   {
-    src: "icon2.png",
-    alt: "Icon 2",
+    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/VehicleToggleSmallOn50px.png",
+    alt: "Fordon",
     onClick: () => {
     },
   },
   {
-    src: "icon3.png",
-    alt: "Icon 3",
+    
+    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SportToggleSmallOn50px.png",
+    alt: "Fritid",
     onClick: () => {
     },
   },
   {
-    src: "icon4.png",
-    alt: "Icon 4",
+    
+    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/HomeToggleSmallOn50px.png",
+    alt: "Hushåll",
     onClick: () => {
     },
   },
   {
-    src: "icon5.png",
-    alt: "Icon 5",
+    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ClothesToggleSmallOn50px.png",
+    alt: "Kläder",
     onClick: () => {
     },
   },
   {
-    src: "icon6.png",
-    alt: "Icon 6",
+    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/OtherToggleSmallOn50px.png",
+    alt: "Övrigt",
+    onClick: () => {
+    },
+  },
+
+  {
+    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
+    alt: "Sök",
     onClick: () => {
     },
   },
 ];
 
 const MobileFooter: React.FC = () => {
-    const [isMobile, setIsMobile] = useState(false);
-  
-    useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 780);
-      };
-  
-      handleResize();
-  
-      window.addEventListener("resize", handleResize);
-  
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
-  
-    if (!isMobile) {
-      return null; // Dont render the footer if not in mobile view
-    }
-  
-    return (
-      <div className={styles.footerContainer}>
-        <div className={styles.iconsContainer}>
-          {icons.map((icon, index) => (
-            <button
-              key={index}
-              className={styles.iconButton}
-              onClick={icon.onClick}
-            >
-              <img src={icon.src} alt={icon.alt} className={styles.iconImage} />
-            </button>
-          ))}
-        </div>
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 780);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  if (!isMobile) {
+    return null; // Don't render the footer if not in mobile view
+  }
+
+  return (
+    <div className={styles.footerContainer}>
+      <div className={styles.iconsContainer}>
+        {icons.map((icon, index) => (
+          <button
+            key={index}
+            className={styles.iconButton}
+            onClick={icon.onClick}
+          >
+            <img src={icon.src} alt={icon.alt} className={styles.iconImage} />
+          </button>
+        ))}
       </div>
-    );
-  };
-  
-  export default MobileFooter;
+    </div>
+  );
+};
+
+export default MobileFooter;

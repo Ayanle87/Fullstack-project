@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Home from "./Home";
 import "./navbar.css";
+import "./MobileNavbar.css"
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import TestView from "./views/TestView";
 // import ObjectCard from "./components/ObjectCard";

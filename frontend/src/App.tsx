@@ -8,7 +8,7 @@ import TestView from "./views/TestView";
 import Root from "./Root";
 import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
-
+import MobileFooter from "./MobileFooter";
 
 const App: React.FC = () => {
   const router = createHashRouter([
@@ -37,6 +37,9 @@ const App: React.FC = () => {
       </div>
       <div>
         <CustomNavbar />
+      </div>
+      <div>
+        <MobileFooter />
       </div>
     </div>
   );

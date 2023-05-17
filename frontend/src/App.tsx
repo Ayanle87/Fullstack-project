@@ -3,9 +3,10 @@ import "./App.css";
 import Home from "./Home";
 import "./navbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
+import TestView from "./views/TestView";
 
 import Root from "./Root";
-import ObjectCard from "./components/ObjectCard";
+// import ObjectCard from "./components/ObjectCard";
 
 const App: React.FC = () => {
     const router = createHashRouter([
@@ -16,7 +17,7 @@ const App: React.FC = () => {
                     path: "/",
                 },
                 {
-                    element: <ObjectCard />,
+                    element: <TestView />,
                     path: "/object",
                 },
             ],
@@ -25,7 +26,8 @@ const App: React.FC = () => {
     ]);
     return (
         <div className="App">
-            <Home />
+            <TestView />
+            <RouterProvider router={router} />
         </div>
     );
 };

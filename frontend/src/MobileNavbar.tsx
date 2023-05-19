@@ -16,8 +16,12 @@ function MobileNavbar(): JSX.Element {
 	return (
 		<header>
 			<div>
-      <img src="/testbild.jpg" alt="lofo" />
-            </div>
+				<img
+					src="/ux ikoner/Toggles50h/Logo100px.png"
+					alt="Logo"
+					className="logo-image"
+				/>
+			</div>
 			<nav ref={navRef}>
 				<a href="/#">Logga in</a>
 				<a href="/#">Om</a>
@@ -36,9 +40,5 @@ function MobileNavbar(): JSX.Element {
 		</header>
 	);
 }
-
-
-
-
 
 export default MobileNavbar;

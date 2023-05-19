@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Home from "./Home";
 import "./navbar.css";
-import "./MobileNavbar.css"
+import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import TestView from "./views/TestView";
 // import ObjectCard from "./components/ObjectCard";
@@ -12,38 +12,39 @@ import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
 
 const App: React.FC = () => {
-  const router = createHashRouter([
-    {
-      children: [
+    const router = createHashRouter([
         {
-          element: <Home />,
-          path: "/",
+            children: [
+                {
+                    element: <Home />,
+                    path: "/",
+                },
+                {
+                    element: <TestView />,
+                    path: "/object",
+                },
+            ],
+            element: <Root />,
         },
-        {
-          element: <TestView />,
-          path: "/object",
-        },
-      ],
-      element: <Root />,
-    },
-  ]);
+    ]);
 
-  return (
-    <div className="App">
-      <div>
-        <MobileNavbar />
-      </div>
-      <div className="content-wrapper">
-        <RouterProvider router={router} />
-      </div>
-      <div>
-        <CustomNavbar />
-      </div>
-      <div>
-        <MobileFooter />
-      </div>
-    </div>
-  );
+    return (
+        <div className="App">
+            <div>
+                <MobileNavbar />
+            </div>
+            <div className="content-wrapper">
+                <RouterProvider router={router} />
+            </div>
+            <div>
+                <CustomNavbar />
+            </div>
+
+            <div>
+                <MobileFooter />
+            </div>
+        </div>
+    );
 };
 
 export default App;

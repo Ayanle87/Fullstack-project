@@ -1,5 +1,6 @@
-import Modal from "react-modal";
+// import Modal from "react-modal";
 import styled from "styled-components";
+import ObjectCard from "../components/ObjectCard";
 
 function TestView() {
     return (
@@ -7,7 +8,8 @@ function TestView() {
             <StyledContainer>
                 {" "}
                 <h1>TestView</h1>
-                <button>Objekt-knapp</button>
+                <ObjectCard />
+                {/* <button>Objekt-knapp</button> */}
             </StyledContainer>
         </>
     );

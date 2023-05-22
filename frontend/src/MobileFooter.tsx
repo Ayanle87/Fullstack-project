@@ -3,49 +3,53 @@ import styles from "./MobileFooter.module.css";
 
 const icons = [
   {
-    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ElectronicsToggleSmallOn50px.png",
+    src:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/ElectronicsToggleSmallOn50px.png",
     alt: "Elektronik",
-    onClick: () => {
-    },
+    onClick: () => {},
   },
   {
-    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/VehicleToggleSmallOn50px.png",
+    src:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/VehicleToggleSmallOn50px.png",
     alt: "Fordon",
-    onClick: () => {
-    },
+    onClick: () => {},
   },
   {
-    
-    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SportToggleSmallOn50px.png",
+    src:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/SportToggleSmallOn50px.png",
     alt: "Fritid",
-    onClick: () => {
-    },
+    onClick: () => {},
   },
   {
-    
-    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/HomeToggleSmallOn50px.png",
+    src:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/HomeToggleSmallOn50px.png",
     alt: "Hushåll",
-    onClick: () => {
-    },
+    onClick: () => {},
   },
   {
-    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ClothesToggleSmallOn50px.png",
+    src:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/ClothesToggleSmallOn50px.png",
     alt: "Kläder",
-    onClick: () => {
-    },
+    onClick: () => {},
   },
   {
-    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/OtherToggleSmallOn50px.png",
+    src:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/OtherToggleSmallOn50px.png",
     alt: "Övrigt",
-    onClick: () => {
-    },
+    onClick: () => {},
   },
-
   {
-    src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
+    src:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
     alt: "Sök",
-    onClick: () => {
-    },
+    onClick: () => {},
   },
 ];
 
@@ -67,7 +71,7 @@ const MobileFooter: React.FC = () => {
   }, []);
 
   if (!isMobile) {
-    return null; // Don't render the footer if not in mobile view
+    return null; // dont render the footer if not in mobile view
   }
 
   return (
@@ -80,6 +84,7 @@ const MobileFooter: React.FC = () => {
             onClick={icon.onClick}
           >
             <img src={icon.src} alt={icon.alt} className={styles.iconImage} />
+            <span className={styles.iconText}>{icon.alt}</span>
           </button>
         ))}
       </div>

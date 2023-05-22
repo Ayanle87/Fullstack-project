@@ -1,42 +1,6 @@
-
-// import { Button, Collapse } from "react-bootstrap";
-// import { RiMenu3Line } from "react-icons/ri";
-// import { FiX } from "react-icons/fi";
-
-// const MobileNavbar: React.FC = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   const toggleNavbar = () => {
-//     setIsOpen(!isOpen);
-//   };
-
-//   return (
-//     <>
-//       <div className="mobile-toggle">
-//         <Button variant="link" onClick={toggleNavbar}>
-//           {isOpen ? <FiX /> : <RiMenu3Line />}
-//         </Button>
-//       </div>
-//       <Collapse in={isOpen}>
-//         <div className="mobile-menu">
-//           <Button variant="link" className="text-decoration-none button">
-//             Logga in
-//           </Button>
-//           <Button variant="link" className="text-decoration-none button">
-//             Om
-//           </Button>
-//           <Button variant="link" className="text-decoration-none button">
-//             Kontakt
-//           </Button>
-//         </div>
-//       </Collapse>
-//     </>
-//   );
-// };
-
 import React, { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-
+import "./MobileNavbar.css";
 
 function MobileNavbar(): JSX.Element {
 	const navRef = useRef<HTMLDivElement>(null);
@@ -51,7 +15,13 @@ function MobileNavbar(): JSX.Element {
 
 	return (
 		<header>
-			<h3>LOGO</h3>
+			<div>
+				<img
+					src="/ux ikoner/Toggles50h/Logo100px.png"
+					alt="Logo"
+					className="logo-image"
+				/>
+			</div>
 			<nav ref={navRef}>
 				<a href="/#">Logga in</a>
 				<a href="/#">Om</a>
@@ -70,9 +40,5 @@ function MobileNavbar(): JSX.Element {
 		</header>
 	);
 }
-
-
-
-
 
 export default MobileNavbar;

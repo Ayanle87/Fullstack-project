@@ -1,60 +1,58 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MobileFooter.module.css";
+import { Button } from "react-bootstrap";
 
-const icons = [
+const initialIcons = [
   {
-    src:
-      process.env.PUBLIC_URL +
-      "/ux ikoner/Toggles50h/ElectronicsToggleSmallOn50px.png",
+    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ElectronicsToggleSmallOn50px.png",
+    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ElectronicsToggleSmallOff50px.png",
     alt: "Elektronik",
-    onClick: () => {},
+    isActive: true,
   },
   {
-    src:
-      process.env.PUBLIC_URL +
-      "/ux ikoner/Toggles50h/VehicleToggleSmallOn50px.png",
+    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/VehicleToggleSmallOn50px.png",
+    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/VehicleToggleSmallOff50px.png",
     alt: "Fordon",
-    onClick: () => {},
+    isActive: true,
   },
   {
-    src:
-      process.env.PUBLIC_URL +
-      "/ux ikoner/Toggles50h/SportToggleSmallOn50px.png",
+    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SportToggleSmallOn50px.png",
+    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SportToggleSmallOff50px.png",
     alt: "Fritid",
-    onClick: () => {},
+    isActive: true,
   },
   {
-    src:
-      process.env.PUBLIC_URL +
-      "/ux ikoner/Toggles50h/HomeToggleSmallOn50px.png",
+    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/HomeToggleSmallOn50px.png",
+    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/HomeToggleSmallOff50px.png",
     alt: "Hushåll",
-    onClick: () => {},
+    isActive: true,
   },
   {
-    src:
-      process.env.PUBLIC_URL +
-      "/ux ikoner/Toggles50h/ClothesToggleSmallOn50px.png",
+    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ClothesToggleSmallOn50px.png",
+    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ClothesToggleSmallOff50px.png",
     alt: "Kläder",
-    onClick: () => {},
+    isActive: true,
   },
   {
-    src:
-      process.env.PUBLIC_URL +
-      "/ux ikoner/Toggles50h/OtherToggleSmallOn50px.png",
+    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/OtherToggleSmallOn50px.png",
+    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/OtherToggleSmallOff50px.png",
     alt: "Övrigt",
-    onClick: () => {},
+    isActive: true,
   },
   {
-    src:
-      process.env.PUBLIC_URL +
-      "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
+    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
+    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
     alt: "Sök",
-    onClick: () => {},
+    isActive: true,
   },
 ];
 
 const MobileFooter: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [icons, setIcons] = useState(initialIcons);
+
+  const [prevPressedIndex, setPrevPressedIndex] = useState(-1);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -70,22 +68,43 @@ const MobileFooter: React.FC = () => {
     };
   }, []);
 
+  const handleIconClick = (index: number) => {
+    // if (prevPressedIndex === index){
+
+    // }
+
+    setIcons((prevIcons) => {
+      const updatedIcons = prevIcons.map((icon, i) => ({
+        ...icon,
+        isActive: i === index ||  prevPressedIndex === index,
+      }));
+
+      return updatedIcons;
+    });
+    setPrevPressedIndex(index)
+  };
+
   if (!isMobile) {
-    return null; // dont render the footer if not in mobile view
+    return null; // Don't render the footer if not in mobile view
   }
 
   return (
     <div className={styles.footerContainer}>
       <div className={styles.iconsContainer}>
         {icons.map((icon, index) => (
-          <button
+          <Button
             key={index}
-            className={styles.iconButton}
-            onClick={icon.onClick}
+            variant="light"
+            className={`${styles.iconButton} ${icon.isActive ? styles.active : ""}`}
+            onClick={() => handleIconClick(index)}
           >
-            <img src={icon.src} alt={icon.alt} className={styles.iconImage} />
+            <img
+              src={icon.isActive ? icon.activeSrc : icon.inactiveSrc}
+              alt={icon.alt}
+              className={styles.iconImage}
+            />
             <span className={styles.iconText}>{icon.alt}</span>
-          </button>
+          </Button>
         ))}
       </div>
     </div>

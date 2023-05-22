@@ -10,7 +10,12 @@ interface Product {
     image: string;
 }
 
-function ObjectCard() {
+interface ObjectCardProps {
+    // productId: number;
+    id: number;
+}
+
+const ObjectCard: React.FC<ObjectCardProps> = ({ id }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isModalOpen, setModalOpen] = useState(false);
 
@@ -18,10 +23,12 @@ function ObjectCard() {
         Modal.setAppElement("#root");
     }, []);
 
-    const handleClick = () => {
-        axios.get("http://localhost:8080/").then((response) => {
+    const handleClick = async () => {
+        axios.get(`http://localhost:8080/${id}`).then((response) => {
             console.log("Response data:", response.data);
-            setResult(response.data);
+            console.log("Result:", result);
+
+            setResult([response.data]);
             handleOpenModal();
         });
     };
@@ -45,6 +52,8 @@ function ObjectCard() {
                         {result.map((product) => (
                             <li key={product.id}>
                                 <p>{product.name}</p>
+                                <p>{product.price}</p>
+                                <p>{product.description}</p>
                             </li>
                         ))}
                     </ul>
@@ -53,6 +62,6 @@ function ObjectCard() {
             </Modal>
         </>
     );
-}
+};
 
 export default ObjectCard;

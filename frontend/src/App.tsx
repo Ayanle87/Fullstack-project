@@ -11,6 +11,8 @@ import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
 
+import ObjectCard from "./components/ObjectCard";
+
 const App: React.FC = () => {
     const router = createHashRouter([
         {
@@ -33,6 +35,7 @@ const App: React.FC = () => {
             <div>
                 <MobileNavbar />
             </div>
+
             <div className="content-wrapper">
                 <RouterProvider router={router} />
             </div>

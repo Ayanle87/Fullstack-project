@@ -15,8 +15,6 @@ const client = new Client({
 
 client.connect();
 
-console.log("Lösen:", process.env.DB_PASSWORD);
-
 const app = express();
 app.use(cors());
 
@@ -42,6 +40,24 @@ app.get("/", async (request, response) => {
         console.log(err);
     }
     console.log("hej");
+});
+
+app.get("/:id", async (request, response) => {
+    try {
+        const id = request.params.id;
+        const query = "SELECT * FROM products WHERE id = $1";
+        const rows = (await client.query(query, [id])).rows;
+
+        if (rows.length > 0) {
+            console.log("id hittat");
+            response.json(rows[0]);
+        } else {
+            response.status(404).json({ error: "Produkten hittades inte" });
+        }
+    } catch (err) {
+        console.log({ error: "hoppsan" });
+        response.status(500).json({ error: "Nejnejnej" });
+    }
 });
 
 app.listen(8080, () => {

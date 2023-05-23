@@ -3,7 +3,7 @@
   bottom: 205px;
   left: 0;
   width: 100%;
-  background-color: #ffffffa2;
+  background-color: hsl(0, 0%, 100%);
   z-index: 1;
   padding: 10px 0px;
   margin-bottom: auto;

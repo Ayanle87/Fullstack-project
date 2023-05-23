@@ -3,6 +3,8 @@ import express from "express";
 const dotenv = require("dotenv"),
     { Client } = require("pg");
 
+const path = require("path");
+
 dotenv.config();
 
 const client = new Client({
@@ -17,6 +19,8 @@ client.connect();
 
 const app = express();
 app.use(cors());
+
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -50,6 +54,7 @@ app.get("/:id", async (request, response) => {
 
         if (rows.length > 0) {
             console.log("id hittat");
+
             response.json(rows[0]);
         } else {
             response.status(404).json({ error: "Produkten hittades inte" });

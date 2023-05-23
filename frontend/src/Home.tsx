@@ -1,13 +1,16 @@
-// import React, { useState, useEffect } from "react";
+
 import ObjectCard from "./components/ObjectCard";
 // import axios from "axios";
+
+import React, { useState, useEffect } from "react";
+
 import "./Home.css";
+import styled from "styled-components";
 
 const Home: React.FC = () => {
     return (
         <div>
             <div>
-                <ObjectCard id={1} />
                 <div className="map-container">
                     <iframe
                         title="Snaazy Maps"

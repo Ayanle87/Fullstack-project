@@ -81,6 +81,7 @@ const MobileFooter: React.FC = () => {
 
       return updatedIcons;
     });
+
     if(index === prevPressedIndex){
       setPrevPressedIndex(-1)
     }
@@ -88,6 +89,9 @@ const MobileFooter: React.FC = () => {
     {
       setPrevPressedIndex(index)
     }
+
+
+
   };
 
   if (!isMobile) {

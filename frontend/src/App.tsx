@@ -5,7 +5,7 @@ import "./navbar.css";
 import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import TestView from "./views/TestView";
-// import ObjectCard from "./components/ObjectCard";
+
 import Root from "./Root";
 import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
@@ -14,21 +14,21 @@ import MobileFooter from "./MobileFooter";
 import ObjectCard from "./components/ObjectCard";
 
 const App: React.FC = () => {
-    const router = createHashRouter([
-        {
-            children: [
-                {
-                    element: <Home />,
-                    path: "/",
-                },
-                {
-                    element: <TestView />,
-                    path: "/object",
-                },
-            ],
-            element: <Root />,
-        },
-    ]);
+    // const router = createHashRouter([
+    //     {
+    //         children: [
+    //             {
+    //                 element: <Home />,
+    //                 path: "/",
+    //             },
+    //             {
+    //                 element: <TestView />,
+    //                 path: "/object",
+    //             },
+    //         ],
+    //         element: <Root />,
+    //     },
+    // ]);
 
     return (
         <div className="App">
@@ -36,9 +36,19 @@ const App: React.FC = () => {
                 <MobileNavbar />
             </div>
 
-            <div className="content-wrapper">
-                <RouterProvider router={router} />
+            <div>
+                {" "}
+                <ObjectCard />
             </div>
+
+            <div className="content-wrapper">
+                {/* <RouterProvider router={router} /> */}
+            </div>
+
+            <div>
+                <Home />
+            </div>
+
             <div>
                 <CustomNavbar />
             </div>

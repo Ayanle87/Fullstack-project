@@ -1,11 +1,11 @@
 .footerContainer {
   position: fixed;
-  bottom: 0;
+  bottom: 205px;
   left: 0;
   width: 100%;
   background-color: #ffffffa2;
   z-index: 1;
-  padding: 8px 0px;
+  padding: 10px 0px;
   margin-bottom: auto;
   overflow-x: auto;
   white-space: nowrap;

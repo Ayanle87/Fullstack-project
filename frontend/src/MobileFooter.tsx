@@ -108,7 +108,17 @@ const MobileFooter: React.FC = () => {
 
       return updatedIcons;
     });
+<<<<<<< HEAD
+    if(index === prevPressedIndex){
+      setPrevPressedIndex(-1)
+    }
+    else
+    {
+      setPrevPressedIndex(index)
+    }
+=======
     setPrevPressedIndex(index);
+>>>>>>> 9feaf8011eaa3dd92b1f2c8bf57b7110b427633e
   };
 
   if (!isMobile) {

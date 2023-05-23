@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import axios from "axios";
+import styled from "styled-components";
 
 interface Product {
     id: number;
@@ -10,27 +11,24 @@ interface Product {
     image: string;
 }
 
-interface ObjectCardProps {
-    // productId: number;
-    id: number;
-}
-
-const ObjectCard: React.FC<ObjectCardProps> = ({ id }) => {
+const ObjectCard: React.FC = () => {
     const [result, setResult] = useState<Product[]>([]);
+    const [selectedProductId, setSelectedProductId] = useState<number | null>(
+        null
+    );
     const [isModalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         Modal.setAppElement("#root");
+
+        axios.get("http://localhost:8080/").then((response) => {
+            setResult(response.data);
+        });
     }, []);
 
-    const handleClick = async () => {
-        axios.get(`http://localhost:8080/${id}`).then((response) => {
-            console.log("Response data:", response.data);
-            console.log("Result:", result);
-
-            setResult([response.data]);
-            handleOpenModal();
-        });
+    const handleClick = (id: number) => {
+        setSelectedProductId(id);
+        handleOpenModal();
     };
 
     const handleOpenModal = () => {
@@ -41,27 +39,56 @@ const ObjectCard: React.FC<ObjectCardProps> = ({ id }) => {
         setModalOpen(false);
     };
 
+    const selectedProduct = selectedProductId
+        ? result.find((product) => product.id === selectedProductId)
+        : null;
+
     return (
         <>
-            <button onClick={handleClick}>Hämta produkter</button>
-            <Modal isOpen={isModalOpen} onRequestClose={handleCloseModal}>
-                <h1>Produkt</h1>
+            <StyledContainer>
+                {result.length > 0 &&
+                    result.map((product) => (
+                        <button
+                            key={product.id}
+                            value={product.id}
+                            onClick={() => handleClick(product.id)}
+                        >
+                            {product.name}
+                        </button>
+                    ))}
 
-                {result.length > 0 && (
-                    <ul>
-                        {result.map((product) => (
-                            <li key={product.id}>
-                                <p>{product.name}</p>
-                                <p>{product.price}</p>
-                                <p>{product.description}</p>
+                <Modal isOpen={isModalOpen} onRequestClose={handleCloseModal}>
+                    <h1>Produkt</h1>
+
+                    {selectedProduct && (
+                        <ul>
+                            <li key={selectedProduct.id}>
+                                <img
+                                    alt="product"
+                                    src={
+                                        "http://localhost:8080" +
+                                        selectedProduct.image
+                                    }
+                                />
+
+                                <p>{selectedProduct.name}</p>
+                                <p>{selectedProduct.price}kr</p>
+                                <p>{selectedProduct.description}</p>
                             </li>
-                        ))}
-                    </ul>
-                )}
-                <button onClick={handleCloseModal}>Stäng</button>
-            </Modal>
+                        </ul>
+                    )}
+                    <button onClick={handleCloseModal}>Stäng</button>
+                </Modal>
+            </StyledContainer>
         </>
     );
 };
+
+const StyledContainer = styled.div`
+    position: relative;
+
+    background-color: transparent;
+    background: transparent;
+`;
 
 export default ObjectCard;

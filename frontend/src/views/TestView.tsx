@@ -8,7 +8,7 @@ function TestView() {
             <StyledContainer>
                 {" "}
                 <h1>TestView</h1>
-                <ObjectCard />
+                {/* <ObjectCard productId={1} /> */}
                 {/* <button>Objekt-knapp</button> */}
             </StyledContainer>
         </>

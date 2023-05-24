@@ -1,48 +1,72 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MobileFooter.module.css";
 import { Button } from "react-bootstrap";
+import SearchBox from "./SearchBox";
+
+const searchIcon = {
+  src: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
+  alt: "Sök",
+};
 
 const initialIcons = [
   {
-    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ElectronicsToggleSmallOn50px.png",
-    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ElectronicsToggleSmallOff50px.png",
+    activeSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/ElectronicsToggleSmallOn50px.png",
+    inactiveSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/ElectronicsToggleSmallOff50px.png",
     alt: "Elektronik",
     isActive: true,
   },
   {
-    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/VehicleToggleSmallOn50px.png",
-    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/VehicleToggleSmallOff50px.png",
+    activeSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/VehicleToggleSmallOn50px.png",
+    inactiveSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/VehicleToggleSmallOff50px.png",
     alt: "Fordon",
     isActive: true,
   },
   {
-    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SportToggleSmallOn50px.png",
-    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SportToggleSmallOff50px.png",
+    activeSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/SportToggleSmallOn50px.png",
+    inactiveSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/SportToggleSmallOff50px.png",
     alt: "Fritid",
     isActive: true,
   },
   {
-    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/HomeToggleSmallOn50px.png",
-    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/HomeToggleSmallOff50px.png",
+    activeSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/HomeToggleSmallOn50px.png",
+    inactiveSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/HomeToggleSmallOff50px.png",
     alt: "Hushåll",
     isActive: true,
   },
   {
-    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ClothesToggleSmallOn50px.png",
-    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/ClothesToggleSmallOff50px.png",
+    activeSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/ClothesToggleSmallOn50px.png",
+    inactiveSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/ClothesToggleSmallOff50px.png",
     alt: "Kläder",
     isActive: true,
   },
   {
-    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/OtherToggleSmallOn50px.png",
-    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/OtherToggleSmallOff50px.png",
+    activeSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/OtherToggleSmallOn50px.png",
+    inactiveSrc:
+      process.env.PUBLIC_URL +
+      "/ux ikoner/Toggles50h/OtherToggleSmallOff50px.png",
     alt: "Övrigt",
-    isActive: true,
-  },
-  {
-    activeSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
-    inactiveSrc: process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
-    alt: "Sök",
     isActive: true,
   },
 ];
@@ -50,9 +74,9 @@ const initialIcons = [
 const MobileFooter: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [icons, setIcons] = useState(initialIcons);
+  const [showSearchBox, setShowSearchBox] = useState(false);
 
   const [prevPressedIndex, setPrevPressedIndex] = useState(-1);
-
 
   useEffect(() => {
     const handleResize = () => {
@@ -69,29 +93,28 @@ const MobileFooter: React.FC = () => {
   }, []);
 
   const handleIconClick = (index: number) => {
-    // if (prevPressedIndex === index){
-
-    // }
-
     setIcons((prevIcons) => {
       const updatedIcons = prevIcons.map((icon, i) => ({
         ...icon,
-        isActive: i === index ||  prevPressedIndex === index,
+        isActive: i === index || prevPressedIndex === index,
       }));
 
       return updatedIcons;
     });
 
-    if(index === prevPressedIndex){
-      setPrevPressedIndex(-1)
+    if (index === prevPressedIndex) {
+      setPrevPressedIndex(-1);
+    } else {
+      setPrevPressedIndex(index);
     }
-    else
-    {
-      setPrevPressedIndex(index)
-    }
+  };
 
+  const handleSearchClick = () => {
+    setShowSearchBox(true);
+  };
 
-
+  const handleSearchClose = () => {
+    setShowSearchBox(false);
   };
 
   if (!isMobile) {
@@ -116,7 +139,16 @@ const MobileFooter: React.FC = () => {
             <span className={styles.iconText}>{icon.alt}</span>
           </Button>
         ))}
+        <Button
+          variant="light"
+          className={styles.iconButton}
+          onClick={handleSearchClick}
+        >
+          <img src={searchIcon.src} alt={searchIcon.alt} className={styles.iconImage} />
+          <span className={styles.iconText}>{searchIcon.alt}</span>
+        </Button>
       </div>
+      {showSearchBox && <SearchBox onSearchClose={handleSearchClose} />}
     </div>
   );
 };

@@ -57,7 +57,6 @@ const ObjectCard: React.FC = () => {
 
     return (
         <>
-            {/* <StyledContainer> */}
             {result.length > 0 &&
                 result.map((product) => (
                     <img
@@ -76,9 +75,6 @@ const ObjectCard: React.FC = () => {
                 style={{
                     overlay: {
                         zIndex: 9999,
-                        width: "368px",
-                        height: "733.38px",
-                        backgroundColor: "#FBFAF9",
                     },
                 }}
             >
@@ -93,6 +89,7 @@ const ObjectCard: React.FC = () => {
                                     style={closeStyle}
                                     onClick={handleCloseModal}
                                 />
+
                                 <img
                                     alt="product"
                                     src={

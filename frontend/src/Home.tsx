@@ -57,16 +57,19 @@ const Home: React.FC = () => {
         : null;
     return (
         <>
-            <StyledContainer>
+            {/* <StyledContainer> */}
+            <div className="map-container">
                 {result.length > 0 &&
                     result.map((product) => (
-                        <img
-                            className="styledPins"
-                            key={product.id}
-                            src={categoryImages[product.category]}
-                            alt={product.name}
-                            onClick={() => handleClick(product.id)}
-                        />
+                        <StyledPinsDiv>
+                            <img
+                                className="styledPins"
+                                key={product.id}
+                                src={categoryImages[product.category]}
+                                alt={product.name}
+                                onClick={() => handleClick(product.id)}
+                            />
+                        </StyledPinsDiv>
                     ))}
 
                 <StyledModal>
@@ -118,19 +121,18 @@ const Home: React.FC = () => {
                         )}
                     </Modal>
                 </StyledModal>
-            </StyledContainer>
+                {/* </StyledContainer> */}
 
-            <div>
-                <div>
-                    <div className="map-container">
-                        <iframe
-                            title="Snaazy Maps"
-                            className="map-iframe"
-                            src="https://snazzymaps.com/embed/490724"
-                        ></iframe>
-                    </div>
-                </div>
+                {/* <div>
+                <div> */}
+                <iframe
+                    title="Snaazy Maps"
+                    className="map-iframe"
+                    src="https://snazzymaps.com/embed/490724"
+                ></iframe>
             </div>
+            {/* </div>
+            </div> */}
         </>
     );
 };
@@ -145,6 +147,11 @@ const imgStyle = {
     width: "368px",
     height: "309.84px",
 };
+
+const StyledPinsDiv = styled.div`
+    background: none;
+    background-color: none;
+`;
 
 const StyledImgDiv = styled.div`
     width: 368px;

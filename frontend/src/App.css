@@ -43,22 +43,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px;
-    gap: 75.62px;
+
+    gap: 15.54px;
     isolation: isolate;
-    z-index: 9999;
+    /* z-index: 9999; */
 
     position: relative;
-    width: 368px;
-    height: 733.38px;
-    /* left: 13px;
-    top: 50.57px; */
+    width: 374px;
+    height: 770px;
+    left: 8px;
+    top: 38px;
 
     background: #fbfaf9;
-    /* Secondary/Dark green */
 
-    border: 0.2px solid #2c5559;
-    border-radius: 5.43575px;
+    background: #fbfaf9;
+    border: 0.113598px solid #000000;
+    border-radius: 5.67991px;
 
     /* overlay {
         z-index: 9999;
@@ -66,6 +66,15 @@
         height: 733.38px;
         backgroundcolor: #fbfaf9;
     } */
+}
+
+.closeStyle {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    /* right: 5px; */
+    z-index: 1;
 }
 
 @keyframes App-logo-spin {

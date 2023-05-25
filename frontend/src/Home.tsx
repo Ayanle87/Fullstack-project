@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
-
 import "./Home.css";
 
 interface Product {
@@ -15,6 +14,25 @@ interface Product {
     category: string;
 }
 
+// const Home: React.FC = () => {
+// navigator.geolocation.getCurrentPosition((pos) => console.log(pos.coords.latitude), (err:any) => console.log("err: " + err))
+// return (
+//   <>
+//     <div>
+//         <div>
+//             <div className="map-container">
+//                 <iframe
+//                     title="Snaazy Maps"
+//                     className="map-iframe"
+//                    src="https://snazzymaps.com/embed/490724"
+//                ></iframe>
+//             </div>
+
+//         </div>
+//     </div>
+//     <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk"></script>
+//   </>
+
 const categoryImages: { [key: string]: string } = {
     Elektronik: "/ux ikoner/Pins/ElektronikMainD.png",
     Fordon: "/ux ikoner/Pins/FordonMainD.png",
@@ -25,6 +43,11 @@ const categoryImages: { [key: string]: string } = {
 };
 
 const Home: React.FC = () => {
+    navigator.geolocation.getCurrentPosition(
+        (pos) => console.log(pos.coords.latitude),
+        (err: any) => console.log("err: " + err)
+    );
+
     const [result, setResult] = useState<Product[]>([]);
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
         null
@@ -57,16 +80,33 @@ const Home: React.FC = () => {
         : null;
     return (
         <>
-            <StyledContainer>
+            {/* <div>
+            <div>
+                <div className="map-container">
+                    <iframe
+                        title="Snaazy Maps"
+                        className="map-iframe"
+                       src="https://snazzymaps.com/embed/490724"
+                   ></iframe>
+                </div>
+
+            </div>
+        </div>
+        <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk"></script> */}
+
+            {/* <StyledContainer> */}
+            <div className="map-container">
                 {result.length > 0 &&
                     result.map((product) => (
-                        <img
-                            className="styledPins"
-                            key={product.id}
-                            src={categoryImages[product.category]}
-                            alt={product.name}
-                            onClick={() => handleClick(product.id)}
-                        />
+                        <StyledPinsDiv>
+                            <img
+                                className="styledPins"
+                                key={product.id}
+                                src={categoryImages[product.category]}
+                                alt={product.name}
+                                onClick={() => handleClick(product.id)}
+                            />
+                        </StyledPinsDiv>
                     ))}
 
                 <StyledModal>
@@ -118,19 +158,18 @@ const Home: React.FC = () => {
                         )}
                     </Modal>
                 </StyledModal>
-            </StyledContainer>
+                {/* </StyledContainer> */}
 
-            <div>
-                <div>
-                    <div className="map-container">
-                        <iframe
-                            title="Snaazy Maps"
-                            className="map-iframe"
-                            src="https://snazzymaps.com/embed/490724"
-                        ></iframe>
-                    </div>
-                </div>
+                {/* <div>
+                <div> */}
+                <iframe
+                    title="Snaazy Maps"
+                    className="map-iframe"
+                    src="https://snazzymaps.com/embed/490724"
+                ></iframe>
             </div>
+            {/* </div>
+            </div> */}
         </>
     );
 };
@@ -145,6 +184,11 @@ const imgStyle = {
     width: "368px",
     height: "309.84px",
 };
+
+const StyledPinsDiv = styled.div`
+    background: red;
+    background-color: none;
+`;
 
 const StyledImgDiv = styled.div`
     width: 368px;

@@ -30,6 +30,7 @@ const ObjectCard: React.FC = () => {
 
     useEffect(() => {
         Modal.setAppElement("#root");
+        console.log("hej");
 
         axios.get("http://localhost:8080/").then((response) => {
             setResult(response.data);
@@ -55,104 +56,93 @@ const ObjectCard: React.FC = () => {
 
     return (
         <>
-            <StyledContainer>
-                {result.length > 0 &&
-                    result.map((product) => (
-                        <img
-                            className="styledPins"
-                            key={product.id}
-                            src={categoryImages[product.category]}
-                            alt={product.name}
-                            onClick={() => handleClick(product.id)}
-                        />
-                    ))}
+            {result.length > 0 &&
+                result.map((product) => (
+                    <img
+                        className="styledPins"
+                        key={product.id}
+                        src={categoryImages[product.category]}
+                        alt={product.name}
+                        onClick={() => handleClick(product.id)}
+                    />
+                ))}
 
-                <StyledModal>
-                    <Modal
-                        isOpen={isModalOpen}
-                        onRequestClose={handleCloseModal}
-                        className="modalclass"
-                        style={{
-                            overlay: {
-                                zIndex: 9999,
-                                width: "368px",
-                                height: "733.38px",
-                                backgroundColor: "#FBFAF9",
-                            },
-                        }}
-                    >
-                        {selectedProduct && (
-                            <Ul>
-                                <Li key={selectedProduct.id}>
-                                    <StyledImgDiv>
-                                        <img
-                                            src="/ux ikoner/Pins/close-modal.png"
-                                            alt=""
-                                            style={closeStyle}
-                                            onClick={handleCloseModal}
-                                        />
-                                        <img
-                                            alt="product"
-                                            src={
-                                                "http://localhost:8080" +
-                                                selectedProduct.image
-                                            }
-                                            style={imgStyle}
-                                        />
-                                    </StyledImgDiv>
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={handleCloseModal}
+                className="modalclass"
+                style={{
+                    overlay: {
+                        zIndex: 9999,
+                    },
+                }}
+            >
+                {selectedProduct && (
+                    <Ul>
+                        <Li key={selectedProduct.id}>
+                            <StyledImgDiv>
+                                <img
+                                    src="/ux ikoner/Pins/close-modal.png"
+                                    alt=""
+                                    className="closeStyle"
+                                    style={closeStyle}
+                                    onClick={handleCloseModal}
+                                />
 
-                                    <StyledH1>{selectedProduct.name}</StyledH1>
-                                    <StyledPrice>
-                                        {selectedProduct.price}kr
-                                    </StyledPrice>
-                                    <StyledDistance>500m bort</StyledDistance>
-                                    <StyledDescriptionDiv>
-                                        <StyledDescription>
-                                            {selectedProduct.description}
-                                        </StyledDescription>
-                                    </StyledDescriptionDiv>
-                                </Li>
-                            </Ul>
-                        )}
-                    </Modal>
-                </StyledModal>
-            </StyledContainer>
+                                <img
+                                    alt="product"
+                                    src={
+                                        "http://localhost:8080" +
+                                        selectedProduct.image
+                                    }
+                                    style={imgStyle}
+                                />
+                            </StyledImgDiv>
+
+                            <StyledH1>{selectedProduct.name}</StyledH1>
+                            <StyledPrice>{selectedProduct.price}kr</StyledPrice>
+                            <StyledDistance>500m bort</StyledDistance>
+                            <StyledDescriptionDiv>
+                                <StyledDescription>
+                                    {selectedProduct.description}
+                                </StyledDescription>
+                            </StyledDescriptionDiv>
+                        </Li>
+                    </Ul>
+                )}
+            </Modal>
+            {/* </StyledContainer> */}
         </>
     );
 };
 
 const closeStyle = {
-    width: "5%",
-    height: "5%",
-    left: "1",
+    width: "30px",
+    height: "30px",
+    // position: "absolute",
+    top: "5px",
+    right: "70px",
+    zIndex: "1",
 };
 
 const imgStyle = {
-    width: "368px",
-    height: "309.84px",
+    width: "100%",
+    height: "100%",
+    zIndex: "0",
 };
 
 const StyledImgDiv = styled.div`
-    width: 368px;
+    width: auto;
     height: 309.84px;
-
-    /* Gray/700 */
-
+    position: relative;
     background: #495057;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
     z-index: 0;
 `;
 
 const StyledH1 = styled.h1`
     width: 233.74px;
     height: 19px;
-
-    font-family: "Open Sans";
+    font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14.0731px;
@@ -172,7 +162,8 @@ const StyledPrice = styled.p`
     width: 27px;
     height: 12px;
 
-    font-family: "Open Sans";
+    font-family: "Open Sans", sans-serif;
+
     font-style: normal;
     font-weight: 600;
     font-size: 8.69719px;
@@ -196,7 +187,8 @@ const StyledDistance = styled.p`
     width: 46px;
     height: 12px;
 
-    font-family: "Open Sans";
+    font-family: "Open Sans", sans-serif;
+
     font-style: normal;
     font-weight: 400;
     font-size: 8.69719px;
@@ -223,7 +215,7 @@ const StyledDescription = styled.p`
     // left: 6.22px;
     // top: 4.95px;
 
-    font-family: "Open Sans";
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14.5019px;
@@ -251,34 +243,6 @@ const StyledDescriptionDiv = styled.div`
     flex-grow: 0;
 `;
 
-const StyledContainer = styled.div`
-    position: relative;
-    zIndex: 9999,
-    width: "70vh",
-    // max-height: "100vh"
-    background-color: transparent;
-    background: transparent;
-`;
-
-const StyledModal = styled.div`
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // padding: 0px;
-    // gap: 75.62px;
-    // isolation: isolate;
-
-    // position: absolute;
-    // width: 368px;
-    // height: 733.38px;
-    // left: 13px;
-    // top: 50.57px;
-
-    // background: #fbfaf9;
-    // border: 0.108715px solid #000000;
-    // border-radius: 5.43575px;
-`;
-
 const Ul = styled.ul`
     display: flex;
     flex-direction: column;
@@ -287,15 +251,11 @@ const Ul = styled.ul`
     gap: 75.62px;
     isolation: isolate;
 
-    position: absolute;
-    width: 368px;
+    // position: relative;
+    width: 100%;
     height: 733.38px;
     left: 13px;
     top: 50.57px;
-
-    background: #fbfaf9;
-    border: 0.108715px solid #000000;
-    border-radius: 5.43575px;
 `;
 
 const Li = styled.li`

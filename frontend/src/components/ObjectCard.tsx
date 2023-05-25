@@ -30,9 +30,11 @@ const ObjectCard: React.FC = () => {
 
     useEffect(() => {
         Modal.setAppElement("#root");
+        console.log("hej")
 
-        axios.get("http://localhost:8080/").then((response) => {
+        axios.get("http://localhost:8081/").then((response) => {
             setResult(response.data);
+
         });
     }, []);
 
@@ -91,7 +93,7 @@ const ObjectCard: React.FC = () => {
                                 <img
                                     alt="product"
                                     src={
-                                        "http://localhost:8080" +
+                                        "http://localhost:8081" +
                                         selectedProduct.image
                                     }
                                     style={imgStyle}

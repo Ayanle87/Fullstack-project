@@ -33,15 +33,6 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, onClose }) => {
         <button type="submit" className={styles.searchButton}>
           Search
         </button>
-        {onClose && (
-          <button
-            type="button"
-            className={styles.closeButton}
-            onClick={onClose}
-          >
-            Close
-          </button>
-        )}
       </form>
     </div>
   );

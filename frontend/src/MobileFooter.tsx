@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import styles from "./MobileFooter.module.css";
 import { Button } from "react-bootstrap";
@@ -110,11 +111,11 @@ const MobileFooter: React.FC = () => {
   };
 
   const handleSearchClick = () => {
-    setShowSearchBox(true);
+    setShowSearchBox(!showSearchBox); // Toggle the search box visibility
   };
 
   const handleSearchClose = () => {
-    setShowSearchBox(false);
+    setShowSearchBox(false); // Close the search box
   };
 
   if (!isMobile) {
@@ -148,7 +149,7 @@ const MobileFooter: React.FC = () => {
           <span className={styles.iconText}>{searchIcon.alt}</span>
         </Button>
       </div>
-      {showSearchBox && <SearchBox onSearchClose={handleSearchClose} />}
+      {showSearchBox && <SearchBox onClose={handleSearchClose} />} {/* Pass onClose prop */}
     </div>
   );
 };

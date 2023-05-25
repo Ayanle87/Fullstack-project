@@ -12,6 +12,10 @@ header {
   height: 64px;
   padding: 0 2rem;
   color: white;
+  position: fixed;
+  background-color: white;
+  border: solid;
+  width: 100%;
 }
 
 nav a {
@@ -36,8 +40,7 @@ header .nav-btn {
   font-size: 1.8rem;
 }
 
-header div,
-nav {
+header div nav {
   display: flex;
   align-items: center;
 }

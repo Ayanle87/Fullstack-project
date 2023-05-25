@@ -149,7 +149,7 @@ const imgStyle = {
 };
 
 const StyledPinsDiv = styled.div`
-    background: none;
+    background: red;
     background-color: none;
 `;
 

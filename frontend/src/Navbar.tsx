@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-
 const CustomNavbar: React.FC = () => {
   return (
     <nav className="navbar">

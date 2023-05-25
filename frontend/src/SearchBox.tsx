@@ -6,7 +6,7 @@ export interface SearchBoxProps {
   onClose?: () => void;
 }
 
-const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, onClose }) => {
+const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

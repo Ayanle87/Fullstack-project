@@ -34,9 +34,38 @@
 }
 
 .styledPins {
-    width: 5%;
-    height: 5%;
+    width: 28.71px;
+    height: 51.55px;
     cursor: pointer;
+}
+
+.modalclass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 75.62px;
+    isolation: isolate;
+    z-index: 9999;
+
+    position: relative;
+    width: 368px;
+    height: 733.38px;
+    /* left: 13px;
+    top: 50.57px; */
+
+    background: #fbfaf9;
+    /* Secondary/Dark green */
+
+    border: 0.2px solid #2c5559;
+    border-radius: 5.43575px;
+
+    /* overlay {
+        z-index: 9999;
+        width: 368px;
+        height: 733.38px;
+        backgroundcolor: #fbfaf9;
+    } */
 }
 
 @keyframes App-logo-spin {

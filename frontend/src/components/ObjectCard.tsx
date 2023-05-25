@@ -11,7 +11,7 @@ interface Product {
     image: string;
     category: string;
 }
-// src="/ux ikoner/Toggles50h/Logo100px.png"
+
 const categoryImages: { [key: string]: string } = {
     Elektronik: "/ux ikoner/Pins/ElektronikMainD.png",
     Fordon: "/ux ikoner/Pins/FordonMainD.png",
@@ -66,41 +66,53 @@ const ObjectCard: React.FC = () => {
                             onClick={() => handleClick(product.id)}
                         />
                     ))}
+
                 <StyledModal>
                     <Modal
                         isOpen={isModalOpen}
                         onRequestClose={handleCloseModal}
+                        className="modalclass"
                         style={{
                             overlay: {
                                 zIndex: 9999,
-                                width: "auto",
-                                height: "auto",
+                                width: "368px",
+                                height: "733.38px",
+                                backgroundColor: "#FBFAF9",
                             },
                         }}
                     >
                         {selectedProduct && (
-                            <ul>
-                                <li key={selectedProduct.id}>
-                                    <img
-                                        src="/ux ikoner/Pins/close-modal.png"
-                                        alt=""
-                                        style={closeStyle}
-                                        onClick={handleCloseModal}
-                                    />
-                                    <img
-                                        alt="product"
-                                        src={
-                                            "http://localhost:8080" +
-                                            selectedProduct.image
-                                        }
-                                        style={imgStyle}
-                                    />
+                            <Ul>
+                                <Li key={selectedProduct.id}>
+                                    <StyledImgDiv>
+                                        <img
+                                            src="/ux ikoner/Pins/close-modal.png"
+                                            alt=""
+                                            style={closeStyle}
+                                            onClick={handleCloseModal}
+                                        />
+                                        <img
+                                            alt="product"
+                                            src={
+                                                "http://localhost:8080" +
+                                                selectedProduct.image
+                                            }
+                                            style={imgStyle}
+                                        />
+                                    </StyledImgDiv>
 
-                                    <p>{selectedProduct.name}</p>
-                                    <p>{selectedProduct.price}kr</p>
-                                    <p>{selectedProduct.description}</p>
-                                </li>
-                            </ul>
+                                    <StyledH1>{selectedProduct.name}</StyledH1>
+                                    <StyledPrice>
+                                        {selectedProduct.price}kr
+                                    </StyledPrice>
+                                    <StyledDistance>500m bort</StyledDistance>
+                                    <StyledDescriptionDiv>
+                                        <StyledDescription>
+                                            {selectedProduct.description}
+                                        </StyledDescription>
+                                    </StyledDescriptionDiv>
+                                </Li>
+                            </Ul>
                         )}
                     </Modal>
                 </StyledModal>
@@ -112,22 +124,182 @@ const ObjectCard: React.FC = () => {
 const closeStyle = {
     width: "5%",
     height: "5%",
+    left: "1",
 };
 
 const imgStyle = {
-    width: "100%",
-    height: "100%",
+    width: "368px",
+    height: "309.84px",
 };
+
+const StyledImgDiv = styled.div`
+    width: 368px;
+    height: 309.84px;
+
+    /* Gray/700 */
+
+    background: #495057;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    z-index: 0;
+`;
+
+const StyledH1 = styled.h1`
+    width: 233.74px;
+    height: 19px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14.0731px;
+    line-height: 19px;
+    letter-spacing: 0.135894px;
+
+    color: #000000;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+`;
+
+const StyledPrice = styled.p`
+    width: 27px;
+    height: 12px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 8.69719px;
+    line-height: 12px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: right;
+    letter-spacing: 0.135894px;
+
+    color: #000000;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+`;
+const StyledDistance = styled.p`
+    width: 46px;
+    height: 12px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8.69719px;
+    line-height: 12px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.135894px;
+
+    color: #000000;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+`;
+
+const StyledDescription = styled.p`
+    position: absolute;
+    width: 315.93px;
+    height: 154.34px;
+    // left: 6.22px;
+    // top: 4.95px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14.5019px;
+    line-height: 20px;
+    letter-spacing: 0.258963px;
+
+    color: #000000;
+`;
+
+const StyledDescriptionDiv = styled.div`
+    box-sizing: border-box;
+
+    width: 322.15px;
+    height: 265.18px;
+
+    /* Secondary/Light green */
+
+    border: 0.543575px solid #c0d0b9;
+    border-radius: 2.71787px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+`;
 
 const StyledContainer = styled.div`
     position: relative;
-
+    zIndex: 9999,
+    width: "70vh",
+    // max-height: "100vh"
     background-color: transparent;
     background: transparent;
 `;
 
 const StyledModal = styled.div`
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // padding: 0px;
+    // gap: 75.62px;
+    // isolation: isolate;
+
+    // position: absolute;
+    // width: 368px;
+    // height: 733.38px;
+    // left: 13px;
+    // top: 50.57px;
+
+    // background: #fbfaf9;
+    // border: 0.108715px solid #000000;
+    // border-radius: 5.43575px;
+`;
+
+const Ul = styled.ul`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 75.62px;
+    isolation: isolate;
+
     position: absolute;
+    width: 368px;
+    height: 733.38px;
+    left: 13px;
+    top: 50.57px;
+
+    background: #fbfaf9;
+    border: 0.108715px solid #000000;
+    border-radius: 5.43575px;
+`;
+
+const Li = styled.li`
+    list-style: none;
 `;
 
 export default ObjectCard;

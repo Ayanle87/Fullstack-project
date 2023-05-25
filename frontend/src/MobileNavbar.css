@@ -16,6 +16,23 @@ header {
   background-color: white;
   border: solid;
   width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 2rem;
+  color: white;
+
+  padding: 20px 16px 8px 119px;
+  /* gap: 79px; */
+
+  position: relative;
+  margin-bottom: 10px;
+  width: 391.17px;
+  height: 63px;
+  /* left: 0px;
+    top: 24px; */
 }
 
 nav a {
@@ -44,10 +61,17 @@ header div nav {
   display: flex;
   align-items: center;
 }
+header div,
+nav {
+  display: flex;
+  align-items: center;
+}
 
 img {
-  width: 200px;
-  height: 40px;
+  /* width: 200px;
+  height: 40px; */
+  width: 143.88px;
+  height: 51px;
   margin-left: 30px;
   position: relative;
   z-index: 1;

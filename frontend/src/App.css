@@ -43,10 +43,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px;
+
     gap: 75.62px;
     isolation: isolate;
-    z-index: 9999;
+    /* z-index: 9999; */
 
     position: relative;
     width: 368px;
@@ -55,6 +55,7 @@
     top: 50.57px; */
 
     background: #fbfaf9;
+
     /* Secondary/Dark green */
 
     border: 0.2px solid #2c5559;
@@ -66,6 +67,15 @@
         height: 733.38px;
         backgroundcolor: #fbfaf9;
     } */
+}
+
+.closeStyle {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    /* right: 5px; */
+    z-index: 1;
 }
 
 @keyframes App-logo-spin {

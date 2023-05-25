@@ -7,11 +7,11 @@ body {
   width: 100%;
   height: 100vh;
   /* position: absolute; */
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .map-iframe {
-  /* pointer-events: none; */
+  pointer-events: none;
   width: 100%;
   height: 100vh;
   border: none;

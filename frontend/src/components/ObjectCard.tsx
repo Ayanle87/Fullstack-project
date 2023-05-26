@@ -27,7 +27,7 @@ const ObjectCard: React.FC = () => {
         null
     );
     const [isModalOpen, setModalOpen] = useState(false);
-    // const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState("");
 
     useEffect(() => {
         Modal.setAppElement("#root");
@@ -61,9 +61,8 @@ const ObjectCard: React.FC = () => {
 
     return (
         <>
-        {/* Här är sökfältet! */}
-            {/* <div>
-                
+            <div>
+                {/* Här är sökfältet! */}
                 <form>
                     <input
                         type="text"
@@ -71,19 +70,19 @@ const ObjectCard: React.FC = () => {
                         onChange={(event) => setSearchValue(event.target.value)}
                     />
                 </form>
-            </div> */}
-{/* Här är sökfältet! */}
+            </div>
+
             {result.length > 0 &&
                 result
-                    // .filter(
-                    //     (product) =>
-                    //         product.category
-                    //             .toLowerCase()
-                    //             .includes(searchValue.toLowerCase()) ||
-                    //         product.name
-                    //             .toLowerCase()
-                    //             .includes(searchValue.toLowerCase())
-                    // )
+                    .filter(
+                        (product) =>
+                            product.category
+                                .toLowerCase()
+                                .includes(searchValue.toLowerCase()) ||
+                            product.name
+                                .toLowerCase()
+                                .includes(searchValue.toLowerCase())
+                    )
                     .map((product) => (
                         <img
                             className="styledPins"

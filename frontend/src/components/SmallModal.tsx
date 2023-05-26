@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
 
-// Interface som specificerar vad som ska finnas i product
 interface Product {
     id: number;
     name: string;
@@ -12,7 +11,7 @@ interface Product {
     image: string;
     category: string;
 }
-// Kategori-ikonerna. Rubrikerna (Elektronik etc) matchar databasen och därför fattar koden vilken bild som tillhör vilken produkt
+
 const categoryImages: { [key: string]: string } = {
     Elektronik: "/ux ikoner/Pins/ElektronikMainD.png",
     Fordon: "/ux ikoner/Pins/FordonMainD.png",
@@ -22,23 +21,14 @@ const categoryImages: { [key: string]: string } = {
     Övrigt: "/ux ikoner/pins/OvrigtMain@0.png",
 };
 
-// Huvudfunktionen
 const ObjectCard: React.FC = () => {
-    // Här sparas det som fecthas från backend
     const [result, setResult] = useState<Product[]>([]);
-
-    // Sparar ID:t på vald produkt. Det gör att rätt produkt visas när den är vald
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
         null
     );
-
-    //För att kunna öppna och stänga modalen
     const [isModalOpen, setModalOpen] = useState(false);
-
-    // Det som skrivs in i sökfältet
     const [searchValue, setSearchValue] = useState("");
 
-    // Hämtar datan från backendet
     useEffect(() => {
         Modal.setAppElement("#root");
 
@@ -52,31 +42,27 @@ const ObjectCard: React.FC = () => {
             });
     }, []);
 
-    // Söker igenom det som fetchats och och letar upp det matchde id:numret.
-    const selectedProduct = selectedProductId
-        ? result.find((product) => product.id === selectedProductId)
-        : null;
-
-    // Funktion som sätter selectedProductIds useState till det ID som klickats på och öppnar modalen.
     const handleClick = (id: number) => {
         setSelectedProductId(id);
         handleOpenModal();
     };
 
-    // Öppnar modalen när man klickar på en pin
     const handleOpenModal = () => {
         setModalOpen(true);
     };
 
-    // Stänger modalen när man klickar på en pin
     const handleCloseModal = () => {
         setModalOpen(false);
     };
 
+    const selectedProduct = selectedProductId
+        ? result.find((product) => product.id === selectedProductId)
+        : null;
+
     return (
         <>
             <div>
-                {/* Sökfält. searchValue är det som skrivs in.  */}
+                {/* Här är sökfältet! */}
                 <form>
                     <input
                         type="text"
@@ -88,8 +74,6 @@ const ObjectCard: React.FC = () => {
 
             {result.length > 0 &&
                 result
-
-                    // Filtrerar det som skrivs i sökfältet (searchValue) och jämnför med productkategorierna och produktnamnen. Funkar att söka med både liten och stor bokstav pga toLowerCase.
                     .filter(
                         (product) =>
                             product.category
@@ -99,8 +83,6 @@ const ObjectCard: React.FC = () => {
                                 .toLowerCase()
                                 .includes(searchValue.toLowerCase())
                     )
-
-                    //skapar en array av img baserat på resultatet från fetchen. I src sätter kategorin rätt kategori-bild uifrån produkt katergorin. (Se categoryImages längst upp). HandleClick skickar med produkt id:t som argument för att rätt produkt ska visas.
                     .map((product) => (
                         <img
                             className="styledPins"
@@ -110,7 +92,17 @@ const ObjectCard: React.FC = () => {
                             onClick={() => handleClick(product.id)}
                         />
                     ))}
-            {/* Modalen som öppnas 'onClick' på pinsen. Modalen innehåller namn, bild, pris, produktbeskrivning. */}
+            {/* {result.length > 0 &&
+                result.map((product) => (
+                    <img
+                        className="styledPins"
+                        key={product.id}
+                        src={categoryImages[product.category]}
+                        alt={product.name}
+                        onClick={() => handleClick(product.id)}
+                    />
+                ))} */}
+
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={handleCloseModal}
@@ -171,8 +163,6 @@ const ObjectCard: React.FC = () => {
         </>
     );
 };
-
-// CSS
 
 const closeStyle = {
     width: "17.74px",

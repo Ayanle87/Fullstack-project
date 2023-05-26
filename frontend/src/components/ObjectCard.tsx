@@ -30,11 +30,15 @@ const ObjectCard: React.FC = () => {
 
     useEffect(() => {
         Modal.setAppElement("#root");
-        console.log("hej");
 
-        axios.get("http://localhost:8080/").then((response) => {
-            setResult(response.data);
-        });
+        axios
+            .get("http://localhost:8080/")
+            .then((response) => {
+                setResult(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }, []);
 
     const handleClick = (id: number) => {
@@ -78,64 +82,87 @@ const ObjectCard: React.FC = () => {
                 }}
             >
                 {selectedProduct && (
-                    <Ul>
-                        <Li key={selectedProduct.id}>
-                            <StyledImgDiv>
-                                <img
-                                    src="/ux ikoner/Pins/close-modal.png"
-                                    alt=""
-                                    className="closeStyle"
-                                    style={closeStyle}
-                                    onClick={handleCloseModal}
-                                />
+                    <StyledContainer>
+                        <Ul>
+                            <Li key={selectedProduct.id}>
+                                <StyledImgDiv>
+                                    <img
+                                        src="/ux ikoner/Pins/close-modal.png"
+                                        alt=""
+                                        className="closeStyle"
+                                        style={closeStyle}
+                                        onClick={handleCloseModal}
+                                    />
 
-                                <img
-                                    alt="product"
-                                    src={
-                                        "http://localhost:8080" +
-                                        selectedProduct.image
-                                    }
-                                    style={imgStyle}
-                                />
-                            </StyledImgDiv>
+                                    <img
+                                        alt="product"
+                                        src={
+                                            "http://localhost:8080" +
+                                            selectedProduct.image
+                                        }
+                                        style={imgStyle}
+                                        className="imgStyle"
+                                    />
+                                </StyledImgDiv>
+                                <StyledH1>{selectedProduct.name}</StyledH1>
 
-                            <StyledH1>{selectedProduct.name}</StyledH1>
-                            <StyledPrice>{selectedProduct.price}kr</StyledPrice>
-                            <StyledDistance>500m bort</StyledDistance>
-                            <StyledDescriptionDiv>
-                                <StyledDescription>
-                                    {selectedProduct.description}
-                                </StyledDescription>
-                            </StyledDescriptionDiv>
-                        </Li>
-                    </Ul>
+                                <div>
+                                    <StyledPrice>
+                                        {selectedProduct.price}kr
+                                    </StyledPrice>
+                                    <StyledDistance>500m bort</StyledDistance>
+                                </div>
+                                <StyledDescriptionDiv>
+                                    <StyledDescription>
+                                        {selectedProduct.description}
+                                    </StyledDescription>
+                                </StyledDescriptionDiv>
+                            </Li>
+                        </Ul>
+                    </StyledContainer>
                 )}
             </Modal>
-            {/* </StyledContainer> */}
         </>
     );
 };
 
 const closeStyle = {
-    width: "30px",
-    height: "30px",
-    // position: "absolute",
+    width: "17.74px",
+    height: "17.74px",
     top: "5px",
-    right: "70px",
+    right: "10px",
     zIndex: "1",
 };
 
 const imgStyle = {
     width: "100%",
     height: "100%",
+    right: "0",
     zIndex: "0",
 };
 
+const StyledContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 const StyledImgDiv = styled.div`
-    width: auto;
+    // left: 0px;
+    // right: -0.13px;
+    // top: 0px;
+    // bottom: 0.3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // width: 100%;
+    width: 374px;
+
     height: 309.84px;
     position: relative;
     background: #495057;
+    object-fit: contain;
+
     z-index: 0;
 `;
 
@@ -148,14 +175,9 @@ const StyledH1 = styled.h1`
     font-size: 14.0731px;
     line-height: 19px;
     letter-spacing: 0.135894px;
+    margin-left: 25px;
 
     color: #000000;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 `;
 
 const StyledPrice = styled.p`
@@ -168,13 +190,14 @@ const StyledPrice = styled.p`
     font-weight: 600;
     font-size: 8.69719px;
     line-height: 12px;
-    /* identical to box height */
+    margin-left: 25px;
 
     display: flex;
     align-items: center;
     text-align: right;
     letter-spacing: 0.135894px;
 
+    padding: 10px;
     color: #000000;
 
     /* Inside auto layout */
@@ -212,8 +235,6 @@ const StyledDescription = styled.p`
     position: absolute;
     width: 315.93px;
     height: 154.34px;
-    // left: 6.22px;
-    // top: 4.95px;
 
     font-family: "Open Sans", sans-serif;
     font-style: normal;
@@ -227,20 +248,20 @@ const StyledDescription = styled.p`
 
 const StyledDescriptionDiv = styled.div`
     box-sizing: border-box;
+    display: flex;
 
     width: 322.15px;
     height: 265.18px;
 
-    /* Secondary/Light green */
+    // right: 20px
+    left: 10px;
+    top: 4.95px;
+
+    margin-left: 25px;
+    margin-top: 10px;
 
     border: 0.543575px solid #c0d0b9;
     border-radius: 2.71787px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
 `;
 
 const Ul = styled.ul`

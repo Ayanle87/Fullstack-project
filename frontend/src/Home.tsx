@@ -96,9 +96,9 @@ const Home: React.FC = () => {
 
             {/* <StyledContainer> */}
             <div className="map-container">
-                {result.length > 0 &&
-                    result.map((product) => (
-                        <StyledPinsDiv>
+                <StyledPinsDiv>
+                    {result.length > 0 &&
+                        result.map((product) => (
                             <img
                                 className="styledPins"
                                 key={product.id}
@@ -106,8 +106,8 @@ const Home: React.FC = () => {
                                 alt={product.name}
                                 onClick={() => handleClick(product.id)}
                             />
-                        </StyledPinsDiv>
-                    ))}
+                        ))}
+                </StyledPinsDiv>
 
                 <StyledModal>
                     <Modal
@@ -186,8 +186,7 @@ const imgStyle = {
 };
 
 const StyledPinsDiv = styled.div`
-    background: red;
-    background-color: none;
+    background: rgb(207, 207, 201);
 `;
 
 const StyledImgDiv = styled.div`

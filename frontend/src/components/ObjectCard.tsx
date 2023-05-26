@@ -13,13 +13,24 @@ interface Product {
     category: string;
 }
 // Kategori-ikonerna. Rubrikerna (Elektronik etc) matchar databasen och därför fattar koden vilken bild som tillhör vilken produkt
+
 const categoryImages: { [key: string]: string } = {
-    Elektronik: "/ux ikoner/Pins/ElektronikMainD.png",
-    Fordon: "/ux ikoner/Pins/FordonMainD.png",
-    Fritid: "/ux ikoner/pins/FritidMain@0.png",
-    Hushåll: "/ux ikoner/pins/HusMain@0.png",
-    Kläder: "/ux ikoner/pins/KladerMain@0.png",
-    Övrigt: "/ux ikoner/pins/OvrigtMain@0.png",
+    Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
+    Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
+    Fritid: "/ux ikoner/76h/SportPin76vh.png",
+    Hushåll: "/ux ikoner/76h/HomePin76vh.png",
+    Kläder: "/ux ikoner/76h/ClothesPin76vh.png",
+    Övrigt: "/ux ikoner/76h/OtherPin76vh.png",
+};
+
+// Om e pin blivit klickad på så byts den ut till en av dessa.
+const categoryImagesVisited: { [key: string]: string } = {
+    Elektronik: "/ux ikoner/76h/ElectronicsPinVisited76vh.png",
+    Fordon: "/ux ikoner/76h/VehiclePinVisited76vh.png",
+    Fritid: "/ux ikoner/76h/SportPinVisited76vh.png",
+    Hushåll: "/ux ikoner/76h/HomePinVisited76vh.png",
+    Kläder: "/ux ikoner/76h/ClothesPinVisited76vh.png",
+    Övrigt: "/ux ikoner/76h/OtherPinVisited76vh.png",
 };
 
 // Huvudfunktionen
@@ -37,6 +48,9 @@ const ObjectCard: React.FC = () => {
 
     // Det som skrivs in i sökfältet
     const [searchValue, setSearchValue] = useState("");
+
+    // Om en pin blivit klickad på så ska den byta bild
+    const [visitedPins, setVisitedPins] = useState<number[]>([]);
 
     // Hämtar datan från backendet
     useEffect(() => {
@@ -57,10 +71,12 @@ const ObjectCard: React.FC = () => {
         ? result.find((product) => product.id === selectedProductId)
         : null;
 
-    // Funktion som sätter selectedProductIds useState till det ID som klickats på och öppnar modalen.
-    const handleClick = (id: number) => {
+    // Funktion som sätter selectedProductIds useState till det ID som klickats på, samt uppdaterar pinsen till nya om de blivit klickade på och öppnar modalen.
+    const handleClick = (id: number, category: string) => {
         setSelectedProductId(id);
         handleOpenModal();
+
+        setVisitedPins((prevVisitedPins) => [...prevVisitedPins, id]);
     };
 
     // Öppnar modalen när man klickar på en pin
@@ -100,14 +116,20 @@ const ObjectCard: React.FC = () => {
                                 .includes(searchValue.toLowerCase())
                     )
 
-                    //skapar en array av img baserat på resultatet från fetchen. I src sätter kategorin rätt kategori-bild uifrån produkt katergorin. (Se categoryImages längst upp). HandleClick skickar med produkt id:t som argument för att rätt produkt ska visas.
+                    //skapar en array av img baserat på resultatet från fetchen. I src sätter kategorin rätt kategori-bild uifrån produktkatergorin från databasen.Om en pin blivit klickad byts bild (Se categoryImages och categoryImagesVisited längst upp). HandleClick skickar med produkt id:t som argument för att rätt produkt ska visas.
                     .map((product) => (
                         <img
                             className="styledPins"
                             key={product.id}
-                            src={categoryImages[product.category]}
+                            src={
+                                visitedPins.includes(product.id)
+                                    ? categoryImagesVisited[product.category]
+                                    : categoryImages[product.category]
+                            }
                             alt={product.name}
-                            onClick={() => handleClick(product.id)}
+                            onClick={() =>
+                                handleClick(product.id, product.category)
+                            }
                         />
                     ))}
             {/* Modalen som öppnas 'onClick' på pinsen. Modalen innehåller namn, bild, pris, produktbeskrivning. */}

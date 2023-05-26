@@ -27,6 +27,7 @@ const ObjectCard: React.FC = () => {
         null
     );
     const [isModalOpen, setModalOpen] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
 
     useEffect(() => {
         Modal.setAppElement("#root");
@@ -60,7 +61,38 @@ const ObjectCard: React.FC = () => {
 
     return (
         <>
+            <div>
+                {/* Här är sökfältet! */}
+                <form>
+                    <input
+                        type="text"
+                        value={searchValue}
+                        onChange={(event) => setSearchValue(event.target.value)}
+                    />
+                </form>
+            </div>
+
             {result.length > 0 &&
+                result
+                    .filter(
+                        (product) =>
+                            product.category
+                                .toLowerCase()
+                                .includes(searchValue.toLowerCase()) ||
+                            product.name
+                                .toLowerCase()
+                                .includes(searchValue.toLowerCase())
+                    )
+                    .map((product) => (
+                        <img
+                            className="styledPins"
+                            key={product.id}
+                            src={categoryImages[product.category]}
+                            alt={product.name}
+                            onClick={() => handleClick(product.id)}
+                        />
+                    ))}
+            {/* {result.length > 0 &&
                 result.map((product) => (
                     <img
                         className="styledPins"
@@ -69,7 +101,7 @@ const ObjectCard: React.FC = () => {
                         alt={product.name}
                         onClick={() => handleClick(product.id)}
                     />
-                ))}
+                ))} */}
 
             <Modal
                 isOpen={isModalOpen}
@@ -104,14 +136,20 @@ const ObjectCard: React.FC = () => {
                                         className="imgStyle"
                                     />
                                 </StyledImgDiv>
-                                <StyledH1>{selectedProduct.name}</StyledH1>
 
-                                <div>
-                                    <StyledPrice>
-                                        {selectedProduct.price}kr
-                                    </StyledPrice>
-                                    <StyledDistance>500m bort</StyledDistance>
-                                </div>
+                                <StyledTopContainer>
+                                    <StyledH1>{selectedProduct.name}</StyledH1>
+
+                                    <StyledPriceDistanceContainer>
+                                        <StyledPrice>
+                                            {selectedProduct.price}kr
+                                        </StyledPrice>
+                                        <StyledDistance>
+                                            500m bort
+                                        </StyledDistance>
+                                    </StyledPriceDistanceContainer>
+                                </StyledTopContainer>
+
                                 <StyledDescriptionDiv>
                                     <StyledDescription>
                                         {selectedProduct.description}
@@ -148,15 +186,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledImgDiv = styled.div`
-    // left: 0px;
-    // right: -0.13px;
-    // top: 0px;
-    // bottom: 0.3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // width: 100%;
-    width: 374px;
+    width: 100%;
+    // width: 374px;
 
     height: 309.84px;
     position: relative;
@@ -166,98 +197,82 @@ const StyledImgDiv = styled.div`
     z-index: 0;
 `;
 
+const StyledTopContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 const StyledH1 = styled.h1`
-    width: 233.74px;
-    height: 19px;
+   
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 14.0731px;
-    line-height: 19px;
-    letter-spacing: 0.135894px;
-    margin-left: 25px;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    margin-left: 15px;
+    margin-bottom; 15px;
+    margin-top: 15px;
 
     color: #000000;
+`;
+
+const StyledPriceDistanceContainer = styled.div`
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    margin-right: 15px;
 `;
 
 const StyledPrice = styled.p`
-    width: 27px;
-    height: 12px;
-
-    font-family: "Open Sans", sans-serif;
-
+    font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 8.69719px;
-    line-height: 12px;
-    margin-left: 25px;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
 
-    display: flex;
-    align-items: center;
-    text-align: right;
-    letter-spacing: 0.135894px;
-
-    padding: 10px;
-    color: #000000;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    // display: flex;
+    // align-items: center;
+    // text-align: right;
 `;
 const StyledDistance = styled.p`
-    width: 46px;
-    height: 12px;
-
     font-family: "Open Sans", sans-serif;
 
     font-style: normal;
     font-weight: 400;
-    font-size: 8.69719px;
+    font-size: 14px;
     line-height: 12px;
-    /* identical to box height */
 
-    display: flex;
-    align-items: center;
     letter-spacing: 0.135894px;
 
     color: #000000;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
 `;
 
 const StyledDescription = styled.p`
-    position: absolute;
-    width: 315.93px;
-    height: 154.34px;
+    position: relative;
 
     font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14.5019px;
-    line-height: 20px;
-    letter-spacing: 0.258963px;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.25px;
 
-    color: #000000;
+    //     display: flex;
+    // align-items: center;
 `;
 
 const StyledDescriptionDiv = styled.div`
     box-sizing: border-box;
     display: flex;
-
+    // object-fit: contain;
     width: 322.15px;
     height: 265.18px;
-
-    // right: 20px
-    left: 10px;
-    top: 4.95px;
-
-    margin-left: 25px;
+    padding: 10px;
+    // align-items: center;
+    margin-left: 15px;
     margin-top: 10px;
 
     border: 0.543575px solid #c0d0b9;
@@ -272,7 +287,6 @@ const Ul = styled.ul`
     gap: 75.62px;
     isolation: isolate;
 
-    // position: relative;
     width: 100%;
     height: 733.38px;
     left: 13px;

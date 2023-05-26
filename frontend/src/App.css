@@ -11,17 +11,13 @@ body {
 }
 
 .imgStyle {
-    object-fit: fill;
-
+    object-fit: cover;
     position: absolute;
 }
 
 .modalclass {
     display: flex;
     flex-direction: column;
-
-    /* gap: 15.54px;
-    isolation: isolate; */
 
     position: relative;
     width: 374px;
@@ -32,6 +28,10 @@ body {
     background: #fbfaf9;
     border: 0.113598px solid #000000;
     border-radius: 5.67991px;
+}
+
+.modalclass:focus {
+    outline: none;
 }
 
 .closeStyle {

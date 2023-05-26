@@ -30,6 +30,7 @@ const App: React.FC = () => {
     //     },
     // ]);
 
+
     return (
         <div className="App">
             <div>
@@ -37,8 +38,8 @@ const App: React.FC = () => {
             </div>
 
             <div>
-                {" "}
-                <ObjectCard />
+
+                {/* <ObjectCard/> */}
             </div>
 
             <div className="content-wrapper">

@@ -12,6 +12,12 @@ interface Product {
     category: string;
 }
 
+interface ObjectCardProps {
+  onProductClick: (id: number) => void;
+  product:Product;
+}
+
+
 const categoryImages: { [key: string]: string } = {
     Elektronik: "/ux ikoner/Pins/ElektronikMainD.png",
     Fordon: "/ux ikoner/Pins/FordonMainD.png",
@@ -21,11 +27,13 @@ const categoryImages: { [key: string]: string } = {
     Övrigt: "/ux ikoner/pins/OvrigtMain@0.png",
 };
 
-const ObjectCard: React.FC = () => {
+
+
+  const ObjectCard: React.FC<ObjectCardProps> = ({ onProductClick,product }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
-        null
-    );
+         null
+     );
     const [isModalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
@@ -37,10 +45,16 @@ const ObjectCard: React.FC = () => {
         });
     }, []);
 
-    const handleClick = (id: number) => {
-        setSelectedProductId(id);
-        handleOpenModal();
-    };
+    // const handleClick = (id: number) => {
+    //     setSelectedProductId(id);
+    //     handleOpenModal();
+    // };
+
+     const handleClick = (id: number) => {
+    onProductClick(id);
+    handleOpenModal();
+  };
+
 
     const handleOpenModal = () => {
         setModalOpen(true);

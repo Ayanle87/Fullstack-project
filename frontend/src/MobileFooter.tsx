@@ -111,15 +111,15 @@ const MobileFooter: React.FC = () => {
   };
 
   const handleSearchClick = () => {
-    setShowSearchBox(!showSearchBox); // Toggle the search box visibility
+    setShowSearchBox(!showSearchBox); 
   };
 
   const handleSearchClose = () => {
-    setShowSearchBox(false); // Close the search box
+    setShowSearchBox(false); 
   };
 
   if (!isMobile) {
-    return null; // Don't render the footer if not in mobile view
+    return null; 
   }
 
   return (

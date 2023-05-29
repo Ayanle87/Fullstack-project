@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "./SearchBox.module.css";
 
+
+
+
 export interface SearchBoxProps {
   onSearch?: (query: string) => void;
   onClose?: () => void;

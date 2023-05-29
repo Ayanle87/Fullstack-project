@@ -21,16 +21,34 @@ body {
 
     position: relative;
     width: 374px;
-    height: 770px;
+    height: 733.38px;
     left: 8px;
+    /* left: 13px; */
     top: 38px;
+    /* top: 50.57px; */
 
     background: #fbfaf9;
-    border: 0.113598px solid #000000;
-    border-radius: 5.67991px;
+    border: 0.2px solid #2c5559;
+    border-radius: 5.43575px;
 }
 
-.modalclass:focus {
+.smallModalclass {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    width: 374px;
+    height: 337px;
+    left: 8px;
+    top: 400px;
+
+    background: #fbfaf9;
+    border: 0.2px solid #2c5559;
+    border-radius: 8.33684px;
+}
+
+.modalclass:focus,
+.smallModalclass:focus {
     outline: none;
 }
 

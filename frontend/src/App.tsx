@@ -12,6 +12,7 @@ import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
 
 import ObjectCard from "./components/ObjectCard";
+import SmallModal from "./components/SmallModal";
 
 const App: React.FC = () => {
     // const router = createHashRouter([
@@ -35,7 +36,9 @@ const App: React.FC = () => {
             <div>
                 <MobileNavbar />
             </div>
-
+            <div>
+                <SmallModal />
+            </div>
             <div>
                 {" "}
                 <ObjectCard />

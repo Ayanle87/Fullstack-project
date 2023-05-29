@@ -20,14 +20,12 @@ interface ProductProps {
     // category: string;
     // visitedPins: number[];
     // onClick: (id: number, category: string) => void;
-products: Product[]
+    products: Product[];
 }
 
-
-
-// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) => 
+// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) =>
 // Huvudfunktionen
-const SmallModal: React.FC<ProductProps> = ({products}) => {
+const SmallModal: React.FC<ProductProps> = ({ products }) => {
     // Här sparas det som fecthas från backend
     const [result, setResult] = useState<Product[]>([]);
 
@@ -92,7 +90,7 @@ const SmallModal: React.FC<ProductProps> = ({products}) => {
 
     return (
         <>
-            {result.length > 0 &&
+            {/* {result.length > 0 &&
                 result
 
                     //skapar en array av img baserat på resultatet från fetchen. I src sätter kategorin rätt kategori-bild uifrån produktkatergorin från databasen.Om en pin blivit klickad byts bild (Se categoryImages och categoryImagesVisited längst upp). HandleClick skickar med produkt id:t som argument för att rätt produkt ska visas.
@@ -102,9 +100,9 @@ const SmallModal: React.FC<ProductProps> = ({products}) => {
                             id={product.id}
                             category={product.category}
                             visitedPins={visitedPins}
-                            onClick={handleClick}
+                            setPins={setPins}
                         />
-                    ))}
+                    ))} */}
             {/* Modalen som öppnas 'onClick' på pinsen. Modalen innehåller namn, bild, pris, produktbeskrivning. */}
             <Modal
                 isOpen={isModalOpen}

@@ -2,26 +2,12 @@ import { useContext, useState } from "react";
 
 import ProductContext from "../ProductContext";
 
-{
-    /* <TestPins
-key={product.id}
-id={product.id}
-category={product.category}
-visitedPins={visitedPins}
-setPins={setPins}
-setSelectedPinId={setSelectedPinId}
-openModal={openModal}
-/> */
-}
-
 interface PinProps {
     id: number;
     category: string;
     visitedPins: number[];
     setPins: React.Dispatch<React.SetStateAction<number[]>>;
     setSelectedPinId: React.Dispatch<React.SetStateAction<number | null>>;
-    openModal: () => void;
-    // onClick: (id: number, category: string) => void;
 }
 
 const categoryImages: { [key: string]: string } = {
@@ -42,15 +28,17 @@ const categoryImagesVisited: { [key: string]: string } = {
     Övrigt: "/ux ikoner/76h/OtherPinVisited76vh.png",
 };
 
-const Pins: React.FC<PinProps> = ({ id, category, visitedPins, openModal }) => {
+const Pins: React.FC<PinProps> = ({ id, category, visitedPins }) => {
     const { setPins } = useContext(ProductContext);
     const [selectedPinId, setSelectedPinId] = useState<number | null>(null);
 
     const handleClick = () => {
+        console.log(id, category);
         const updatedPins = [...visitedPins, id];
+        console.log(updatedPins);
+
         setPins(updatedPins);
         setSelectedPinId(id);
-        openModal();
     };
     return (
         <img

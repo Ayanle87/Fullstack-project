@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./App.css";
 
-import { UserContext } from "./UserContext";
+import ProductContext from "./ProductContext";
 
 import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import TestView from "./views/TestView";
+
+import styled from "styled-components";
 
 import Root from "./Root";
 import CustomNavbar from "./Navbar";
@@ -15,79 +16,95 @@ import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
 import axios from "axios";
 
-import ObjectCard from "./components/ObjectCard";
 import SmallModal from "./components/SmallModal";
 import BigModal from "./components/BigModal";
 import Pins from "./components/Pins";
 
+import Test from "./components/Test";
+import TestPins from "./components/TestPins";
+
+import ModalFunction from "./components/ModalFunction";
+
 interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-  category: string;
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    image: string;
+    category: string;
 }
 
 const App: React.FC = () => {
-  // const router = createHashRouter([
-  //     {
-  //         children: [
-  //             {
-  //                 element: <Home />,
-  //                 path: "/",
-  //             },
-  //             {
-  //                 element: <TestView />,
-  //                 path: "/object",
-  //             },
-  //         ],
-  //         element: <Root />,
-  //     },
-  // ]);
+    const [products, setProducts] = useState<Product[]>([]);
+    const [pins, setPins] = useState<number[]>([]);
+    const [visitedPins, setVisitedPins] = useState<number[]>([]);
 
-  const [products, setProducts] = useState<Product[]>([]);
+    const [selectedPinId, setSelectedPinId] = useState<number | null>(null);
+    const openModal = () => {
+        setSelectedPinId(pins[pins.length - 1]);
+    };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/")
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    //Fetchar produktera, sparas i setProduct som är
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/")
+            .then((response) => {
+                setProducts(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
 
-  return (
-    <div className="App">
-      <div>
-        <MobileNavbar />
-      </div>
-      <div>
-        <SmallModal products={products} />
+    return (
+        <div className="App">
+            <div>
+                <MobileNavbar />
+            </div>
 
-      </div>
+            {/* userContext funkar på alla komponenter som ligger i denna. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
+            <ProductContext.Provider
+                value={{ products, pins, setProducts, setPins }}
+            >
+                {/* <Test /> */}
 
-      <div>{/* <ObjectCard/> */}</div>
+                <div>
+                    {products.map((product) => (
+                        <TestPins
+                            key={product.id}
+                            id={product.id}
+                            category={product.category}
+                            visitedPins={visitedPins}
+                            setPins={setPins}
+                            setSelectedPinId={setSelectedPinId}
+                        />
+                    ))}
+                </div>
 
-      <div className="content-wrapper">
-        {/* <RouterProvider router={router} /> */}
-      </div>
+                <div>
+                    <SmallModal products={products} />
+                </div>
+            </ProductContext.Provider>
 
-      <div>
-        <Home />
-      </div>
+            <div>{/* <ObjectCard/> */}</div>
 
-      <div>
-        <CustomNavbar />
-      </div>
+            <div className="content-wrapper">
+                {/* <RouterProvider router={router} /> */}
+            </div>
 
-      <div>
-        <MobileFooter products={products} />
-      </div>
-    </div>
-  );
+            <div>
+                <Home />
+            </div>
+
+            <div>
+                <CustomNavbar />
+            </div>
+
+            <div>
+                <MobileFooter products={products} />
+            </div>
+        </div>
+    );
 };
 
 export default App;

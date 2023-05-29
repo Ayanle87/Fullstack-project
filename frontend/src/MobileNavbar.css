@@ -26,7 +26,7 @@ header {
 
   padding: 20px 16px 8px 119px;
   /* gap: 79px; */
-
+  z-index: 1;
   position: relative;
   margin-bottom: 10px;
   width: 391.17px;

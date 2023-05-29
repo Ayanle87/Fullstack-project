@@ -46,6 +46,16 @@ const ObjectCard: React.FC = () => {
     //För att kunna öppna och stänga modalen
     const [isModalOpen, setModalOpen] = useState(false);
 
+    // const handleClick = (id: number) => {
+    //     setSelectedProductId(id);
+    //     handleOpenModal();
+    // };
+
+    //   const handleClick = (id: number) => {
+    //   onProductClick(id);
+    //   handleOpenModal();
+    // };
+
     // Det som skrivs in i sökfältet
     const [searchValue, setSearchValue] = useState("");
 

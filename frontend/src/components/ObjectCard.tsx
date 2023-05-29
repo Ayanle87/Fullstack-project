@@ -61,10 +61,10 @@ const ObjectCard:React.FC<ObjectCardProps> = ({ onProductClick,product })=> {
     //     handleOpenModal();
     // };
 
-    const handleClick = (id: number) => {
-    onProductClick(id);
-    handleOpenModal();
-  };
+  //   const handleClick = (id: number) => {
+  //   onProductClick(id);
+  //   handleOpenModal();
+  // };
 
   // Det som skrivs in i sökfältet
   const [searchValue, setSearchValue] = useState("");

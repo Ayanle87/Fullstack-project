@@ -22,7 +22,6 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
   const [products, setProducts] = useState<Product[]>([]);
 
 
-
   useEffect(() => {
     axios.get('http://localhost:8080/').then((response) => {
       setProducts(response.data);
@@ -36,7 +35,7 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
    const mapContainerStyle = {
     width: '100%',
-    height: '80vh'
+    height: '50vh'
   };
 
 
@@ -181,19 +180,32 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
           />
         ))} */}
+
+{/* För varje Marker, ska den ha egen modal, vilket blir objectcard på något sätt se nedan för Infowindow examplet*/}
          {products.map((product) => (
- <Marker
- key={product.id}
- position = { { lat: Math.random () * 0.1+57.70090604681059,
-   lng: Math.random() * 0.1+11.974023638297332}}
-   data-value = {product}
-  //  onClick={handleProductClick}
-  onClick={() => {
-    handleProductClick(product.id, 57.70090604681059, 11.974023638297332, "Varbergsgatan");
-  }}
+      <Marker
+    key={product.id}
+    position = { { lat: Math.random () * 0.1+57.70090604681059,
+      lng: Math.random() * 0.1+11.974023638297332}}
+      data-value = {product}
+      //  onClick={handleProductClick}
+      onClick={() => {
+        handleProductClick(product.id, 57.70090604681059, 11.974023638297332, "Varbergsgatan");
+      }}
 
 
- />
+ >
+    {/* {isOpen && infoWindowData?.id === ind && (
+                <InfoWindow
+                  onCloseClick={() => {
+                    setIsOpen(false);
+                  }}
+                >
+                  <h3>{infoWindowData.address}</h3>
+                </InfoWindow>
+              )} */}
+  </Marker>
+
         ))}
 
       </GoogleMap>

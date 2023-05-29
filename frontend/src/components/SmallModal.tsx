@@ -15,8 +15,19 @@ interface Product {
     category: string;
 }
 
+interface ProductProps {
+    // id: number;
+    // category: string;
+    // visitedPins: number[];
+    // onClick: (id: number, category: string) => void;
+products: Product[]
+}
+
+
+
+// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) => 
 // Huvudfunktionen
-const SmallModal: React.FC = () => {
+const SmallModal: React.FC<ProductProps> = ({products}) => {
     // Här sparas det som fecthas från backend
     const [result, setResult] = useState<Product[]>([]);
 

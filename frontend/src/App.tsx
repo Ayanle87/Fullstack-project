@@ -9,7 +9,7 @@ import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import styled from "styled-components";
-
+import ContactSeller from "./ContactSeller";
 import Root from "./Root";
 import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
@@ -67,7 +67,6 @@ const App: React.FC = () => {
                 value={{ products, pins, setProducts, setPins }}
             >
                 {/* <Test /> */}
-
                 <div>
                     {products.map((product) => (
                         <TestPins
@@ -80,10 +79,13 @@ const App: React.FC = () => {
                         />
                     ))}
                 </div>
-
                 <div>
                     <SmallModal products={products} />
                 </div>
+                <div>
+                    {" "}
+                    <ContactSeller />
+                </div>{" "}
             </ProductContext.Provider>
 
             <div>{/* <ObjectCard/> */}</div>

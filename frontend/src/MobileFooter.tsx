@@ -183,6 +183,7 @@ const MobileFooter: React.FC<ProductProps> = ({products}) => {
       </div>
       {showSearchBox && <SearchBox onClose={handleSearchClose} products={products} />}{" "}
     </div>
+
   );
 };
 

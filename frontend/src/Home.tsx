@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-
-  import ObjectCard from "./components/ObjectCard";
-
-  import Modal from "react-modal";
-  import axios from "axios";
- import styled from "styled-components";
+import ContactSeller from './ContactSeller';
+import ObjectCard from "./components/ObjectCard";
+import Modal from "react-modal";
+import axios from "axios";
+import styled from "styled-components";
  // import "./Home.css";
 
  interface Product {
@@ -211,6 +210,7 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
       </GoogleMap>
     </LoadScript>
   );
+
 };
 
 

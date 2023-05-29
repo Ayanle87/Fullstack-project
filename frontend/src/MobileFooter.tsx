@@ -3,6 +3,9 @@ import styles from "./MobileFooter.module.css";
 import { Button } from "react-bootstrap";
 import SearchBox from "./SearchBox";
 
+
+
+
 const searchIcon = {
   src:
     process.env.PUBLIC_URL + "/ux ikoner/Toggles50h/SearchToggleSmall50px.png",
@@ -72,7 +75,30 @@ const initialIcons = [
   },
 ];
 
-const MobileFooter: React.FC = () => {
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  image: string;
+  category: string;
+}
+
+interface ProductProps {
+  // id: number;
+  // category: string;
+  // visitedPins: number[];
+  // onClick: (id: number, category: string) => void;
+products: Product[]
+}
+
+
+
+// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) => 
+// Huvudfunktionen
+const MobileFooter: React.FC<ProductProps> = ({products}) => {
+
+// const MobileFooter: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [icons, setIcons] = useState(initialIcons);
   const [showSearchBox, setShowSearchBox] = useState(false);
@@ -111,15 +137,15 @@ const MobileFooter: React.FC = () => {
   };
 
   const handleSearchClick = () => {
-    setShowSearchBox(!showSearchBox); // Toggle the search box visibility
+    setShowSearchBox(!showSearchBox); 
   };
 
   const handleSearchClose = () => {
-    setShowSearchBox(false); // Close the search box
+    setShowSearchBox(false); 
   };
 
   if (!isMobile) {
-    return null; // Don't render the footer if not in mobile view
+    return null; 
   }
 
   return (
@@ -155,8 +181,7 @@ const MobileFooter: React.FC = () => {
           <span className={styles.iconText}>{searchIcon.alt}</span>
         </Button>
       </div>
-      {showSearchBox && <SearchBox onClose={handleSearchClose} />}{" "}
-      {/* Pass onClose prop */}
+      {showSearchBox && <SearchBox onClose={handleSearchClose} products={products} />}{" "}
     </div>
 
   );

@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "./SearchBox.module.css";
 
+
+
+
 export interface SearchBoxProps {
   onSearch?: (query: string) => void;
   onClose?: () => void;
+  products: Product[];
 }
+
+
 
 interface Product {
   id: number;
@@ -15,6 +21,22 @@ interface Product {
   image: string;
   category: string;
 }
+
+// interface ProductProps {
+//   // id: number;
+//   // category: string;
+//   // visitedPins: number[];
+//   // onClick: (id: number, category: string) => void;
+// products: Product[];
+// }
+
+
+
+// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) => 
+// Huvudfunktionen
+// const SearchBox: React.FC<ProductProps> = ({products}) => {
+
+
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,6 +78,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     }));
   };
 
+  
   const categoryImages: { [key: string]: string } = {
     Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
     Fordon: "/ux ikoner/76h/VehiclePin76vh.png",

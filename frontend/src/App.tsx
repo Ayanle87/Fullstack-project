@@ -1,5 +1,8 @@
 import React from "react";
 import "./App.css";
+
+import { UserContext } from "./UserContext";
+
 import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
@@ -14,6 +17,7 @@ import MobileFooter from "./MobileFooter";
 import ObjectCard from "./components/ObjectCard";
 import SmallModal from "./components/SmallModal";
 import BigModal from "./components/BigModal";
+import Pins from "./components/Pins";
 
 const App: React.FC = () => {
     // const router = createHashRouter([

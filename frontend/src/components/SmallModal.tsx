@@ -81,8 +81,6 @@ const SmallModal: React.FC = () => {
 
     return (
         <>
-            <h1>Small modal</h1>
-
             {result.length > 0 &&
                 result
 

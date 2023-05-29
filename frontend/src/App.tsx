@@ -5,7 +5,7 @@ import "./navbar.css";
 import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import TestView from "./views/TestView";
-
+import ContactSeller from "./ContactSeller";
 import Root from "./Root";
 import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
@@ -39,7 +39,10 @@ const App: React.FC = () => {
             </div>
             <div>
                 <SmallModal />
+
             </div>
+              <div> <ContactSeller />
+              </div>
             <div>
 
                 {/* <ObjectCard/> */}

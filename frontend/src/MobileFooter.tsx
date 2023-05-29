@@ -158,6 +158,7 @@ const MobileFooter: React.FC = () => {
       {showSearchBox && <SearchBox onClose={handleSearchClose} />}{" "}
       {/* Pass onClose prop */}
     </div>
+
   );
 };
 

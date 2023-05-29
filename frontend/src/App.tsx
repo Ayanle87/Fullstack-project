@@ -13,6 +13,7 @@ import MobileFooter from "./MobileFooter";
 
 import ObjectCard from "./components/ObjectCard";
 import SmallModal from "./components/SmallModal";
+import BigModal from "./components/BigModal";
 
 const App: React.FC = () => {
     // const router = createHashRouter([
@@ -31,7 +32,6 @@ const App: React.FC = () => {
     //     },
     // ]);
 
-
     return (
         <div className="App">
             <div>
@@ -40,10 +40,8 @@ const App: React.FC = () => {
             <div>
                 <SmallModal />
             </div>
-            <div>
 
-                {/* <ObjectCard/> */}
-            </div>
+            <div>{/* <ObjectCard/> */}</div>
 
             <div className="content-wrapper">
                 {/* <RouterProvider router={router} /> */}

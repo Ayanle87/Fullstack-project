@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
 
-// Interface som specificerar vad som ska finnas i product
 interface Product {
     id: number;
     name: string;
@@ -13,29 +12,12 @@ interface Product {
     category: string;
 }
 
-interface BigModalProps {
-    isOpen: boolean;
-    toggleModal: () => void;
-    // handleOpenModal: () => void;
-}
-
-// Huvudfunktionen
-const BigModal: React.FC<BigModalProps> = (isOpen, toggleModal) => {
-    // Här sparas det som fecthas från backend
+const BigModal: React.FC<{ selectedProductId: number | null }> = ({
+    selectedProductId,
+}) => {
     const [result, setResult] = useState<Product[]>([]);
+    const [isModalOpen, setModalOpen] = useState(true);
 
-    // Sparar ID:t på vald produkt. Det gör att rätt produkt visas när den är vald
-    const [selectedProductId, setSelectedProductId] = useState<number | null>(
-        null
-    );
-
-    //För att kunna öppna och stänga modalen
-    const [isModalOpen, setModalOpen] = useState(false);
-
-    // Om en pin blivit klickad på så ska den byta bild
-    const [visitedPins, setVisitedPins] = useState<number[]>([]);
-
-    // Hämtar datan från backendet
     useEffect(() => {
         Modal.setAppElement("#root");
 
@@ -49,36 +31,11 @@ const BigModal: React.FC<BigModalProps> = (isOpen, toggleModal) => {
             });
     }, []);
 
-    // Söker igenom det som fetchats och och letar upp det matchde id:numret.
-    const selectedProduct = selectedProductId
-        ? result.find((product) => product.id === selectedProductId)
-        : null;
-
-    // Funktion som sätter selectedProductIds useState till det ID som klickats på, samt uppdaterar pinsen till nya om de blivit klickade på och öppnar modalen.
-    const handleClick = (id: number, category: string) => {
-        setSelectedProductId(id);
-        handleOpenModal();
-
-        setVisitedPins((prevVisitedPins) => [...prevVisitedPins, id]);
-    };
-
-    // Öppnar modalen när man klickar på en pin
-    const handleOpenModal = () => {
-        setModalOpen(true);
-    };
-
-    // Stänger modalen när man klickar på en pin
-    const handleCloseModal = () => {
-        setModalOpen(false);
-    };
-
     return (
         <>
-            <h1>Big Modal</h1>
-
             <Modal
                 isOpen={isModalOpen}
-                onRequestClose={handleCloseModal}
+                onRequestClose={() => setModalOpen(false)}
                 className="modalclass"
                 style={{
                     overlay: {
@@ -86,52 +43,54 @@ const BigModal: React.FC<BigModalProps> = (isOpen, toggleModal) => {
                     },
                 }}
             >
-                {selectedProduct && (
-                    <StyledContainer>
-                        <Ul>
-                            <Li key={selectedProduct.id}>
-                                <StyledImgDiv>
-                                    <img
-                                        src="/ux ikoner/Pins/close-modal.png"
-                                        alt=""
-                                        className="closeStyle"
-                                        style={closeStyle}
-                                        onClick={handleCloseModal}
-                                    />
+                {result
+                    .filter((product) => product.id === selectedProductId)
+                    .map((product) => (
+                        <StyledContainer key={product.id}>
+                            <Ul>
+                                <Li>
+                                    <StyledImgDiv>
+                                        <img
+                                            src="/ux ikoner/Pins/close-modal.png"
+                                            alt=""
+                                            className="closeStyle"
+                                            style={closeStyle}
+                                            onClick={() => setModalOpen(false)}
+                                        />
 
-                                    <img
-                                        alt="product"
-                                        src={
-                                            "http://localhost:8080" +
-                                            selectedProduct.image
-                                        }
-                                        style={imgStyle}
-                                        className="imgStyle"
-                                    />
-                                </StyledImgDiv>
+                                        <img
+                                            alt="product"
+                                            src={
+                                                "http://localhost:8080" +
+                                                product.image
+                                            }
+                                            style={imgStyle}
+                                            className="imgStyle"
+                                        />
+                                    </StyledImgDiv>
 
-                                <StyledTopContainer>
-                                    <StyledH1>{selectedProduct.name}</StyledH1>
+                                    <StyledTopContainer>
+                                        <StyledH1>{product.name}</StyledH1>
 
-                                    <StyledPriceDistanceContainer>
-                                        <StyledPrice>
-                                            {selectedProduct.price}kr
-                                        </StyledPrice>
-                                        <StyledDistance>
-                                            500m bort
-                                        </StyledDistance>
-                                    </StyledPriceDistanceContainer>
-                                </StyledTopContainer>
+                                        <StyledPriceDistanceContainer>
+                                            <StyledPrice>
+                                                {product.price}kr
+                                            </StyledPrice>
+                                            <StyledDistance>
+                                                500m bort
+                                            </StyledDistance>
+                                        </StyledPriceDistanceContainer>
+                                    </StyledTopContainer>
 
-                                <StyledDescriptionDiv>
-                                    <StyledDescription>
-                                        {selectedProduct.description}
-                                    </StyledDescription>
-                                </StyledDescriptionDiv>
-                            </Li>
-                        </Ul>
-                    </StyledContainer>
-                )}
+                                    <StyledDescriptionDiv>
+                                        <StyledDescription>
+                                            {product.description}
+                                        </StyledDescription>
+                                    </StyledDescriptionDiv>
+                                </Li>
+                            </Ul>
+                        </StyledContainer>
+                    ))}
             </Modal>
         </>
     );

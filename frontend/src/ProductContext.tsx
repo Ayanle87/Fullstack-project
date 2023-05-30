@@ -11,6 +11,7 @@ interface Product {
 
 //Bestämmer vad som får finnas (strukturen) i contextet.
 interface ProductContextProps {
+    allProducts: Product[];
     //Initialt en tom array. Det är bestämt vad den får innehålla utifrån Product interfacet ovan.
     products: Product[];
 
@@ -24,6 +25,7 @@ interface ProductContextProps {
 
 //Här är själva start-contexet! ProductContextProps ovan skickas med.
 export const ProductContext = createContext<ProductContextProps>({
+    allProducts: [],
     products: [],
     pins: [],
     setProducts: () => {},
@@ -36,11 +38,13 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
     //Används för att lagra och hantera datan som delas via contexten.
     const [products, setProducts] = useState<Product[]>([]);
+    const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [pins, setPins] = useState<number[]>([]);
+
 
     return (
         <ProductContext.Provider
-            value={{ products, pins, setProducts, setPins }}
+            value={{ allProducts, products, pins, setProducts, setPins }}
         >
             {children}
         </ProductContext.Provider>

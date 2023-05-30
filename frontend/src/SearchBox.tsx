@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import styles from "./SearchBox.module.css";
 
+import { ProductContext } from "./ProductContext";
 
 
 
@@ -43,6 +44,10 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [visitedPins, setVisitedPins] = useState<{ [key: number]: boolean }>({});
 
+  let { products, setProducts } = useContext(ProductContext);
+  console.log("products: " + products)
+  // setSearchResults(products);
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
@@ -54,16 +59,19 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     }
 
     try {
-      const response = await axios.get("http://localhost:8080/");
-      const allProducts = response.data;
+      // const response = await axios.get("http://localhost:8080/");
+      // const allProducts = response.data;
 
-      const filteredProducts = allProducts.filter(
+      // const filteredProducts = allProducts.filter(
+      // const filteredProducts = products.filter(
+      setProducts( products.filter(
         (product: Product) =>
           product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
           product.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      ));
 
-      setSearchResults(filteredProducts);
+      console.log(products)
+      // setSearchResults(filteredProducts);
     } catch (error) {
       console.error(error);
     }
@@ -112,8 +120,10 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
         </button>
       </form>
 
-      {searchResults.length > 0 &&
-        searchResults.map((product) => (
+      {/* {searchResults.length > 0 &&
+        searchResults.map((product) => ( */}
+        {/* {products.length > 0 &&
+          products.map((product) => (
           <img
             className="styledPins"
             key={product.id}
@@ -124,7 +134,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
             alt={product.name}
             onClick={() => handleClick(product.id)}
           />
-        ))}
+        ))} */}
     </div>
   );
 };

@@ -32,10 +32,13 @@ interface Product {
     description: string;
     image: string;
     category: string;
+    // lat: number;
+    // long: number;
 }
 
 const App: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
+    const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [pins, setPins] = useState<number[]>([]);
     const [visitedPins, setVisitedPins] = useState<number[]>([]);
 
@@ -49,6 +52,7 @@ const App: React.FC = () => {
         axios
             .get("http://localhost:8080/")
             .then((response) => {
+                console.log("hej: " + response.data)
                 setProducts(response.data);
             })
             .catch((error) => {
@@ -64,7 +68,7 @@ const App: React.FC = () => {
 
             {/* userContext funkar på alla komponenter som ligger i denna. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
             <ProductContext.Provider
-                value={{ products, pins, setProducts, setPins }}
+                value={{ allProducts, products, pins, setProducts, setPins }}
             >
                 {/* <Test /> */}
                 <div>
@@ -92,21 +96,23 @@ const App: React.FC = () => {
                     {" "}
                     <ContactSeller />
                 </div>{" "}
+
+
+                <div>{/* <ObjectCard/> */}</div>
+
+                <div className="content-wrapper">
+                    {/* <RouterProvider router={router} /> */}
+                </div>
+
+                <div>
+                    <CustomNavbar />
+                </div>
+
+                <div>
+                    <MobileFooter products={products} />
+                    
+                </div>
             </ProductContext.Provider>
-
-            <div>{/* <ObjectCard/> */}</div>
-
-            <div className="content-wrapper">
-                {/* <RouterProvider router={router} /> */}
-            </div>
-
-            <div>
-                <CustomNavbar />
-            </div>
-
-            <div>
-                <MobileFooter products={products} />
-            </div>
         </div>
     );
 };

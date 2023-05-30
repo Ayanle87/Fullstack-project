@@ -4,8 +4,11 @@ import ContactSeller from './ContactSeller';
 import ObjectCard from "./components/ObjectCard";
 import Modal from "react-modal";
 import axios from "axios";
+import {useContext} from 'react'
 import styled from "styled-components";
  // import "./Home.css";
+ import SmallModal from "./components/SmallModal";
+ import { ProductContext } from "./ProductContext";
 
  interface Product {
   id: number;
@@ -18,8 +21,11 @@ import styled from "styled-components";
 
 
  const Home: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
 
+  // const { setPins } = useContext(ProductContext);
+
+  const { products, setProducts } = useContext(ProductContext);
+  // const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     axios.get('http://localhost:8080/').then((response) => {
@@ -160,6 +166,7 @@ import styled from "styled-components";
     rotateControl: false,
     fullscreenControl: false
   };
+
   return (
     <LoadScript googleMapsApiKey="AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk">
       <GoogleMap
@@ -180,9 +187,10 @@ import styled from "styled-components";
           />
         ))} */}
 
-{/* För varje Marker, ska den ha egen modal, vilket blir objectcard på något sätt se nedan för Infowindow examplet*/}
-         {products.map((product) => (
+
+      {products.map((product) => (
       <Marker
+      icon={product.category === "Fordon" ? "/ux ikoner/76h/ElectronicsPin76vh.png" : "/ux ikoner/76h/VehiclePin76vh.png"}
     key={product.id}
     position = { { lat: Math.random () * 0.1+57.70090604681059,
       lng: Math.random() * 0.1+11.974023638297332}}
@@ -192,8 +200,11 @@ import styled from "styled-components";
         handleProductClick(product.id, 57.70090604681059, 11.974023638297332, "Varbergsgatan");
       }}
 
-
  >
+
+<div>
+                    <SmallModal products={products} />
+                </div>
     {/* {isOpen && infoWindowData?.id === ind && (
                 <InfoWindow
                   onCloseClick={() => {
@@ -204,11 +215,11 @@ import styled from "styled-components";
                 </InfoWindow>
               )} */}
   </Marker>
-
-        ))}
+      ))}
 
       </GoogleMap>
     </LoadScript>
+
   );
 
 };

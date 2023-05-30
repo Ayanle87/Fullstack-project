@@ -7,7 +7,7 @@ import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-
+import ModalPins from "./components/ModalPins";
 import styled from "styled-components";
 import ContactSeller from "./ContactSeller";
 import Root from "./Root";
@@ -18,7 +18,6 @@ import axios from "axios";
 
 import SmallModal from "./components/SmallModal";
 import BigModal from "./components/BigModal";
-import Pins from "./components/Pins";
 
 import Test from "./components/Test";
 import TestPins from "./TestPins";
@@ -90,7 +89,7 @@ const App: React.FC = () => {
                     <ModalFunction selectedPinId={selectedPinId} />
                 </div> */}
                 <div>
-                    <SmallModal products={products} />
+                    <SmallModal products={products} selProduct={1} />
                 </div>
                 <div>
                     {" "}

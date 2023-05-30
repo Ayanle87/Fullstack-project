@@ -6,9 +6,10 @@ import Modal from "react-modal";
 import axios from "axios";
 import { useContext } from "react";
 import styled from "styled-components";
-// import "./Home.css";
-import SmallModal from "./components/SmallModal";
-import { ProductContext } from "./ProductContext";
+import Modalpins from "./components/ModalPins";
+ // import "./Home.css";
+ import SmallModal from "./components/SmallModal";
+ import { ProductContext } from "./ProductContext";
 
 interface Product {
     id: number;
@@ -21,18 +22,23 @@ interface Product {
 
 const Home: React.FC = () => {
     // const { setPins } = useContext(ProductContext);
+ const Home: React.FC = () => {
+
+  // const { setPins } = useContext(ProductContext);
 
     const { products, setProducts } = useContext(ProductContext);
     // const [products, setProducts] = useState<Product[]>([]);
 
-    const handleProductClick = (
-        id: number,
-        lat: number,
-        lng: number,
-        address: string
-    ) => {
-        console.log("Öppna produkt med ID:", id);
-    };
+
+
+
+  const handleProductClick = (id:number, lat:number, lng:number, address:string) => {
+    const pr = products;
+    pr.forEach((product) => {product.isOpen = (product.id === id); if(product.isOpen){console.log("isOpen: " + product.id)}})
+    setProducts([...pr]);
+
+    console.log('Öppna produkt med ID:', id);
+  };
 
     const mapContainerStyle = {
         width: "100%",
@@ -43,22 +49,22 @@ const Home: React.FC = () => {
         let url = "";
         switch (category) {
             case "Elektronik":
-                url = "/ux ikoner/76h/ElectronicsPinVisited76vh.png";
+                url = "/ux ikoner/76h/ElectronicsPin76vh.png";
                 break;
             case "Fordon":
-                url = "/ux ikoner/76h/VehiclePinVisited76vh.png";
+                url = "/ux ikoner/76h/VehiclePin76vh.png";
                 break;
             case "Fritid":
-                url = "/ux ikoner/76h/SportPinVisited76vh.png";
+                url = "/ux ikoner/76h/SportPin76vh.png";
                 break;
             case "Hushåll":
-                url = "/ux ikoner/76h/HomePinVisited76vh.png";
+                url = "/ux ikoner/76h/HomePin76vh.png";
                 break;
             case "Kläder":
-                url = "/ux ikoner/76h/ClothesPinVisited76vh.png76vh.png";
+                url = "/ux ikoner/76h/ClothesPin76vh.png76vh.png";
                 break;
             case "Övrigt":
-                url = "/ux ikoner/76h//OtherPinVisited76vh.png";
+                url = "/ux ikoner/76h//OtherPin76vh.png";
                 break;
         }
         return url;
@@ -186,18 +192,24 @@ const Home: React.FC = () => {
         fullscreenControl: false,
     };
 
-    return (
-        <LoadScript googleMapsApiKey="AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk">
-            <GoogleMap
-                mapContainerStyle={mapContainerStyle}
-                center={center}
-                zoom={12}
-                options={{
-                    styles: yourMapStyle,
-                    ...mapOptions,
-                }}
-            >
-                {/* {products.map((product) => (
+  return (
+    <>
+    {products.map((product) =>
+        product.isOpen === true && <SmallModal products={products} selProduct={product.id}  />
+       )
+    }
+
+    <LoadScript googleMapsApiKey="AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk">
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        center={center}
+        zoom={12}
+        options={{
+          styles: yourMapStyle,
+          ...mapOptions
+        }}
+      >
+         {/* {products.map((product) => (
           <ObjectCard
           key={product.id}
            product={product}
@@ -206,43 +218,34 @@ const Home: React.FC = () => {
           />
         ))} */}
 
-                {/* "Fordon" ? "/ux ikoner/76h/ElectronicsPin76vh.png" : "/ux ikoner/76h/VehiclePin76vh.png" */}
-                {products.map((product) => (
-                    <Marker
-                        icon={getIcon(product.category)}
-                        // icon={(product:Product) => {return getIcon(product.category)}}
-                        key={product.id}
-                        position={{
-                            lat: Math.random() * 0.03 + 57.70090604681059,
-                            lng: Math.random() * 0.04 + 11.974023638297332,
-                        }}
-                        data-value={product}
-                        onClick={() => {
-                            handleProductClick(
-                                product.id,
-                                57.70090604681059,
-                                11.974023638297332,
-                                "Varbergsgatan"
-                            );
-                        }}
-                    >
-                        <div>
-                            <SmallModal products={products} />
-                        </div>
-                        {/* {isOpen && infoWindowData?.id === ind && (
-                <InfoWindow
-                  onCloseClick={() => {
-                    setIsOpen(false);
-                  }}
-                >
-                  <h3>{infoWindowData.address}</h3>
-                </InfoWindow>
-              )} */}
-                    </Marker>
-                ))}
-            </GoogleMap>
-        </LoadScript>
-    );
+{/* "Fordon" ? "/ux ikoner/76h/ElectronicsPin76vh.png" : "/ux ikoner/76h/VehiclePin76vh.png" */}
+      {products.map((product) =>
+
+      (
+      <Marker
+
+
+      icon={getIcon(product.category)}
+
+    key={product.id}
+    position = { { lat: Math.random () * 0.03+57.70090604681059,
+      lng: Math.random() * 0.04+11.974023638297332}}
+      data-value = {product}
+      //  onClick={handleProductClick}
+      onClick={() => {
+        handleProductClick(product.id, 57.70090604681059, 11.974023638297332, "Varbergsgatan");
+      }}
+
+ >
+
+  </Marker>
+      ))}
+
+      </GoogleMap>
+    </LoadScript>
+    </>
+  );
+
 };
 
 export default Home;

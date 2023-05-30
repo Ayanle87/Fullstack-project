@@ -7,6 +7,7 @@ interface Product {
     description: string;
     image: string;
     category: string;
+    isOpen?: boolean;
 }
 
 //Bestämmer vad som får finnas (strukturen) i contextet.

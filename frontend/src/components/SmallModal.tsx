@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
 import BigModal from "./BigModal";
-import Pins from "./Pins";
+
 
 // Interface som specificerar vad som ska finnas i product
 interface Product {
@@ -21,11 +21,12 @@ interface ProductProps {
     // visitedPins: number[];
     // onClick: (id: number, category: string) => void;
     products: Product[];
+    selProduct: number;
 }
 
 // React.FC<PinProps> = ({ id, category, visitedPins, onClick }) =>
 // Huvudfunktionen
-const SmallModal: React.FC<ProductProps> = ({ products }) => {
+const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
     // Här sparas det som fecthas från backend
     const [result, setResult] = useState<Product[]>([]);
 

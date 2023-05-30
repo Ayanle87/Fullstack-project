@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import axios from "axios";
 import {useContext} from 'react'
 import styled from "styled-components";
+import Modalpins from "./components/ModalPins";
  // import "./Home.css";
  import SmallModal from "./components/SmallModal";
  import { ProductContext } from "./ProductContext";
@@ -19,7 +20,6 @@ import styled from "styled-components";
   category: string;
 }
 
-
  const Home: React.FC = () => {
 
   // const { setPins } = useContext(ProductContext);
@@ -29,7 +29,11 @@ import styled from "styled-components";
 
 
 
+
   const handleProductClick = (id:number, lat:number, lng:number, address:string) => {
+    const pr = products;
+    pr.forEach((product) => {product.isOpen = (product.id === id); if(product.isOpen){console.log("isOpen: " + product.id)}})
+    setProducts([...pr]);
 
     console.log('Öppna produkt med ID:', id);
   };
@@ -43,22 +47,22 @@ import styled from "styled-components";
     let url = ""
     switch (category) {
       case "Elektronik" :
-        url = "/ux ikoner/76h/ElectronicsPinVisited76vh.png"
+        url = "/ux ikoner/76h/ElectronicsPin76vh.png"
         break;
       case "Fordon" :
-          url = "/ux ikoner/76h/VehiclePinVisited76vh.png"
+          url = "/ux ikoner/76h/VehiclePin76vh.png"
         break;
       case "Fritid" :
-        url = "/ux ikoner/76h/SportPinVisited76vh.png"
+        url = "/ux ikoner/76h/SportPin76vh.png"
         break;
         case "Hushåll" :
-        url = "/ux ikoner/76h/HomePinVisited76vh.png"
+        url = "/ux ikoner/76h/HomePin76vh.png"
         break;
         case "Kläder" :
-        url = "/ux ikoner/76h/ClothesPinVisited76vh.png76vh.png"
+        url = "/ux ikoner/76h/ClothesPin76vh.png76vh.png"
         break;
         case "Övrigt" :
-        url = "/ux ikoner/76h//OtherPinVisited76vh.png"
+        url = "/ux ikoner/76h//OtherPin76vh.png"
         break;
 
     }
@@ -188,6 +192,12 @@ import styled from "styled-components";
   };
 
   return (
+    <>
+    {products.map((product) =>
+        product.isOpen === true && <SmallModal products={products} selProduct={product.id}  />
+       )
+    }
+
     <LoadScript googleMapsApiKey="AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -215,7 +225,7 @@ import styled from "styled-components";
 
 
       icon={getIcon(product.category)}
-      // icon={(product:Product) => {return getIcon(product.category)}}
+
     key={product.id}
     position = { { lat: Math.random () * 0.03+57.70090604681059,
       lng: Math.random() * 0.04+11.974023638297332}}
@@ -227,24 +237,12 @@ import styled from "styled-components";
 
  >
 
-<div>
-                    <SmallModal products={products} />
-                </div>
-    {/* {isOpen && infoWindowData?.id === ind && (
-                <InfoWindow
-                  onCloseClick={() => {
-                    setIsOpen(false);
-                  }}
-                >
-                  <h3>{infoWindowData.address}</h3>
-                </InfoWindow>
-              )} */}
   </Marker>
       ))}
 
       </GoogleMap>
     </LoadScript>
-
+    </>
   );
 
 };

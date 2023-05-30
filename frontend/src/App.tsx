@@ -32,6 +32,8 @@ interface Product {
     description: string;
     image: string;
     category: string;
+    // lat: number;
+    // long: number;
 }
 
 const App: React.FC = () => {

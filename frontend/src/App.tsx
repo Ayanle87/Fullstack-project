@@ -80,6 +80,9 @@ const App: React.FC = () => {
                     ))}
                 </div>
                 <div>
+                    <Home />
+                </div>
+                <div>
                     <SmallModal products={products} />
                 </div>
                 <div>
@@ -92,10 +95,6 @@ const App: React.FC = () => {
 
             <div className="content-wrapper">
                 {/* <RouterProvider router={router} /> */}
-            </div>
-
-            <div>
-                <Home />
             </div>
 
             <div>

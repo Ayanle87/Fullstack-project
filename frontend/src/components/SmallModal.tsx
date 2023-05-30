@@ -104,6 +104,18 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
                         />
                     ))} */}
             {/* Modalen som öppnas 'onClick' på pinsen. Modalen innehåller namn, bild, pris, produktbeskrivning. */}
+
+            {result.length > 0 &&
+                result.map((product) => (
+                    <button
+                        onClick={() =>
+                            handleClick(product.id, product.category)
+                        }
+                    >
+                        Öppna annons
+                    </button>
+                ))}
+
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={handleCloseModal}
@@ -187,14 +199,15 @@ const closeStyle = {
 const arrowStyle = {
     width: "28px",
     height: "18px",
-    bottom: "0px",
-    left: "5px",
+    // position: "absolute",
+    bottom: "10px",
+    right: "10px",
 };
 
 const imgStyle = {
     width: "100%",
     height: "100%",
-    right: "80",
+    right: "0",
     zIndex: "0",
 };
 

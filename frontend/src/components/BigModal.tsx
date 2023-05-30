@@ -12,16 +12,14 @@ interface Product {
     category: string;
 }
 
-const BigModal: React.FC<{ selectedProductId: number | null }> = ({
-    selectedProductId,
-}) => {
+interface BigModalProps {
+    selectedProductId: number | null;
+    onClose: () => void;
+}
+
+const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isModalOpen, setModalOpen] = useState(true);
-    const [isBigModalOpen, setIsBigModalOpen] = useState(true);
-
-    const handleCloseBigModal = () => {
-        setIsBigModalOpen(false);
-    };
 
     useEffect(() => {
         Modal.setAppElement("#root");
@@ -39,10 +37,8 @@ const BigModal: React.FC<{ selectedProductId: number | null }> = ({
     return (
         <>
             <Modal
-                isOpen={isBigModalOpen}
-                onRequestClose={() => {
-                    setIsBigModalOpen(false);
-                }}
+                isOpen={isModalOpen}
+                onRequestClose={() => setModalOpen(false)}
                 className="modalclass"
                 style={{
                     overlay: {
@@ -62,9 +58,7 @@ const BigModal: React.FC<{ selectedProductId: number | null }> = ({
                                             alt=""
                                             className="closeStyle"
                                             style={closeStyle}
-                                            onClick={() =>
-                                                setIsBigModalOpen(false)
-                                            }
+                                            onClick={() => setModalOpen(false)}
                                         />
 
                                         <img

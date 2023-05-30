@@ -5,9 +5,6 @@ import styled from "styled-components";
 import BigModal from "./BigModal";
 import Pins from "./Pins";
 
-import { useContext } from "react";
-import { ProductContext } from "../ProductContext";
-
 // Interface som specificerar vad som ska finnas i product
 interface Product {
     id: number;
@@ -19,44 +16,31 @@ interface Product {
 }
 
 interface ProductProps {
-    // id: number;
-    // category: string;
-    // visitedPins: number[];
-    // onClick: (id: number, category: string) => void;
     products: Product[];
 }
 
-// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) =>
 // Huvudfunktionen
 const SmallModal: React.FC<ProductProps> = ({ products }) => {
-    // const products = useContext(ProductContext);
-    // Här sparas det som fecthas från backend
     const [result, setResult] = useState<Product[]>([]);
-
-    // Sparar ID:t på vald produkt. Det gör att rätt produkt visas när den är vald
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
         null
     );
-
-    //För att kunna öppna och stänga den lilla modalen
     const [isModalOpen, setModalOpen] = useState(false);
-
-    // Om en pin blivit klickad på så ska den byta bild
     const [visitedPins, setVisitedPins] = useState<number[]>([]);
 
-    //För att kunna öppna och stänga den stora modalen
     const [isBigModalOpen, setIsBigModalOpen] = useState(false);
 
     //Öppnar den stora modalen
     const handleOpen = () => {
         console.log("Öppnar stor modal");
 
-        setIsBigModalOpen(true);
+        setIsBigModalOpen(false);
         setModalOpen(false);
     };
 
     const handleCloseBigModal = () => {
         setIsBigModalOpen(false);
+        setModalOpen(false);
     };
 
     // Hämtar datan från backendet
@@ -71,7 +55,7 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
+    }, [selectedProductId]);
 
     // Söker igenom det som fetchats och och letar upp det matchde id:numret.
     const selectedProduct = selectedProductId
@@ -116,6 +100,7 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
             {result.length > 0 &&
                 result.map((product) => (
                     <button
+                        key={product.id}
                         onClick={() =>
                             handleClick(product.id, product.category)
                         }
@@ -134,7 +119,7 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
                     },
                 }}
             >
-                {selectedProduct && (
+                {selectedProduct && isModalOpen && !isBigModalOpen && (
                     <StyledContainer>
                         <Ul>
                             <Li key={selectedProduct.id}>
@@ -177,19 +162,19 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
                                         className="arrowStyle"
                                         onClick={handleOpen}
                                     />
-                                    {isBigModalOpen && (
-                                        <BigModal
-                                            selectedProductId={
-                                                selectedProductId
-                                            }
-                                        />
-                                    )}
                                 </div>
                             </Li>
                         </Ul>
                     </StyledContainer>
                 )}
             </Modal>
+
+            {isBigModalOpen && (
+                <BigModal
+                    selectedProductId={selectedProductId}
+                    onClose={handleCloseBigModal}
+                />
+            )}
         </>
     );
 };
@@ -246,7 +231,7 @@ const StyledTopContainer = styled.div`
 `;
 
 const StyledH1 = styled.h1`
-
+   
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;

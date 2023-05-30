@@ -52,7 +52,7 @@ const App: React.FC = () => {
         axios
             .get("http://localhost:8080/")
             .then((response) => {
-                console.log("hej: " + response.data)
+                console.log("hej: " + response.data);
                 setProducts(response.data);
             })
             .catch((error) => {
@@ -71,7 +71,7 @@ const App: React.FC = () => {
                 value={{ allProducts, products, pins, setProducts, setPins }}
             >
                 {/* <Test /> */}
-                <div>
+                {/* <div>
                     {products.map((product) => (
                         <TestPins
                             key={product.id}
@@ -82,12 +82,12 @@ const App: React.FC = () => {
                             setSelectedPinId={setSelectedPinId}
                         />
                     ))}
-                </div>
+                </div> */}
                 <div>
                     <Home />
                 </div>
                 {/* <div>
-                    <ModalFunction selectedPinId={selectedPinId}onClose={onClose}/>
+                    <ModalFunction selectedPinId={selectedPinId} />
                 </div> */}
                 <div>
                     <SmallModal products={products} />
@@ -96,21 +96,15 @@ const App: React.FC = () => {
                     {" "}
                     <ContactSeller />
                 </div>{" "}
-
-
                 <div>{/* <ObjectCard/> */}</div>
-
                 <div className="content-wrapper">
                     {/* <RouterProvider router={router} /> */}
                 </div>
-
                 <div>
                     <CustomNavbar />
                 </div>
-
                 <div>
                     <MobileFooter products={products} />
-                    
                 </div>
             </ProductContext.Provider>
         </div>

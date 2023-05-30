@@ -22,6 +22,8 @@ import BigModal from "./components/BigModal";
 import Test from "./components/Test";
 import TestPins from "./TestPins";
 
+import FirstModal from "./components/FirstModal";
+
 import ModalFunction from "./components/ModalFunction";
 
 interface Product {
@@ -61,10 +63,6 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <div>
-                <MobileNavbar />
-            </div>
-
             {/* userContext funkar på alla komponenter som ligger i denna. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
             <ProductContext.Provider
                 value={{ allProducts, products, pins, setProducts, setPins }}
@@ -83,14 +81,20 @@ const App: React.FC = () => {
                     ))}
                 </div> */}
                 <div>
+                    <MobileNavbar />
+                </div>
+                <div>
+                    {/* <FirstModal selectedProductId={selectedProductId} /> */}
+                </div>
+                <div>
                     <Home />
                 </div>
                 {/* <div>
                     <ModalFunction selectedPinId={selectedPinId} />
                 </div> */}
-                <div>
+                {/* <div>
                     <SmallModal products={products} selProduct={1} />
-                </div>
+                </div> */}
                 <div>
                     {" "}
                     <ContactSeller />

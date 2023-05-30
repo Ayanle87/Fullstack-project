@@ -4,6 +4,9 @@ import axios from "axios";
 import styled from "styled-components";
 import BigModal from "./BigModal";
 
+import { useContext } from "react";
+import { ProductContext } from "../ProductContext";
+
 // Interface som specificerar vad som ska finnas i product
 interface Product {
     id: number;
@@ -26,22 +29,24 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
         null
     );
-    const [isModalOpen, setModalOpen] = useState(false);
     const [visitedPins, setVisitedPins] = useState<number[]>([]);
 
+    // const [isModalOpen, setModalOpen] = useState(false);
+
+    const [isSmallModalOpen, setSmallModalOpen] = useState(false);
     const [isBigModalOpen, setIsBigModalOpen] = useState(false);
 
     //Öppnar den stora modalen
-    const handleOpen = () => {
+    const handleOpenBigModal = () => {
         console.log("Öppnar stor modal");
 
-        setIsBigModalOpen(false);
-        setModalOpen(false);
+        setIsBigModalOpen(true);
+        setSmallModalOpen(false);
     };
 
     const handleCloseBigModal = () => {
         setIsBigModalOpen(false);
-        setModalOpen(false);
+        setSmallModalOpen(false);
     };
 
     // Hämtar datan från backendet
@@ -73,12 +78,12 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
 
     // Öppnar modalen när man klickar på en pin
     const handleOpenModal = () => {
-        setModalOpen(true);
+        setSmallModalOpen(true);
     };
 
     // Stänger modalen när man klickar på en pin
     const handleCloseModal = () => {
-        setModalOpen(false);
+        setSmallModalOpen(false);
     };
 
     return (
@@ -111,7 +116,7 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
                 ))}
 
             <Modal
-                isOpen={isModalOpen}
+                isOpen={isSmallModalOpen}
                 onRequestClose={handleCloseModal}
                 className="smallModalclass"
                 style={{
@@ -120,7 +125,7 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
                     },
                 }}
             >
-                {selectedProduct && isModalOpen && !isBigModalOpen && (
+                {selectedProduct && isSmallModalOpen && !isBigModalOpen && (
                     <StyledContainer>
                         <Ul>
                             <Li key={selectedProduct.id}>
@@ -161,7 +166,7 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
                                         src="/ux ikoner/arrow.png"
                                         alt="Pil för att öppna annonsen"
                                         className="arrowStyle"
-                                        onClick={handleOpen}
+                                        onClick={handleOpenBigModal}
                                     />
                                 </div>
                             </Li>

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 
-import ProductContext from "../ProductContext";
+import ProductContext from "./ProductContext";
 
 interface PinProps {
     id: number;

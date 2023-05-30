@@ -32,6 +32,14 @@ body {
     border-radius: 5.43575px;
 }
 
+.arrowStyle {
+    width: 28px;
+    height: 18px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
 .smallModalclass {
     display: flex;
     flex-direction: column;

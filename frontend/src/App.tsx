@@ -21,7 +21,7 @@ import BigModal from "./components/BigModal";
 import Pins from "./components/Pins";
 
 import Test from "./components/Test";
-import TestPins from "./components/TestPins";
+import TestPins from "./TestPins";
 
 import ModalFunction from "./components/ModalFunction";
 
@@ -82,6 +82,9 @@ const App: React.FC = () => {
                 <div>
                     <Home />
                 </div>
+                {/* <div>
+                    <ModalFunction selectedPinId={selectedPinId}onClose={onClose}/>
+                </div> */}
                 <div>
                     <SmallModal products={products} />
                 </div>

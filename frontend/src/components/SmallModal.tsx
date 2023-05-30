@@ -5,6 +5,9 @@ import styled from "styled-components";
 import BigModal from "./BigModal";
 import Pins from "./Pins";
 
+import { useContext } from "react";
+import { ProductContext } from "../ProductContext";
+
 // Interface som specificerar vad som ska finnas i product
 interface Product {
     id: number;
@@ -26,6 +29,7 @@ interface ProductProps {
 // React.FC<PinProps> = ({ id, category, visitedPins, onClick }) =>
 // Huvudfunktionen
 const SmallModal: React.FC<ProductProps> = ({ products }) => {
+    // const products = useContext(ProductContext);
     // Här sparas det som fecthas från backend
     const [result, setResult] = useState<Product[]>([]);
 
@@ -48,7 +52,11 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
         console.log("Öppnar stor modal");
 
         setIsBigModalOpen(true);
-        // setModalOpen(false);
+        setModalOpen(false);
+    };
+
+    const handleCloseBigModal = () => {
+        setIsBigModalOpen(false);
     };
 
     // Hämtar datan från backendet
@@ -166,7 +174,7 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
                                     <img
                                         src="/ux ikoner/arrow.png"
                                         alt="Pil för att öppna annonsen"
-                                        style={arrowStyle}
+                                        className="arrowStyle"
                                         onClick={handleOpen}
                                     />
                                     {isBigModalOpen && (
@@ -209,6 +217,7 @@ const imgStyle = {
     height: "100%",
     right: "0",
     zIndex: "0",
+    // borderRadius: "8.33684px",
 };
 
 const StyledContainer = styled.div`
@@ -220,6 +229,7 @@ const StyledContainer = styled.div`
 const StyledImgDiv = styled.div`
     width: 100%;
     // width: 374px;
+    border-radius: 8.33684px;
 
     height: 224px;
     position: relative;

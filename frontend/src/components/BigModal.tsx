@@ -17,6 +17,11 @@ const BigModal: React.FC<{ selectedProductId: number | null }> = ({
 }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isModalOpen, setModalOpen] = useState(true);
+    const [isBigModalOpen, setIsBigModalOpen] = useState(true);
+
+    const handleCloseBigModal = () => {
+        setIsBigModalOpen(false);
+    };
 
     useEffect(() => {
         Modal.setAppElement("#root");
@@ -34,8 +39,10 @@ const BigModal: React.FC<{ selectedProductId: number | null }> = ({
     return (
         <>
             <Modal
-                isOpen={isModalOpen}
-                onRequestClose={() => setModalOpen(false)}
+                isOpen={isBigModalOpen}
+                onRequestClose={() => {
+                    setIsBigModalOpen(false);
+                }}
                 className="modalclass"
                 style={{
                     overlay: {
@@ -55,7 +62,9 @@ const BigModal: React.FC<{ selectedProductId: number | null }> = ({
                                             alt=""
                                             className="closeStyle"
                                             style={closeStyle}
-                                            onClick={() => setModalOpen(false)}
+                                            onClick={() =>
+                                                setIsBigModalOpen(false)
+                                            }
                                         />
 
                                         <img

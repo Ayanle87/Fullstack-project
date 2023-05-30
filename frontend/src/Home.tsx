@@ -27,11 +27,7 @@ import styled from "styled-components";
   const { products, setProducts } = useContext(ProductContext);
   // const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/').then((response) => {
-      setProducts(response.data);
-    });
-  }, []);
+
 
   const handleProductClick = (id:number, lat:number, lng:number, address:string) => {
 
@@ -43,7 +39,31 @@ import styled from "styled-components";
     height: '50vh'
   };
 
+  function getIcon(category:string){
+    let url = ""
+    switch (category) {
+      case "Elektronik" :
+        url = "/ux ikoner/76h/ElectronicsPinVisited76vh.png"
+        break;
+      case "Fordon" :
+          url = "/ux ikoner/76h/VehiclePinVisited76vh.png"
+        break;
+      case "Fritid" :
+        url = "/ux ikoner/76h/SportPinVisited76vh.png"
+        break;
+        case "Hushåll" :
+        url = "/ux ikoner/76h/HomePinVisited76vh.png"
+        break;
+        case "Kläder" :
+        url = "/ux ikoner/76h/ClothesPinVisited76vh.png76vh.png"
+        break;
+        case "Övrigt" :
+        url = "/ux ikoner/76h//OtherPinVisited76vh.png"
+        break;
 
+    }
+    return url;
+  }
 
   const center = {
     lat: 57.70090604681059,
@@ -187,13 +207,18 @@ import styled from "styled-components";
           />
         ))} */}
 
+{/* "Fordon" ? "/ux ikoner/76h/ElectronicsPin76vh.png" : "/ux ikoner/76h/VehiclePin76vh.png" */}
+      {products.map((product) =>
 
-      {products.map((product) => (
+      (
       <Marker
-      icon={product.category === "Fordon" ? "/ux ikoner/76h/ElectronicsPin76vh.png" : "/ux ikoner/76h/VehiclePin76vh.png"}
+
+
+      icon={getIcon(product.category)}
+      // icon={(product:Product) => {return getIcon(product.category)}}
     key={product.id}
-    position = { { lat: Math.random () * 0.1+57.70090604681059,
-      lng: Math.random() * 0.1+11.974023638297332}}
+    position = { { lat: Math.random () * 0.03+57.70090604681059,
+      lng: Math.random() * 0.04+11.974023638297332}}
       data-value = {product}
       //  onClick={handleProductClick}
       onClick={() => {

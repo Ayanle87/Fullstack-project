@@ -236,7 +236,7 @@ const StyledTopContainer = styled.div`
 `;
 
 const StyledH1 = styled.h1`
-   
+
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;

@@ -3,14 +3,28 @@ import { ProductContext } from "../ProductContext";
 import { Modal } from "react-bootstrap";
 import styled from "styled-components";
 
+import BigModal from "./BigModal";
+
 const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
     selectedProductId,
 }) => {
     const { products } = useContext(ProductContext);
     const [isFirstModalOpen, setFirstModalOpen] = useState(true);
+    const [isBigModalOpen, setIsBigModalOpen] = useState(false);
 
     const handleCloseFirstModal = () => {
         setFirstModalOpen(false);
+    };
+
+    const handleOpenBigModal = () => {
+        console.log("Öppnar stor modal");
+
+        setIsBigModalOpen(true);
+        setFirstModalOpen(false);
+    };
+
+    const handleCloseBigModal = () => {
+        setIsBigModalOpen(false);
     };
 
     return (
@@ -53,11 +67,17 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
                                                 />
                                             </StyledImgDiv>
                                             <h2>{product.name}</h2>
-                                            <p>Price: {product.price}</p>
-                                            <p>
-                                                Description:{" "}
-                                                {product.description}
-                                            </p>
+                                            <p>{product.price}</p>
+                                            <p>Avstånd</p>
+
+                                            <div>
+                                                <img
+                                                    src="/ux ikoner/arrow.png"
+                                                    alt="Pil för att öppna annonsen"
+                                                    className="arrowStyle"
+                                                    onClick={handleOpenBigModal}
+                                                />
+                                            </div>
                                         </Li>
                                     </Ul>
                                 )}
@@ -65,6 +85,13 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
                         );
                     })}
             </Modal>
+
+            {isBigModalOpen && (
+                <BigModal
+                    selectedProductId={selectedProductId}
+                    onClose={handleCloseBigModal}
+                />
+            )}
         </>
     );
 };

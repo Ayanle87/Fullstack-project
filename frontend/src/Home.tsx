@@ -39,6 +39,7 @@ const Home: React.FC = () => {
         address: string
     ) => {
         setSelectedProductId(id);
+        setModalOpen(true);
         const pr = products;
         pr.forEach((product) => {
             product.isOpen = product.id === id;
@@ -205,13 +206,6 @@ const Home: React.FC = () => {
 
     return (
         <>
-            {products.map(
-                (product) =>
-                    product.isOpen === true && (
-                        <FirstModal selectedProductId={selectedProductId} />
-                    )
-            )}
-
             <LoadScript googleMapsApiKey="AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk">
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
@@ -222,26 +216,15 @@ const Home: React.FC = () => {
                         ...mapOptions,
                     }}
                 >
-                    {/* {products.map((product) => (
-          <ObjectCard
-          key={product.id}
-           product={product}
-           onProductClick={handleProductClick}
-
-          />
-        ))} */}
-
-                    {/* "Fordon" ? "/ux ikoner/76h/ElectronicsPin76vh.png" : "/ux ikoner/76h/VehiclePin76vh.png" */}
                     {products.map((product) => (
                         <Marker
-                            icon={getIcon(product.category)}
                             key={product.id}
+                            icon={getIcon(product.category)}
                             position={{
                                 lat: Math.random() * 0.03 + 57.70090604681059,
                                 lng: Math.random() * 0.04 + 11.974023638297332,
                             }}
                             data-value={product}
-                            //  onClick={handleProductClick}
                             onClick={() => {
                                 handleProductClick(
                                     product.id,
@@ -250,10 +233,18 @@ const Home: React.FC = () => {
                                     "Varbergsgatan"
                                 );
                             }}
-                        ></Marker>
+                        />
                     ))}
                 </GoogleMap>
             </LoadScript>
+
+            {products.map((product) => (
+                <div key={product.id}>
+                    {selectedProductId === product.id && (
+                        <FirstModal selectedProductId={selectedProductId} />
+                    )}
+                </div>
+            ))}
         </>
     );
 };

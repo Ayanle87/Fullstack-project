@@ -101,7 +101,7 @@ const App: React.FC = () => {
                 </div> */}
                 <div>
                     {" "}
-                    <ContactSeller />
+                    {/* <ContactSeller /> */}
                 </div>{" "}
                 <div>{/* <ObjectCard/> */}</div>
                 <div className="content-wrapper">

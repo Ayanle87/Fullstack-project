@@ -10,6 +10,8 @@ import styled from "styled-components";
 
 import FirstModal from "./components/FirstModal";
 
+import "./Home.css"
+
 import { ProductContext } from "./ProductContext";
 
 interface Product {
@@ -71,9 +73,9 @@ const Home: React.FC = () => {
     };
 
     const mapContainerStyle = {
-        width: "100%",
+      width: "100%",
+      height: "100vh",
 
-        height: "100vh",
     };
 
     function getIcon(category: string) {
@@ -294,6 +296,7 @@ const Home: React.FC = () => {
 
                         ...mapOptions,
                     }}
+
                 >
                     {products.map((product) => (
                         <Marker
@@ -320,7 +323,7 @@ const Home: React.FC = () => {
                     ))}
                 </GoogleMap>
             </LoadScript>
-            c
+
         </>
     );
 };

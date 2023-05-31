@@ -4,21 +4,9 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 import ContactSeller from "./ContactSeller";
 
-import ObjectCard from "./components/ObjectCard";
-
-import Modal from "react-modal";
-
-import axios from "axios";
-
 import { useContext } from "react";
 
 import styled from "styled-components";
-
-// import Modalpins from "./components/ModalPins";
-
-// import "./Home.css";
-
-import SmallModal from "./components/SmallModal";
 
 import FirstModal from "./components/FirstModal";
 
@@ -304,25 +292,6 @@ const Home: React.FC = () => {
                         ...mapOptions,
                     }}
                 >
-                    {/* {products.map((product) => (
-
-          <ObjectCard
-
-          key={product.id}
-
-           product={product}
-
-           onProductClick={handleProductClick}
-
-
-
-
-          />
-
-        ))} */}
-
-                    {/* "Fordon" ? "/ux ikoner/76h/ElectronicsPin76vh.png" : "/ux ikoner/76h/VehiclePin76vh.png" */}
-
                     {products.map((product) => (
                         <Marker
                             icon={getIcon(product.category)}
@@ -333,8 +302,6 @@ const Home: React.FC = () => {
                                 lng: Math.random() * 0.04 + 11.974023638297332,
                             }}
                             data-value={product}
-                            //  onClick={handleProductClick}
-
                             onClick={() => {
                                 handleProductClick(
                                     product.id,

@@ -7,11 +7,7 @@ import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-<<<<<<< HEAD
 // import ModalPins from "./components/ModalPins";
-=======
-
->>>>>>> 357e3d7880a32300a482e5d000de579c434f677b
 import styled from "styled-components";
 import ContactSeller from "./ContactSeller";
 import Root from "./Root";

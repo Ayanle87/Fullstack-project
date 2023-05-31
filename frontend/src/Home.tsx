@@ -6,7 +6,8 @@ import Modal from "react-modal";
 import axios from "axios";
 import {useContext} from 'react'
 import styled from "styled-components";
-import Modalpins from "./components/ModalPins";
+// import Modalpins from "./components/ModalPins";
+
  // import "./Home.css";
  import SmallModal from "./components/SmallModal";
  import { ProductContext } from "./ProductContext";
@@ -208,16 +209,8 @@ import Modalpins from "./components/ModalPins";
           ...mapOptions
         }}
       >
-         {/* {products.map((product) => (
-          <ObjectCard
-          key={product.id}
-           product={product}
-           onProductClick={handleProductClick}
 
-          />
-        ))} */}
 
-{/* "Fordon" ? "/ux ikoner/76h/ElectronicsPin76vh.png" : "/ux ikoner/76h/VehiclePin76vh.png" */}
       {products.map((product) =>
 
       (

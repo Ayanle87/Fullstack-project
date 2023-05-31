@@ -7,10 +7,10 @@ import BigModal from "./BigModal";
 
 interface ModalProps {
     selectedPinId: number | null;
-    onClose: () => void;
+    // onClose: () => void;
 }
 
-const ModalFunction: React.FC<ModalProps> = ({ selectedPinId, onClose }) => {
+const ModalFunction: React.FC<ModalProps> = ({ selectedPinId }) => {
     const { products } = useContext(ProductContext);
     const [isModalOpen, setModalOpen] = useState(false);
     //För att kunna öppna och stänga den stora modalen
@@ -25,22 +25,26 @@ const ModalFunction: React.FC<ModalProps> = ({ selectedPinId, onClose }) => {
     // Stänger modalen när man klickar på en pin
     const handleCloseModal = () => {
         setModalOpen(false);
-        onClose();
+        // onClose();
     };
 
     //Öppnar den stora modalen
     const handleOpen = () => {
         console.log("Öppnar stor modal");
 
-        setIsBigModalOpen(true);
-        // setModalOpen(false);
+        // setIsBigModalOpen(true);
+        setModalOpen(true);
     };
 
     return (
         <>
+            {products.length > 0 &&
+                products.map((product) => (
+                    <button onClick={() => handleOpen()}>ModalFunction</button>
+                ))}
             <Modal
                 show={isModalOpen}
-                onHide={handleCloseModal}
+                onClose={handleCloseModal}
                 className="smallModalclass"
             >
                 {selectedPinId !== null && (

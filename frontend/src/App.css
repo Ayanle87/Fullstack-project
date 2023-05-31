@@ -32,6 +32,14 @@ body {
     border-radius: 5.43575px;
 }
 
+.arrowStyle {
+    width: 28px;
+    height: 18px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
 .smallModalclass {
     display: flex;
     flex-direction: column;
@@ -41,6 +49,21 @@ body {
     height: 337px;
     left: 8px;
     top: 400px;
+
+    background: #fbfaf9;
+    border: 0.2px solid #2c5559;
+    border-radius: 8.33684px;
+}
+
+.firstModalclass {
+    display: flex;
+    flex-direction: column;
+
+    /* position: relative; */
+    width: 374px;
+    height: auto;
+    left: 8px;
+    /* top: 400px; */
 
     background: #fbfaf9;
     border: 0.2px solid #2c5559;

@@ -7,7 +7,11 @@ import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
+<<<<<<< HEAD
 // import ModalPins from "./components/ModalPins";
+=======
+
+>>>>>>> 357e3d7880a32300a482e5d000de579c434f677b
 import styled from "styled-components";
 import ContactSeller from "./ContactSeller";
 import Root from "./Root";
@@ -20,7 +24,9 @@ import SmallModal from "./components/SmallModal";
 import BigModal from "./components/BigModal";
 
 import Test from "./components/Test";
-import TestPins from "./components/TestPins";
+import TestPins from "./TestPins";
+
+import FirstModal from "./components/FirstModal";
 
 import ModalFunction from "./components/ModalFunction";
 
@@ -51,7 +57,7 @@ const App: React.FC = () => {
         axios
             .get("http://localhost:8080/")
             .then((response) => {
-                console.log("hej: " + response.data)
+                console.log("hej: " + response.data);
                 setProducts(response.data);
             })
             .catch((error) => {
@@ -61,16 +67,12 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <div>
-                <MobileNavbar />
-            </div>
-
             {/* userContext funkar på alla komponenter som ligger i denna. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
             <ProductContext.Provider
                 value={{ allProducts, products, pins, setProducts, setPins }}
             >
                 {/* <Test /> */}
-                <div>
+                {/* <div>
                     {products.map((product) => (
                         <TestPins
                             key={product.id}
@@ -81,32 +83,33 @@ const App: React.FC = () => {
                             setSelectedPinId={setSelectedPinId}
                         />
                     ))}
+                </div> */}
+                <div>
+                    <MobileNavbar />
                 </div>
+                <div></div>
                 <div>
                     <Home />
                 </div>
-                <div>
-                    <SmallModal products={products} selProduct={1}/>
-                </div>
+                {/* <div>
+                    <ModalFunction selectedPinId={selectedPinId} />
+                </div> */}
+                {/* <div>
+                    <SmallModal products={products} selProduct={1} />
+                </div> */}
                 <div>
                     {" "}
                     <ContactSeller />
                 </div>{" "}
-
-
                 <div>{/* <ObjectCard/> */}</div>
-
                 <div className="content-wrapper">
                     {/* <RouterProvider router={router} /> */}
                 </div>
-
                 <div>
                     <CustomNavbar />
                 </div>
-
                 <div>
                     <MobileFooter products={products} />
-
                 </div>
             </ProductContext.Provider>
         </div>

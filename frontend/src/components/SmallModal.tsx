@@ -4,6 +4,8 @@ import axios from "axios";
 import styled from "styled-components";
 import BigModal from "./BigModal";
 
+import { useContext } from "react";
+import { ProductContext } from "../ProductContext";
 
 // Interface som specificerar vad som ska finnas i product
 interface Product {
@@ -16,40 +18,35 @@ interface Product {
 }
 
 interface ProductProps {
-    // id: number;
-    // category: string;
-    // visitedPins: number[];
-    // onClick: (id: number, category: string) => void;
     products: Product[];
     selProduct: number;
 }
 
-// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) =>
 // Huvudfunktionen
 const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
     // Här sparas det som fecthas från backend
     const [result, setResult] = useState<Product[]>([]);
-
-    // Sparar ID:t på vald produkt. Det gör att rätt produkt visas när den är vald
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
         null
     );
-
-    //För att kunna öppna och stänga den lilla modalen
-    const [isModalOpen, setModalOpen] = useState(false);
-
-    // Om en pin blivit klickad på så ska den byta bild
     const [visitedPins, setVisitedPins] = useState<number[]>([]);
 
-    //För att kunna öppna och stänga den stora modalen
+    // const [isModalOpen, setModalOpen] = useState(false);
+
+    const [isSmallModalOpen, setSmallModalOpen] = useState(false);
     const [isBigModalOpen, setIsBigModalOpen] = useState(false);
 
     //Öppnar den stora modalen
-    const handleOpen = () => {
+    const handleOpenBigModal = () => {
         console.log("Öppnar stor modal");
 
         setIsBigModalOpen(true);
-        // setModalOpen(false);
+        setSmallModalOpen(false);
+    };
+
+    const handleCloseBigModal = () => {
+        setIsBigModalOpen(false);
+        setSmallModalOpen(false);
     };
 
     // Hämtar datan från backendet
@@ -64,7 +61,7 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
+    }, [selectedProductId]);
 
     // Söker igenom det som fetchats och och letar upp det matchde id:numret.
     const selectedProduct = selectedProductId
@@ -81,12 +78,12 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
 
     // Öppnar modalen när man klickar på en pin
     const handleOpenModal = () => {
-        setModalOpen(true);
+        setSmallModalOpen(true);
     };
 
     // Stänger modalen när man klickar på en pin
     const handleCloseModal = () => {
-        setModalOpen(false);
+        setSmallModalOpen(false);
     };
 
     return (
@@ -109,6 +106,7 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
             {result.length > 0 &&
                 result.map((product) => (
                     <button
+                        key={product.id}
                         onClick={() =>
                             handleClick(product.id, product.category)
                         }
@@ -118,7 +116,7 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
                 ))}
 
             <Modal
-                isOpen={isModalOpen}
+                isOpen={isSmallModalOpen}
                 onRequestClose={handleCloseModal}
                 className="smallModalclass"
                 style={{
@@ -127,7 +125,7 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
                     },
                 }}
             >
-                {selectedProduct && (
+                {selectedProduct && isSmallModalOpen && !isBigModalOpen && (
                     <StyledContainer>
                         <Ul>
                             <Li key={selectedProduct.id}>
@@ -167,22 +165,22 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
                                     <img
                                         src="/ux ikoner/arrow.png"
                                         alt="Pil för att öppna annonsen"
-                                        style={arrowStyle}
-                                        onClick={handleOpen}
+                                        className="arrowStyle"
+                                        onClick={handleOpenBigModal}
                                     />
-                                    {isBigModalOpen && (
-                                        <BigModal
-                                            selectedProductId={
-                                                selectedProductId
-                                            }
-                                        />
-                                    )}
                                 </div>
                             </Li>
                         </Ul>
                     </StyledContainer>
                 )}
             </Modal>
+
+            {isBigModalOpen && (
+                <BigModal
+                    selectedProductId={selectedProductId}
+                    onClose={handleCloseBigModal}
+                />
+            )}
         </>
     );
 };
@@ -210,6 +208,7 @@ const imgStyle = {
     height: "100%",
     right: "0",
     zIndex: "0",
+    // borderRadius: "8.33684px",
 };
 
 const StyledContainer = styled.div`
@@ -221,6 +220,7 @@ const StyledContainer = styled.div`
 const StyledImgDiv = styled.div`
     width: 100%;
     // width: 374px;
+    border-radius: 8.33684px;
 
     height: 224px;
     position: relative;
@@ -237,7 +237,7 @@ const StyledTopContainer = styled.div`
 `;
 
 const StyledH1 = styled.h1`
-
+   
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;

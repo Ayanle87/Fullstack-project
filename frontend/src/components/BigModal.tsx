@@ -70,7 +70,7 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
                                                 product.image
                                             }
                                             style={imgStyle}
-                                            className="imgStyle"
+                                            className="imgBigStyle"
                                         />
                                     </StyledImgDiv>
 

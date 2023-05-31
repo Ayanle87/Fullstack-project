@@ -72,10 +72,12 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
                                                 <StyledH1>
                                                     {product.name}
                                                 </StyledH1>
+
                                                 <StyledPriceDistanceContainer>
                                                     <StyledPrice>
                                                         {product.price}kr
                                                     </StyledPrice>
+
                                                     <StyledDistance>
                                                         Avstånd
                                                     </StyledDistance>

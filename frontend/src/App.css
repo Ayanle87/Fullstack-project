@@ -80,9 +80,6 @@ body {
     border-radius: 8.33684px;
 }
 
-.firstModalclass .modal-dialog {
-}
-
 .modalclass:focus,
 .smallModalclass:focus {
     outline: none;

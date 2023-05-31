@@ -60,7 +60,7 @@ const Home: React.FC = () => {
         pr.forEach((product) => {
             product.isOpen = product.id === id;
 
-            if (product.isOpen) {
+            if (product.id === id) {
                 console.log("isOpen: " + product.id);
             }
         });
@@ -284,7 +284,6 @@ const Home: React.FC = () => {
                         <FirstModal selectedProductId={selectedProductId} />
                     )
             )}
-
             <LoadScript googleMapsApiKey="AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk">
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
@@ -303,7 +302,7 @@ const Home: React.FC = () => {
                             position={{
                                 lat: product.latitude,
 
-                                lng: product.longitude
+                                lng: product.longitude,
                             }}
                             data-value={product}
                             onClick={() => {
@@ -320,7 +319,8 @@ const Home: React.FC = () => {
                         ></Marker>
                     ))}
                 </GoogleMap>
-            </LoadScript>c
+            </LoadScript>
+            c
         </>
     );
 };

@@ -27,7 +27,7 @@ const Home: React.FC = () => {
 
     const { products, setProducts } = useContext(ProductContext);
     // const [products, setProducts] = useState<Product[]>([]);
-
+    const [isModalOpen, setModalOpen] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
         null
     );

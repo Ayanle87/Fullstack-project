@@ -7,7 +7,7 @@ import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import ModalPins from "./components/ModalPins";
+
 import styled from "styled-components";
 import ContactSeller from "./ContactSeller";
 import Root from "./Root";
@@ -83,9 +83,7 @@ const App: React.FC = () => {
                 <div>
                     <MobileNavbar />
                 </div>
-                <div>
-                    {/* <FirstModal selectedProductId={selectedProductId} /> */}
-                </div>
+                <div></div>
                 <div>
                     <Home />
                 </div>

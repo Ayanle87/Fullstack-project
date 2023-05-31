@@ -72,6 +72,7 @@ const Home: React.FC = () => {
     const mapContainerStyle = {
         width: "100%",
         height: "100vh",
+        marginTop: "-100px",
     };
 
     function getIcon(category: string) {

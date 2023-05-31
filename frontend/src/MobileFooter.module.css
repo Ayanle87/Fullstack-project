@@ -1,58 +1,58 @@
 .footerContainer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: hsl(0, 0%, 100%);
-  z-index: 1;
-  padding: 10px 0px;
-  margin-bottom: auto;
-  overflow-x: auto;
-  white-space: nowrap;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fbfaf9;
+    z-index: 1;
+    padding: 10px 0px;
+    margin-bottom: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .iconsContainer {
-  display: flex;
-  justify-content: flex-start;
-  padding: 0 10px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  gap: 20px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
 }
 
 .iconButton {
-  border: none;
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 5px;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
 }
 
 .iconImage {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 .iconText {
-  font-size: 15px;
-  margin-top: 10px;
-  text-align: center;
-  color: #222121;
+    font-size: 15px;
+    margin-top: 10px;
+    text-align: center;
+    color: #222121;
 }
 
 @media (max-width: 780px) {
-  .footerContainer {
-    justify-content: flex-start;
-  }
+    .footerContainer {
+        justify-content: flex-start;
+    }
 }
 
 @media (min-width: 500px) and (max-width: 780px) {
-  .footerContainer {
-    justify-content: center;
-  }
+    .footerContainer {
+        justify-content: center;
+    }
 }

@@ -67,7 +67,7 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
                                                 />
                                             </StyledImgDiv>
                                             <h2>{product.name}</h2>
-                                            <p>{product.price}</p>
+                                            <p>{product.price}kr</p>
                                             <p>Avstånd</p>
 
                                             <div>

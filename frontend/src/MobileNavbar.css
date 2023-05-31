@@ -10,29 +10,17 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  padding: 0 2rem;
   color: white;
   position: fixed;
   background-color: white;
   border: solid;
   width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  padding: 0 2rem;
-  color: white;
-
   padding: 20px 16px 8px 119px;
-  /* gap: 79px; */
   z-index: 1;
   position: relative;
   margin-bottom: 10px;
   width: 391.17px;
   height: 63px;
-  /* left: 0px;
-    top: 24px; */
 }
 
 nav a {
@@ -55,6 +43,7 @@ header .nav-btn {
   visibility: hidden;
   opacity: 0;
   font-size: 1.8rem;
+  width: 34px;
 }
 
 header div nav {
@@ -69,8 +58,7 @@ nav {
 
 img {
   width: 143.88px;
-  height: 51px;
-  margin-left: 30px;
+
   position: relative;
   z-index: 1;
 }

@@ -99,7 +99,7 @@ const Home: React.FC = () => {
                 break;
 
             case "Kläder":
-                url = "/ux ikoner/76h/ClothesPin76vh.png76vh.png";
+                url = "/ux ikoner/76h/ClothesPin76vh.png";
 
                 break;
 

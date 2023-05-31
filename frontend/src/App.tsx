@@ -61,17 +61,11 @@ const App: React.FC = () => {
                 <div>
                     <Home />
                 </div>
-                <div>
-<<<<<<< HEAD
-                    {" "}
-                    {/* <ContactSeller /> */}
-                </div>{" "}
+                <div> {/* <ContactSeller /> */}</div>{" "}
                 <div>{/* <ObjectCard/> */}</div>
                 <div className="content-wrapper">
                     {/* <RouterProvider router={router} /> */}
-=======
                     <ContactSeller />
->>>>>>> aba46b76946d7f01a11893c3924ce9fd5688700c
                 </div>
                 <div className="content-wrapper"></div>
                 <div>

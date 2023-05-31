@@ -30,7 +30,6 @@ interface Product {
 
 interface ProductProps {
     products: Product[];
-
     selProduct: number;
 }
 

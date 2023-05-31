@@ -25,6 +25,8 @@ const App: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [pins, setPins] = useState<number[]>([]);
+    const [visitedPins, setVisitedPins] = useState<number[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
     const [selectedPinId, setSelectedPinId] = useState<number | null>(null);
     const openModal = () => {
         setSelectedPinId(pins[pins.length - 1]);

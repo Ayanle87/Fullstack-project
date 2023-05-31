@@ -75,13 +75,6 @@ const initialIcons = [
   },
 ];
 
-
-interface MobileFooterProps {
-  products: Product[];
-  // onCategoryFilter: (category: string) => void;
-}
-
-
 interface Product {
   id: number;
   name: string;
@@ -91,29 +84,26 @@ interface Product {
   category: string;
 }
 
-// interface ProductProps {
-//   // id: number;
-//   // category: string;
-//   // visitedPins: number[];
-//   // onClick: (id: number, category: string) => void;
-// products: Product[]
-// }
+interface ProductProps {
+  // id: number;
+  // category: string;
+  // visitedPins: number[];
+  // onClick: (id: number, category: string) => void;
+products: Product[]
+}
 
 
 
 // React.FC<PinProps> = ({ id, category, visitedPins, onClick }) => 
 // Huvudfunktionen
-const MobileFooter: React.FC<MobileFooterProps> = ({products}) => {
+const MobileFooter: React.FC<ProductProps> = ({products}) => {
 
 // const MobileFooter: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [icons, setIcons] = useState(initialIcons);
   const [showSearchBox, setShowSearchBox] = useState(false);
+
   const [prevPressedIndex, setPrevPressedIndex] = useState(-1);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const filteredProducts = selectedCategory
-    ? products.filter((product) => product.category === selectedCategory)
-    : products;
 
   useEffect(() => {
     const handleResize = () => {
@@ -128,25 +118,23 @@ const MobileFooter: React.FC<MobileFooterProps> = ({products}) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   const handleIconClick = (index: number) => {
     setIcons((prevIcons) => {
       const updatedIcons = prevIcons.map((icon, i) => ({
         ...icon,
         isActive: i === index || prevPressedIndex === index,
       }));
-  
+
       return updatedIcons;
     });
-  
+
     if (index === prevPressedIndex) {
       setPrevPressedIndex(-1);
-      setSelectedCategory(""); // Reset selected category
     } else {
       setPrevPressedIndex(index);
-      setSelectedCategory(initialIcons[index].alt); // Update selected category
     }
   };
-  
 
   const handleSearchClick = () => {
     setShowSearchBox(!showSearchBox); 
@@ -193,10 +181,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({products}) => {
           <span className={styles.iconText}>{searchIcon.alt}</span>
         </Button>
       </div>
-      {showSearchBox && (
-      <SearchBox onClose={handleSearchClose} products={filteredProducts} />
-    )}
-    
+      {showSearchBox && <SearchBox onClose={handleSearchClose} products={products} />}{" "}
     </div>
 
   );

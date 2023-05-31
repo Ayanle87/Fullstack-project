@@ -62,10 +62,12 @@ const App: React.FC = () => {
                     <Home />
                 </div>
                 <div> {/* <ContactSeller /> */}</div>{" "}
+                <div> {/* <ContactSeller /> */}</div>{" "}
                 <div>{/* <ObjectCard/> */}</div>
                 <div className="content-wrapper">
                     {/* <RouterProvider router={router} /> */}
-                    <ContactSeller />
+
+                    {/* <ContactSeller /> */}
                 </div>
                 <div className="content-wrapper"></div>
                 <div>

@@ -24,6 +24,10 @@ interface Product {
     image: string;
 
     category: string;
+
+    longitude: string;
+
+    latitude: string;
 }
 
 const Home: React.FC = () => {

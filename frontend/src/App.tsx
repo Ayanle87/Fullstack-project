@@ -33,8 +33,8 @@ interface Product {
     description: string;
     image: string;
     category: string;
-    // lat: number;
-    // long: number;
+    longitude: string;
+    latitude: string;
 }
 
 const App: React.FC = () => {

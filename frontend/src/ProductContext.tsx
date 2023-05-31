@@ -7,6 +7,8 @@ interface Product {
     description: string;
     image: string;
     category: string;
+    longitude: string;
+    latitude: string;
     isOpen?: boolean;
 }
 
@@ -41,7 +43,6 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
     const [products, setProducts] = useState<Product[]>([]);
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [pins, setPins] = useState<number[]>([]);
-
 
     return (
         <ProductContext.Provider

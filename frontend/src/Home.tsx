@@ -69,7 +69,7 @@ const Home: React.FC = () => {
     const mapContainerStyle = {
         width: "100%",
 
-        height: "50vh",
+        height: "100vh",
     };
 
     function getIcon(category: string) {
@@ -316,7 +316,7 @@ const Home: React.FC = () => {
                         ></Marker>
                     ))}
                 </GoogleMap>
-            </LoadScript>
+            </LoadScript>c
         </>
     );
 };

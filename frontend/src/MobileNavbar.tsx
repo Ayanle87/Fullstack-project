@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import "./MobileNavbar.css";
 
+import "./MobileNavbar.css";
+// FaBars
 function MobileNavbar(): JSX.Element {
 	const navRef = useRef<HTMLDivElement>(null);
 
@@ -12,6 +13,7 @@ function MobileNavbar(): JSX.Element {
 			);
 		}
 	};
+
 
 	return (
 		<header>
@@ -35,7 +37,7 @@ function MobileNavbar(): JSX.Element {
 				</button>
 			</nav>
 			<button className="nav-btn" onClick={showNavbar}>
-				<FaBars />
+				< FaBars/>
 			</button>
 		</header>
 	);

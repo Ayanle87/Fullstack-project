@@ -25,9 +25,9 @@ interface Product {
 
     category: string;
 
-    longitude: string;
+    longitude: number;
 
-    latitude: string;
+    latitude: number;
 }
 
 const Home: React.FC = () => {
@@ -301,9 +301,9 @@ const Home: React.FC = () => {
                             icon={getIcon(product.category)}
                             key={product.id}
                             position={{
-                                lat: Math.random() * 0.03 + 57.70090604681059,
+                                lat: product.latitude,
 
-                                lng: Math.random() * 0.04 + 11.974023638297332,
+                                lng: product.longitude
                             }}
                             data-value={product}
                             onClick={() => {

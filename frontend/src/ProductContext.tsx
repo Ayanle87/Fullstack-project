@@ -7,8 +7,8 @@ interface Product {
     description: string;
     image: string;
     category: string;
-    longitude: string;
-    latitude: string;
+    longitude: number;
+    latitude: number;
     isOpen?: boolean;
 }
 

@@ -33,8 +33,8 @@ interface Product {
     description: string;
     image: string;
     category: string;
-    longitude: string;
-    latitude: string;
+    longitude: number;
+    latitude: number;
 }
 
 const App: React.FC = () => {
@@ -53,6 +53,12 @@ const App: React.FC = () => {
         axios
             .get("http://localhost:8080/")
             .then((response) => {
+              response.data.forEach((pr:Product) => {
+                pr.latitude =  Math.random() * 0.03 + 57.70090604681059
+                pr.longitude = Math.random() * 0.04 + 11.974023638297332
+
+
+              });
                 console.log("hej: " + response.data);
                 setProducts(response.data);
             })

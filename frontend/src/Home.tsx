@@ -281,7 +281,10 @@ const Home: React.FC = () => {
             {products.map(
                 (product) =>
                     product.isOpen === true && (
-                        <FirstModal selectedProductId={selectedProductId} />
+                        <FirstModal
+                            key={product.id}
+                            selectedProductId={selectedProductId}
+                        />
                     )
             )}
             <LoadScript googleMapsApiKey="AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk">

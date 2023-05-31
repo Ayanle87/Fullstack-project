@@ -4,27 +4,11 @@ import ProductContext from "./ProductContext";
 import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
-import { createHashRouter, RouterProvider } from "react-router-dom";
-
-// import ModalPins from "./components/ModalPins";
-
-import styled from "styled-components";
 import ContactSeller from "./ContactSeller";
-import Root from "./Root";
 import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
 import axios from "axios";
-
-import SmallModal from "./components/SmallModal";
-import BigModal from "./components/BigModal";
-
-import Test from "./components/Test";
-import TestPins from "./TestPins";
-
-import FirstModal from "./components/FirstModal";
-
-import ModalFunction from "./components/ModalFunction";
 
 interface Product {
     id: number;
@@ -42,23 +26,20 @@ const App: React.FC = () => {
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [pins, setPins] = useState<number[]>([]);
     const [visitedPins, setVisitedPins] = useState<number[]>([]);
-
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
     const [selectedPinId, setSelectedPinId] = useState<number | null>(null);
     const openModal = () => {
         setSelectedPinId(pins[pins.length - 1]);
     };
 
-    //Fetchar produktera, sparas i setProduct som är
     useEffect(() => {
         axios
             .get("http://localhost:8080/")
             .then((response) => {
-              response.data.forEach((pr:Product) => {
-                pr.latitude =  Math.random() * 0.03 + 57.70090604681059
-                pr.longitude = Math.random() * 0.04 + 11.974023638297332
-
-
-              });
+                response.data.forEach((pr: Product) => {
+                    pr.latitude = Math.random() * 0.03 + 57.70090604681059;
+                    pr.longitude = Math.random() * 0.04 + 11.974023638297332;
+                });
                 console.log("hej: " + response.data);
                 setProducts(response.data);
             })
@@ -73,19 +54,6 @@ const App: React.FC = () => {
             <ProductContext.Provider
                 value={{ allProducts, products, pins, setProducts, setPins }}
             >
-                {/* <Test /> */}
-                {/* <div>
-                    {products.map((product) => (
-                        <TestPins
-                            key={product.id}
-                            id={product.id}
-                            category={product.category}
-                            visitedPins={visitedPins}
-                            setPins={setPins}
-                            setSelectedPinId={setSelectedPinId}
-                        />
-                    ))}
-                </div> */}
                 <div>
                     <MobileNavbar />
                 </div>
@@ -93,20 +61,19 @@ const App: React.FC = () => {
                 <div>
                     <Home />
                 </div>
-                {/* <div>
-                    <ModalFunction selectedPinId={selectedPinId} />
-                </div> */}
-                {/* <div>
-                    <SmallModal products={products} selProduct={1} />
-                </div> */}
                 <div>
+<<<<<<< HEAD
                     {" "}
                     {/* <ContactSeller /> */}
                 </div>{" "}
                 <div>{/* <ObjectCard/> */}</div>
                 <div className="content-wrapper">
                     {/* <RouterProvider router={router} /> */}
+=======
+                    <ContactSeller />
+>>>>>>> aba46b76946d7f01a11893c3924ce9fd5688700c
                 </div>
+                <div className="content-wrapper"></div>
                 <div>
                     <CustomNavbar />
                 </div>

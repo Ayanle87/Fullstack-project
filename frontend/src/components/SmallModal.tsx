@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 
 import Modal from "react-modal";
@@ -10,20 +8,13 @@ import styled from "styled-components";
 
 import BigModal from "./BigModal";
 
-
-
-
 import { useContext } from "react";
 
 import { ProductContext } from "../ProductContext";
 
-
-
-
 // Interface som specificerar vad som ska finnas i product
 
 interface Product {
-
     id: number;
 
     name: string;
@@ -35,168 +26,97 @@ interface Product {
     image: string;
 
     category: string;
-
 }
 
-
-
-
 interface ProductProps {
-
     products: Product[];
 
     selProduct: number;
-
 }
-
-
-
 
 // Huvudfunktionen
 
 const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
-
     // Här sparas det som fecthas från backend
 
     const [result, setResult] = useState<Product[]>([]);
 
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
-
         null
-
     );
 
     const [visitedPins, setVisitedPins] = useState<number[]>([]);
 
-
-
-
     // const [isModalOpen, setModalOpen] = useState(false);
-
-
-
 
     const [isSmallModalOpen, setSmallModalOpen] = useState(false);
 
     const [isBigModalOpen, setIsBigModalOpen] = useState(false);
 
-
-
-
     //Öppnar den stora modalen
 
     const handleOpenBigModal = () => {
-
         console.log("Öppnar stor modal");
-
-
-
 
         setIsBigModalOpen(true);
 
         setSmallModalOpen(false);
-
     };
 
-
-
-
     const handleCloseBigModal = () => {
-
         setIsBigModalOpen(false);
 
         setSmallModalOpen(false);
-
     };
-
-
-
 
     // Hämtar datan från backendet
 
     useEffect(() => {
-
         Modal.setAppElement("#root");
-
-
-
 
         axios
 
             .get("http://localhost:8080/")
 
             .then((response) => {
-
                 setResult(response.data);
-
             })
 
             .catch((error) => {
-
                 console.error(error);
-
             });
-
     }, [selectedProductId]);
-
-
-
 
     // Söker igenom det som fetchats och och letar upp det matchde id:numret.
 
     const selectedProduct = selectedProductId
-
         ? result.find((product) => product.id === selectedProductId)
-
         : null;
-
-
-
 
     // Funktion som sätter selectedProductIds useState till det ID som klickats på, samt uppdaterar pinsen till nya om de blivit klickade på och öppnar modalen.
 
     const handleClick = (id: number, category: string) => {
-
         setSelectedProductId(id);
 
         handleOpenModal();
 
-
-
-
         setVisitedPins((prevVisitedPins) => [...prevVisitedPins, id]);
-
     };
-
-
-
 
     // Öppnar modalen när man klickar på en pin
 
     const handleOpenModal = () => {
-
         setSmallModalOpen(true);
-
     };
-
-
-
 
     // Stänger modalen när man klickar på en pin
 
     const handleCloseModal = () => {
-
         setSmallModalOpen(false);
-
     };
 
-
-
-
     return (
-
         <>
-
             {/* {result.length > 0 &&
 
                 result
@@ -226,186 +146,93 @@ const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
 
             {/* Modalen som öppnas 'onClick' på pinsen. Modalen innehåller namn, bild, pris, produktbeskrivning. */}
 
-
-
-
             {result.length > 0 &&
-
                 result.map((product) => (
-
                     <button
-
                         key={product.id}
-
                         onClick={() =>
-
                             handleClick(product.id, product.category)
-
                         }
-
                     >
-
                         Öppna annons
-
                     </button>
-
                 ))}
 
-
-
-
             <Modal
-
                 isOpen={isSmallModalOpen}
-
                 onRequestClose={handleCloseModal}
-
                 className="smallModalclass"
-
                 style={{
-
                     overlay: {
-
                         zIndex: 9999,
-
                     },
-
                 }}
-
             >
-
                 {selectedProduct && isSmallModalOpen && !isBigModalOpen && (
-
                     <StyledContainer>
-
                         <Ul>
-
                             <Li key={selectedProduct.id}>
-
                                 <StyledImgDiv>
-
                                     <img
-
                                         src="/ux ikoner/Pins/close-modal.png"
-
                                         alt="Kryss för att stänga annonsen"
-
                                         className="closeStyle"
-
                                         style={closeStyle}
-
                                         onClick={handleCloseModal}
-
                                     />
-
-
-
 
                                     <img
-
                                         alt="product"
-
                                         src={
-
                                             "http://localhost:8080" +
-
                                             selectedProduct.image
-
                                         }
-
                                         style={imgStyle}
-
                                         className="imgStyle"
-
                                     />
-
                                 </StyledImgDiv>
 
-
-
-
                                 <StyledTopContainer>
-
                                     <StyledH1>{selectedProduct.name}</StyledH1>
 
-
-
-
                                     <StyledPriceDistanceContainer>
-
                                         <StyledPrice>
-
                                             {selectedProduct.price}kr
-
                                         </StyledPrice>
 
                                         <StyledDistance>
-
                                             500m bort
-
                                         </StyledDistance>
-
                                     </StyledPriceDistanceContainer>
-
                                 </StyledTopContainer>
 
                                 <div>
-
                                     <img
-
                                         src="/ux ikoner/arrow.png"
-
                                         alt="Pil för att öppna annonsen"
-
                                         className="arrowStyle"
-
                                         onClick={handleOpenBigModal}
-
                                     />
-
                                 </div>
-
                             </Li>
-
                         </Ul>
-
                     </StyledContainer>
-
                 )}
-
             </Modal>
 
-
-
-
             {isBigModalOpen && (
-
                 <BigModal
-
                     selectedProductId={selectedProductId}
-
                     onClose={handleCloseBigModal}
-
                 />
-
             )}
-
         </>
-
     );
-
 };
-
-
-
 
 // CSS
 
-
-
-
 const closeStyle = {
-
     width: "17.74px",
 
     height: "17.74px",
@@ -415,14 +242,9 @@ const closeStyle = {
     right: "10px",
 
     zIndex: "1",
-
 };
 
-
-
-
 const arrowStyle = {
-
     width: "28px",
 
     height: "18px",
@@ -432,14 +254,9 @@ const arrowStyle = {
     bottom: "10px",
 
     right: "10px",
-
 };
 
-
-
-
 const imgStyle = {
-
     width: "100%",
 
     height: "100%",
@@ -449,35 +266,22 @@ const imgStyle = {
     zIndex: "0",
 
     // borderRadius: "8.33684px",
-
 };
 
-
-
-
 const StyledContainer = styled.div`
-
     display: flex;
 
     align-items: center;
 
     justify-content: center;
-
 `;
 
-
-
-
 const StyledImgDiv = styled.div`
-
     width: 100%;
 
     // width: 374px;
 
     border-radius: 8.33684px;
-
-
-
 
     height: 224px;
 
@@ -489,26 +293,14 @@ const StyledImgDiv = styled.div`
 
     top: -0.11px;
 
-
-
-
     z-index: 0;
-
 `;
 
-
-
-
 const StyledTopContainer = styled.div`
-
     display: flex;
 
     justify-content: space-between;
-
 `;
-
-
-
 
 const StyledH1 = styled.h1`
 
@@ -539,11 +331,7 @@ const StyledH1 = styled.h1`
 
 `;
 
-
-
-
 const StyledPriceDistanceContainer = styled.div`
-
     padding: 10px;
 
     display: flex;
@@ -553,14 +341,9 @@ const StyledPriceDistanceContainer = styled.div`
     margin-left: 15px;
 
     margin-right: 15px;
-
 `;
 
-
-
-
 const StyledPrice = styled.p`
-
     font-family: "Open Sans", bold, sans-serif;
 
     font-style: normal;
@@ -573,23 +356,15 @@ const StyledPrice = styled.p`
 
     letter-spacing: 0.25px;
 
-
-
-
     // display: flex;
 
     // align-items: center;
 
     // text-align: right;
-
 `;
 
 const StyledDistance = styled.p`
-
     font-family: "Open Sans", sans-serif;
-
-
-
 
     font-style: normal;
 
@@ -599,27 +374,13 @@ const StyledDistance = styled.p`
 
     line-height: 12px;
 
-
-
-
     letter-spacing: 0.135894px;
 
-
-
-
     color: #000000;
-
 `;
 
-
-
-
 const StyledDescription = styled.p`
-
     position: relative;
-
-
-
 
     font-family: "Open Sans", sans-serif;
 
@@ -633,20 +394,12 @@ const StyledDescription = styled.p`
 
     letter-spacing: 0.25px;
 
-
-
-
     //     display: flex;
 
     // align-items: center;
-
 `;
 
-
-
-
 const StyledDescriptionDiv = styled.div`
-
     box-sizing: border-box;
 
     display: flex;
@@ -665,20 +418,12 @@ const StyledDescriptionDiv = styled.div`
 
     margin-top: 10px;
 
-
-
-
     border: 0.543575px solid #c0d0b9;
 
     border-radius: 2.71787px;
-
 `;
 
-
-
-
 const Ul = styled.ul`
-
     display: flex;
 
     flex-direction: column;
@@ -691,9 +436,6 @@ const Ul = styled.ul`
 
     isolation: isolate;
 
-
-
-
     width: 100%;
 
     height: 733.38px;
@@ -701,19 +443,10 @@ const Ul = styled.ul`
     left: 13px;
 
     top: 50.57px;
-
 `;
-
-
-
 
 const Li = styled.li`
-
     list-style: none;
-
 `;
-
-
-
 
 export default SmallModal;

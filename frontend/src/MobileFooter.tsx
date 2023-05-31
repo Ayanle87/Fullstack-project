@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext  } from "react";
 import styles from "./MobileFooter.module.css";
 import { Button } from "react-bootstrap";
 import SearchBox from "./SearchBox";
@@ -102,7 +102,6 @@ const MobileFooter: React.FC<ProductProps> = ({products}) => {
   const [isMobile, setIsMobile] = useState(false);
   const [icons, setIcons] = useState(initialIcons);
   const [showSearchBox, setShowSearchBox] = useState(false);
-
   const [prevPressedIndex, setPrevPressedIndex] = useState(-1);
 
   useEffect(() => {

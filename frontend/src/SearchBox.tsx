@@ -1,18 +1,13 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import styles from "./SearchBox.module.css";
-
 import { ProductContext } from "./ProductContext";
-
-
 
 export interface SearchBoxProps {
   onSearch?: (query: string) => void;
   onClose?: () => void;
   products: Product[];
 }
-
-
 
 interface Product {
   id: number;
@@ -31,28 +26,28 @@ interface Product {
 // products: Product[];
 // }
 
-
-
-// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) => 
+// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) =>
 // Huvudfunktionen
 // const SearchBox: React.FC<ProductProps> = ({products}) => {
-
-
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
-  const [visitedPins, setVisitedPins] = useState<{ [key: number]: boolean }>({});
+  const [visitedPins, setVisitedPins] = useState<{ [key: number]: boolean }>(
+    {}
+  );
 
   let { products, setProducts } = useContext(ProductContext);
-  console.log("products: " + products)
+  console.log("products: " + products);
   // setSearchResults(products);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
-  const handleSearchSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSearchSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     if (onSearch) {
       onSearch(searchQuery);
@@ -64,13 +59,17 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
 
       // const filteredProducts = allProducts.filter(
       // const filteredProducts = products.filter(
-      setProducts( products.filter(
-        (product: Product) =>
-          product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.name.toLowerCase().includes(searchQuery.toLowerCase())
-      ));
+      setProducts(
+        products.filter(
+          (product: Product) =>
+            product.category
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase()) ||
+            product.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
 
-      console.log(products)
+      console.log(products);
       // setSearchResults(filteredProducts);
     } catch (error) {
       console.error(error);
@@ -86,7 +85,6 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     }));
   };
 
-  
   const categoryImages: { [key: string]: string } = {
     Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
     Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
@@ -122,7 +120,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
 
       {/* {searchResults.length > 0 &&
         searchResults.map((product) => ( */}
-        {/* {products.length > 0 &&
+      {/* {products.length > 0 &&
           products.map((product) => (
           <img
             className="styledPins"

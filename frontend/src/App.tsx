@@ -67,7 +67,7 @@ const App: React.FC = () => {
                     <CustomNavbar />
                 </div>
                 <div>
-                    <MobileFooter products={products} />
+                    <MobileFooter/>
                 </div>
             </ProductContext.Provider>
         </div>

@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext  } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./MobileFooter.module.css";
 import { Button } from "react-bootstrap";
 import SearchBox from "./SearchBox";
-
-
-
+import { ProductContext } from "./ProductContext";
 
 const searchIcon = {
   src:
@@ -89,20 +87,17 @@ interface ProductProps {
   // category: string;
   // visitedPins: number[];
   // onClick: (id: number, category: string) => void;
-products: Product[]
+  products: Product[];
 }
 
-
-
-// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) => 
+// React.FC<PinProps> = ({ id, category, visitedPins, onClick }) =>
 // Huvudfunktionen
-const MobileFooter: React.FC<ProductProps> = ({products}) => {
-
-// const MobileFooter: React.FC = () => {
+const MobileFooter: React.FC = () => {
+  const { products, setProducts } = useContext(ProductContext);
   const [isMobile, setIsMobile] = useState(false);
   const [icons, setIcons] = useState(initialIcons);
   const [showSearchBox, setShowSearchBox] = useState(false);
-  const [prevPressedIndex, setPrevPressedIndex] = useState(-1);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -122,29 +117,33 @@ const MobileFooter: React.FC<ProductProps> = ({products}) => {
     setIcons((prevIcons) => {
       const updatedIcons = prevIcons.map((icon, i) => ({
         ...icon,
-        isActive: i === index || prevPressedIndex === index,
+        isActive: i === index,
       }));
-
       return updatedIcons;
     });
 
-    if (index === prevPressedIndex) {
-      setPrevPressedIndex(-1);
-    } else {
-      setPrevPressedIndex(index);
-    }
+    setSelectedCategory(initialIcons[index].alt);
   };
 
   const handleSearchClick = () => {
-    setShowSearchBox(!showSearchBox); 
+    setShowSearchBox(!showSearchBox);
   };
 
   const handleSearchClose = () => {
-    setShowSearchBox(false); 
+    setShowSearchBox(false);
   };
 
+  useEffect(() => {
+    if (selectedCategory) {
+      const filteredProducts = products.filter(
+        (product) => product.category === selectedCategory
+      );
+      setProducts(filteredProducts);
+    }
+  }, [selectedCategory, setProducts, products]);
+
   if (!isMobile) {
-    return null; 
+    return null;
   }
 
   return (
@@ -154,9 +153,7 @@ const MobileFooter: React.FC<ProductProps> = ({products}) => {
           <Button
             key={index}
             variant="light"
-            className={`${styles.iconButton} ${
-              icon.isActive ? styles.active : ""
-            }`}
+            className={`${styles.iconButton} ${icon.isActive ? styles.active : ""}`}
             onClick={() => handleIconClick(index)}
           >
             <img
@@ -180,9 +177,8 @@ const MobileFooter: React.FC<ProductProps> = ({products}) => {
           <span className={styles.iconText}>{searchIcon.alt}</span>
         </Button>
       </div>
-      {showSearchBox && <SearchBox onClose={handleSearchClose} products={products} />}{" "}
+      {/* {showSearchBox && <SearchBox onClose={handleSearchClose} />} */}
     </div>
-
   );
 };
 

@@ -9,6 +9,7 @@ import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
 import axios from "axios";
+import SmallModal from "./components/SmallModal";
 
 interface Product {
     id: number;
@@ -57,18 +58,10 @@ const App: React.FC = () => {
                 <div>
                     <MobileNavbar />
                 </div>
-                <div></div>
                 <div>
                     <Home />
                 </div>
-                <div> {/* <ContactSeller /> */}</div>{" "}
-                <div> {/* <ContactSeller /> */}</div>{" "}
-                <div>{/* <ObjectCard/> */}</div>
-                <div className="content-wrapper">
-                    {/* <RouterProvider router={router} /> */}
 
-                    {/* <ContactSeller /> */}
-                </div>
                 <div className="content-wrapper"></div>
                 <div>
                     <CustomNavbar />

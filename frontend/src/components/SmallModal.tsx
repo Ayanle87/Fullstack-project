@@ -30,12 +30,11 @@ interface Product {
 
 interface ProductProps {
     products: Product[];
-    selProduct: number;
 }
 
 // Huvudfunktionen
 
-const SmallModal: React.FC<ProductProps> = ({ products, selProduct }) => {
+const SmallModal: React.FC<ProductProps> = ({ products }) => {
     // Här sparas det som fecthas från backend
 
     const [result, setResult] = useState<Product[]>([]);

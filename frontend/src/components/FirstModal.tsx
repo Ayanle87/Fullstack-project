@@ -11,9 +11,10 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
     const { products } = useContext(ProductContext);
     const [isFirstModalOpen, setFirstModalOpen] = useState(true);
     const [isBigModalOpen, setIsBigModalOpen] = useState(false);
-
+    console.log("FirstModal öppen");
     const handleCloseFirstModal = () => {
         setFirstModalOpen(false);
+        setIsBigModalOpen(false);
     };
 
     const handleOpenBigModal = () => {
@@ -25,6 +26,7 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
 
     const handleCloseBigModal = () => {
         setIsBigModalOpen(false);
+        setFirstModalOpen(false);
     };
 
     return (
@@ -66,9 +68,19 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
                                                     className="imgStyle"
                                                 />
                                             </StyledImgDiv>
-                                            <h2>{product.name}</h2>
-                                            <p>{product.price}kr</p>
-                                            <p>Avstånd</p>
+                                            <StyledTopContainer>
+                                                <StyledH1>
+                                                    {product.name}
+                                                </StyledH1>
+                                                <StyledPriceDistanceContainer>
+                                                    <StyledPrice>
+                                                        {product.price}kr
+                                                    </StyledPrice>
+                                                    <StyledDistance>
+                                                        Avstånd
+                                                    </StyledDistance>
+                                                </StyledPriceDistanceContainer>
+                                            </StyledTopContainer>
 
                                             <div>
                                                 <img
@@ -130,6 +142,53 @@ const StyledImgDiv = styled.div`
     top: -0.11px;
 
     z-index: 0;
+`;
+
+const StyledTopContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+const StyledPriceDistanceContainer = styled.div`
+    padding: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-left: 15px;
+
+    margin-right: 15px;
+`;
+const StyledH1 = styled.h1`
+    font-family: "Open Sans", bold, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    margin-left: 15px;
+    margin-bottom; 15px;
+    margin-top: 15px;
+    color: #000000;
+`;
+
+const StyledPrice = styled.p`
+    font-family: "Open Sans", bold, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+`;
+
+const StyledDistance = styled.p`
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.135894px;
+    color: #000000;
 `;
 
 const Ul = styled.ul`

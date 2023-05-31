@@ -10,7 +10,7 @@ import styled from "styled-components";
 
 import FirstModal from "./components/FirstModal";
 
-import "./Home.css"
+import "./Home.css";
 
 import { ProductContext } from "./ProductContext";
 
@@ -37,26 +37,22 @@ const Home: React.FC = () => {
 
     const { products, setProducts } = useContext(ProductContext);
 
-    // const [products, setProducts] = useState<Product[]>([]);
-
     const [isModalOpen, setModalOpen] = useState(false);
-
+    const [isFirstModalOpen, setFirstModalOpen] = useState(true);
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
+        null
+    );
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(
         null
     );
 
     const handleProductClick = (
         id: number,
-
         lat: number,
-
         lng: number,
-
         address: string
     ) => {
         setSelectedProductId(id);
-        setModalOpen(true);
-
         const pr = products;
 
         pr.forEach((product) => {
@@ -68,14 +64,14 @@ const Home: React.FC = () => {
         });
 
         setProducts([...pr]);
+        setFirstModalOpen(true);
 
         console.log("Öppna produkt med ID:", id);
     };
 
     const mapContainerStyle = {
-      width: "100%",
-      height: "100vh",
-
+        width: "100%",
+        height: "100vh",
     };
 
     function getIcon(category: string) {
@@ -299,7 +295,6 @@ const Home: React.FC = () => {
 
                         ...mapOptions,
                     }}
-
                 >
                     {products.map((product) => (
                         <Marker
@@ -326,7 +321,6 @@ const Home: React.FC = () => {
                     ))}
                 </GoogleMap>
             </LoadScript>
-
         </>
     );
 };

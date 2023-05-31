@@ -6,6 +6,7 @@ import "./navbar.css";
 import "./MobileNavbar.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
+// import ModalPins from "./components/ModalPins";
 
 import styled from "styled-components";
 import ContactSeller from "./ContactSeller";

@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
-
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-
 import ContactSeller from "./ContactSeller";
-
 import { useContext } from "react";
-
 import styled from "styled-components";
-
 import FirstModal from "./components/FirstModal";
-
 import "./Home.css";
-
 import { ProductContext } from "./ProductContext";
-
 interface Product {
     id: number;
 
@@ -33,11 +25,7 @@ interface Product {
 }
 
 const Home: React.FC = () => {
-    // const { setPins } = useContext(ProductContext);
-
     const { products, setProducts } = useContext(ProductContext);
-
-    const [isModalOpen, setModalOpen] = useState(false);
     const [isFirstModalOpen, setFirstModalOpen] = useState(true);
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
         null
@@ -106,6 +94,44 @@ const Home: React.FC = () => {
 
             case "Övrigt":
                 url = "/ux ikoner/76h//OtherPin76vh.png";
+
+                break;
+        }
+
+        return url;
+    }
+
+    function getVisitedIcon(category: string) {
+        let url = "";
+
+        switch (category) {
+            case "Elektronik":
+                url = "/ux ikoner/76h/ElectronicsPinVisited76vh.png";
+
+                break;
+
+            case "Fordon":
+                url = "/ux ikoner/76h/VehiclePinVisited76vh.png";
+
+                break;
+
+            case "Fritid":
+                url = "/ux ikoner/76h/SportPinVisited76vh.png";
+
+                break;
+
+            case "Hushåll":
+                url = "/ux ikoner/76h/HomePinVisited76vh.png";
+
+                break;
+
+            case "Kläder":
+                url = "/ux ikoner/76h/ClothesPinVisited76vh.png";
+
+                break;
+
+            case "Övrigt":
+                url = "/ux ikoner/76h//OtherPinVisited76vh.png";
 
                 break;
         }

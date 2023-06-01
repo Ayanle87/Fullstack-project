@@ -128,8 +128,8 @@ const imgStyle = {
 
 const StyledContainer = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: center;
+    // align-items: center;
+    // justify-content: center;
 `;
 
 const StyledImgDiv = styled.div`
@@ -151,14 +151,11 @@ const StyledTopContainer = styled.div`
     justify-content: space-between;
 `;
 const StyledPriceDistanceContainer = styled.div`
-    padding: 10px;
-
+    margin-top: 15px;
     display: flex;
-
     flex-direction: column;
-
+    align-items: center;
     margin-left: 15px;
-
     margin-right: 15px;
 `;
 const StyledH1 = styled.h1`
@@ -190,7 +187,8 @@ const StyledDistance = styled.p`
     font-size: 14px;
     line-height: 12px;
     letter-spacing: 0.135894px;
-    color: #000000;
+    color: red;
+    padding-top: 10px;
 `;
 
 const Ul = styled.ul`

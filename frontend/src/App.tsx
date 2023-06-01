@@ -43,6 +43,7 @@ const App: React.FC = () => {
                 });
                 console.log("hej: " + response.data);
                 setProducts(response.data);
+                setAllProducts(response.data);
             })
             .catch((error) => {
                 console.error(error);

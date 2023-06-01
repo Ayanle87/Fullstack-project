@@ -90,14 +90,23 @@ interface ProductProps {
   products: Product[];
 }
 
+// let allProducts:Product[];
 // React.FC<PinProps> = ({ id, category, visitedPins, onClick }) =>
 // Huvudfunktionen
 const MobileFooter: React.FC = () => {
   const { products, setProducts } = useContext(ProductContext);
+  const { allProducts } = useContext(ProductContext);
   const [isMobile, setIsMobile] = useState(false);
   const [icons, setIcons] = useState(initialIcons);
   const [showSearchBox, setShowSearchBox] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [prevPressedIndex, setPrevPressedIndex] = useState(-1);
+
+  // const allProducts = products;
+
+  // allProducts = products;
+
+  // console.log("all products: " + allProducts)
 
   useEffect(() => {
     const handleResize = () => {
@@ -117,10 +126,20 @@ const MobileFooter: React.FC = () => {
     setIcons((prevIcons) => {
       const updatedIcons = prevIcons.map((icon, i) => ({
         ...icon,
-        isActive: i === index,
+        isActive: i === index ||  prevPressedIndex === index,
       }));
       return updatedIcons;
     });
+
+       if(index === prevPressedIndex){
+          setPrevPressedIndex(-1)
+          setProducts(allProducts)
+          console.log("resetting products to: " + allProducts)
+        }
+        else
+        {
+          setPrevPressedIndex(index)
+        }
 
     setSelectedCategory(initialIcons[index].alt);
   };
@@ -134,7 +153,9 @@ const MobileFooter: React.FC = () => {
   };
 
   useEffect(() => {
-    if (selectedCategory) {
+    if (selectedCategory && prevPressedIndex !== -1) {
+
+      // console.log("a: " + selectedCategory + " products: " + products)
       const filteredProducts = products.filter(
         (product) => product.category === selectedCategory
       );

@@ -105,6 +105,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
 
   return (
     <div className={styles.searchBox}>
+      
       <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
         <input
           type="text"

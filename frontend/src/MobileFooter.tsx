@@ -131,10 +131,12 @@ const MobileFooter: React.FC = () => {
       return updatedIcons;
     });
 
+    setProducts(allProducts)
+    console.log("resetting products to: " + allProducts)
+
+
        if(index === prevPressedIndex){
           setPrevPressedIndex(-1)
-          setProducts(allProducts)
-          console.log("resetting products to: " + allProducts)
         }
         else
         {
@@ -145,6 +147,7 @@ const MobileFooter: React.FC = () => {
   };
 
   const handleSearchClick = () => {
+    console.log("click")
     setShowSearchBox(!showSearchBox);
   };
 
@@ -153,6 +156,7 @@ const MobileFooter: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log("b")
     if (selectedCategory && prevPressedIndex !== -1) {
 
       // console.log("a: " + selectedCategory + " products: " + products)
@@ -161,7 +165,7 @@ const MobileFooter: React.FC = () => {
       );
       setProducts(filteredProducts);
     }
-  }, [selectedCategory, setProducts, products]);
+  }, [selectedCategory, setProducts, prevPressedIndex]);
 
   if (!isMobile) {
     return null;
@@ -198,7 +202,7 @@ const MobileFooter: React.FC = () => {
           <span className={styles.iconText}>{searchIcon.alt}</span>
         </Button>
       </div>
-      {/* {showSearchBox && <SearchBox onClose={handleSearchClose} />} */}
+      {showSearchBox && <SearchBox products={allProducts} onClose={handleSearchClose} />}
     </div>
   );
 };

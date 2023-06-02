@@ -56,6 +56,9 @@ const App: React.FC = () => {
             <ProductContext.Provider
                 value={{ allProducts, products, pins, setProducts, setPins }}
             >
+                {/* <div>
+                    <SmallModal products={products} />
+                </div> */}
                 <div>
                     <MobileNavbar />
                 </div>
@@ -67,8 +70,9 @@ const App: React.FC = () => {
                 <div>
                     <CustomNavbar />
                 </div>
+
                 <div>
-                    <MobileFooter/>
+                    <MobileFooter />
                 </div>
             </ProductContext.Provider>
         </div>

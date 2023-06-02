@@ -8,13 +8,25 @@ import BigModal from "./BigModal";
 const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
     selectedProductId,
 }) => {
-    const { products } = useContext(ProductContext);
+    const { products, setProducts } = useContext(ProductContext);
+
     const [isFirstModalOpen, setFirstModalOpen] = useState(true);
     const [isBigModalOpen, setIsBigModalOpen] = useState(false);
     console.log("FirstModal öppen");
+
     const handleCloseFirstModal = () => {
+        console.log("stäng");
         setFirstModalOpen(false);
         setIsBigModalOpen(false);
+
+        products.forEach((product) => {
+            if (product.id === selectedProductId) {
+                product.isOpen = false;
+                console.log("rad 24", product.id, product.isOpen);
+            }
+        });
+
+        setProducts([...products]);
     };
 
     const handleOpenBigModal = () => {
@@ -129,7 +141,7 @@ const imgStyle = {
 const StyledContainer = styled.div`
     display: flex;
     // align-items: center;
-    // justify-content: center;
+    justify-content: center;
 `;
 
 const StyledImgDiv = styled.div`

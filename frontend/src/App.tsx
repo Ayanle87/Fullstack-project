@@ -56,9 +56,9 @@ const App: React.FC = () => {
             <ProductContext.Provider
                 value={{ allProducts, products, pins, setProducts, setPins }}
             >
-                {/* <div>
+                <div>
                     <SmallModal products={products} />
-                </div> */}
+                </div>
                 <div>
                     <MobileNavbar />
                 </div>

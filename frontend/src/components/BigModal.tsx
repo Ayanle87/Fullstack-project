@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ProductContext } from "../ProductContext";
 import Modal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
@@ -21,6 +22,8 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isBigModalOpen, setBigModalOpen] = useState(true);
 
+    const { products, setProducts } = useContext(ProductContext);
+
     useEffect(() => {
         Modal.setAppElement("#root");
 
@@ -33,6 +36,19 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
                 console.error(error);
             });
     }, []);
+
+    const handleClose = () => {
+        setBigModalOpen(false);
+
+        products.forEach((product) => {
+            if (product.id === selectedProductId) {
+                product.isOpen = false;
+                console.log("rad 24", product.id, product.isOpen);
+            }
+        });
+
+        setProducts([...products]);
+    };
 
     return (
         <>
@@ -58,9 +74,7 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
                                             alt=""
                                             className="closeStyle"
                                             style={closeStyle}
-                                            onClick={() =>
-                                                setBigModalOpen(false)
-                                            }
+                                            onClick={handleClose}
                                         />
 
                                         <img

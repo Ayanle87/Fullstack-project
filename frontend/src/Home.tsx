@@ -26,7 +26,7 @@ interface Product {
 
 const Home: React.FC = () => {
     const { products, setProducts } = useContext(ProductContext);
-    const [isFirstModalOpen, setFirstModalOpen] = useState(true);
+    const [isFirstModalOpen, setFirstModalOpen] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState<number | null>(
         null
     );
@@ -41,13 +41,16 @@ const Home: React.FC = () => {
         address: string
     ) => {
         setSelectedProductId(id);
+        console.log("rad 44", setSelectedProductId(id));
+        console.log("rad 45", id);
+
         const pr = products;
 
         pr.forEach((product) => {
             product.isOpen = product.id === id;
 
             if (product.id === id) {
-                console.log("isOpen: " + product.id);
+                console.log("isOpen: " + id);
             }
         });
 
@@ -303,14 +306,16 @@ const Home: React.FC = () => {
 
     return (
         <>
-            {products.length > 0 &&
-                selectedProductId !== null &&
-                products.map((product) => (
-                    <FirstModal
-                        key={product.id}
-                        selectedProductId={selectedProductId}
-                    />
-                ))}
+            {products.length > -1 &&
+                products.map(
+                    (product) =>
+                        product.isOpen === true && (
+                            <FirstModal
+                                key={product.id}
+                                selectedProductId={selectedProductId}
+                            />
+                        )
+                )}
             {/* {products.map(
                 (product) =>
                     product.isOpen === true && (

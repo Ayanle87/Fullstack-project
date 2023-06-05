@@ -3,6 +3,7 @@ import { ProductContext } from "../ProductContext";
 import Modal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
+import ContactSeller from "../ContactSeller";
 
 interface Product {
     id: number;
@@ -16,9 +17,10 @@ interface Product {
 interface BigModalProps {
     selectedProductId: number | null;
     onClose: () => void;
+
 }
 
-const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
+const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose, }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isBigModalOpen, setBigModalOpen] = useState(true);
 
@@ -86,7 +88,9 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
                                             style={imgStyle}
                                             className="imgBigStyle"
                                         />
+
                                     </StyledImgDiv>
+
 
                                     <StyledTopContainer>
                                         <StyledH1>{product.name}</StyledH1>
@@ -110,6 +114,7 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
                             </Ul>
                         </StyledContainer>
                     ))}
+                      <ContactSeller />
             </Modal>
         </>
     );
@@ -156,7 +161,7 @@ const StyledTopContainer = styled.div`
 `;
 
 const StyledH1 = styled.h1`
-   
+
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;

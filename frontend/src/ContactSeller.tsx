@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const ContactSeller: React.FC = () => {
   const [show, setShow] = useState(false);
   const [submitted, setSubmitted] = useState(false);

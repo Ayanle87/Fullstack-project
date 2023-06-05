@@ -30,6 +30,7 @@ interface ProductContextProps {
 export const ProductContext = createContext<ProductContextProps>({
     allProducts: [],
     products: [],
+
     pins: [],
     setProducts: () => {},
     setPins: () => {},
@@ -43,6 +44,10 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
     const [products, setProducts] = useState<Product[]>([]);
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [pins, setPins] = useState<number[]>([]);
+
+    const CreateProduct = (products: Product[]) => {
+        localStorage.setItem("user", JSON.stringify({ products }));
+    };
 
     return (
         <ProductContext.Provider

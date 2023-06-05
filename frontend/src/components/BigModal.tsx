@@ -15,10 +15,10 @@ interface Product {
 
 interface BigModalProps {
     selectedProductId: number | null;
-    onClose: () => void;
+    // onClose: () => void;
 }
 
-const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
+const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isBigModalOpen, setBigModalOpen] = useState(true);
 
@@ -38,7 +38,7 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
     }, []);
 
     const handleClose = () => {
-        setBigModalOpen(false);
+        // setBigModalOpen(false);
 
         products.forEach((product) => {
             if (product.id === selectedProductId) {
@@ -54,7 +54,7 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
         <>
             <Modal
                 isOpen={isBigModalOpen}
-                onRequestClose={() => setBigModalOpen(false)}
+                // onRequestClose={() => setBigModalOpen(false)}
                 className="modalclass"
                 style={{
                     overlay: {
@@ -136,11 +136,18 @@ const StyledContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: 1500px) {
+        display: flex;
+        flex-direction: row;
+
+        // align-items: start;
+        // justify-content: start;
+    }
 `;
 
 const StyledImgDiv = styled.div`
     width: 100%;
-    // width: 374px;
 
     height: 309.84px;
     position: relative;
@@ -148,11 +155,25 @@ const StyledImgDiv = styled.div`
     object-fit: contain;
 
     z-index: 0;
+
+    @media (min-width: 1500px) {
+        width: 677px;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
 `;
 
 const StyledTopContainer = styled.div`
     display: flex;
     justify-content: space-between;
+
+    @media (min-width: 1500px) {
+        width: 677px;
+        height: 100%;
+        right: 0;
+        top: 0;
+    }
 `;
 
 const StyledH1 = styled.h1`

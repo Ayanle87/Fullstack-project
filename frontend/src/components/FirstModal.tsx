@@ -16,8 +16,8 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
 
     const handleCloseFirstModal = () => {
         console.log("stäng");
-        setFirstModalOpen(false);
-        setIsBigModalOpen(false);
+        // setFirstModalOpen(false);
+        // setIsBigModalOpen(false);
 
         products.forEach((product) => {
             if (product.id === selectedProductId) {
@@ -113,10 +113,7 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
             </Modal>
 
             {isBigModalOpen && (
-                <BigModal
-                    selectedProductId={selectedProductId}
-                    onClose={handleCloseBigModal}
-                />
+                <BigModal selectedProductId={selectedProductId} />
             )}
         </>
     );

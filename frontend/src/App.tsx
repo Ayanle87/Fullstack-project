@@ -9,7 +9,6 @@ import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
 import axios from "axios";
-import SmallModal from "./components/SmallModal";
 
 interface Product {
     id: number;
@@ -52,29 +51,27 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
+            <div>
+                <MobileNavbar />
+            </div>
             {/* userContext funkar på alla komponenter som ligger i denna. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
             <ProductContext.Provider
                 value={{ allProducts, products, pins, setProducts, setPins }}
             >
                 <div>
-                    <SmallModal products={products} />
-                </div>
-                <div>
-                    <MobileNavbar />
-                </div>
-                <div>
                     <Home />
                 </div>
 
                 <div className="content-wrapper"></div>
-                <div>
-                    <CustomNavbar />
-                </div>
 
                 <div>
                     <MobileFooter />
                 </div>
             </ProductContext.Provider>
+
+            <div>
+                <CustomNavbar />
+            </div>
         </div>
     );
 };

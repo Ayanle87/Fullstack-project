@@ -58,6 +58,9 @@ const App: React.FC = () => {
                 value={{ allProducts, products, pins, setProducts, setPins }}
             >
                 <div>
+                    <SmallModal products={products} />
+                </div>
+                <div>
                     <MobileNavbar />
                 </div>
                 <div>
@@ -70,7 +73,7 @@ const App: React.FC = () => {
                 </div>
 
                 <div>
-                    <MobileFooter/>
+                    <MobileFooter />
                 </div>
 
             </ProductContext.Provider>

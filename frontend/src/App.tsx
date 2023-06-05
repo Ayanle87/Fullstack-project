@@ -11,6 +11,8 @@ import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
 import axios from "axios";
 
+import { BrowserRouter as Router } from "react-router-dom";
+
 interface Product {
     id: number;
     name: string;
@@ -52,28 +54,35 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <div>
-                <MobileNavbar />
-            </div>
-            {/* userContext funkar på alla komponenter som ligger i denna. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
-            <ProductContext.Provider
-                value={{ allProducts, products, pins, setProducts, setPins }}
-            >
+            <Router>
                 <div>
-                    <Home />
+                    <MobileNavbar />
                 </div>
+                {/* userContext funkar på alla komponenter som ligger i denna. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
+                <ProductContext.Provider
+                    value={{
+                        allProducts,
+                        products,
+                        pins,
+                        setProducts,
+                        setPins,
+                    }}
+                >
+                    <div>
+                        <Home />
+                    </div>
 
-                <div className="content-wrapper"></div>
+                    <div className="content-wrapper"></div>
+
+                    <div>
+                        <MobileFooter />
+                    </div>
+                </ProductContext.Provider>
 
                 <div>
-                    <MobileFooter />
+                    <CustomNavbar />
                 </div>
-
-            </ProductContext.Provider>
-
-            <div>
-                <CustomNavbar />
-            </div>
+            </Router>
         </div>
     );
 };

@@ -4,6 +4,10 @@ import Modal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
 
+import { useLocation } from "react-router-dom";
+
+import queryString from "query-string";
+
 interface Product {
     id: number;
     name: string;
@@ -15,12 +19,14 @@ interface Product {
 
 interface BigModalProps {
     selectedProductId: number | null;
-    // onClose: () => void;
 }
 
 const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isBigModalOpen, setBigModalOpen] = useState(true);
+
+    const location = useLocation();
+    const { productId } = queryString.parse(location.search);
 
     const { products, setProducts } = useContext(ProductContext);
 
@@ -63,7 +69,7 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
                 }}
             >
                 {result
-                    .filter((product) => product.id === selectedProductId)
+                    .filter((product) => product.id === Number(productId))
                     .map((product) => (
                         <StyledContainer key={product.id}>
                             <Ul>

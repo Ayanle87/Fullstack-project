@@ -3,6 +3,7 @@ import { ProductContext } from "../ProductContext";
 import { Modal } from "react-bootstrap";
 import styled from "styled-components";
 
+import { useNavigate } from "react-router-dom";
 import BigModal from "./BigModal";
 
 const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
@@ -13,6 +14,8 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
     const [isFirstModalOpen, setFirstModalOpen] = useState(true);
     const [isBigModalOpen, setIsBigModalOpen] = useState(false);
     console.log("FirstModal öppen");
+
+    const navigate = useNavigate();
 
     const handleCloseFirstModal = () => {
         console.log("stäng");
@@ -31,6 +34,8 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
 
     const handleOpenBigModal = () => {
         console.log("Öppnar stor modal");
+
+        navigate(`/big-modal?productId=${selectedProductId}`);
 
         setIsBigModalOpen(true);
         setFirstModalOpen(false);

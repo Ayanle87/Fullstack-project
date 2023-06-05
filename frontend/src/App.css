@@ -41,6 +41,24 @@ body {
     border-radius: 5.43575px;
 }
 
+@media (min-width: 1500px) {
+    .modalclass {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        width: 965px;
+        height: 570px;
+        left: 8px;
+        top: 38px;
+    }
+
+    .firstModalclass {
+        width: 228px;
+        height: 293px;
+    }
+}
+
 .arrowStyle {
     width: 28px;
     height: 18px;

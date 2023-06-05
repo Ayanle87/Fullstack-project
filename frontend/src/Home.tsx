@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useLocation } from "react-router-dom";
 import ContactSeller from "./ContactSeller";
 import { useContext } from "react";
 import styled from "styled-components";
@@ -361,7 +362,6 @@ const Home: React.FC = () => {
                     ))}
                 </GoogleMap>
             </LoadScript>
-
         </>
     );
 };

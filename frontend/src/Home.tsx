@@ -348,6 +348,7 @@ const Home: React.FC = () => {
                     ))}
                 </GoogleMap>
             </LoadScript>
+
         </>
     );
 };

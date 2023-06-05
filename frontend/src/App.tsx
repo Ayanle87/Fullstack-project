@@ -5,6 +5,7 @@ import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
 import ContactSeller from "./ContactSeller";
+import "./ContactSeller.css";
 import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 import MobileFooter from "./MobileFooter";
@@ -67,9 +68,11 @@ const App: React.FC = () => {
                 <div>
                     <CustomNavbar />
                 </div>
+
                 <div>
                     <MobileFooter/>
                 </div>
+
             </ProductContext.Provider>
         </div>
     );

@@ -21,17 +21,14 @@ interface Product {
 interface BigModalProps {
     selectedProductId: number | null;
 
-    onClose: () => void;
-
+    // onClose: () => void;
 }
 
 // const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose, }) => {
 
-
 // }
 
-const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
-
+const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isBigModalOpen, setBigModalOpen] = useState(true);
 
@@ -102,9 +99,7 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
                                             style={imgStyle}
                                             className="imgBigStyle"
                                         />
-
                                     </StyledImgDiv>
-
 
                                     <StyledTopContainer>
                                         <StyledH1>{product.name}</StyledH1>
@@ -125,12 +120,15 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
                                         </StyledDescription>
                                     </StyledDescriptionDiv>
                                     <ContactSeller />
+
                                    </Li>
 
-                            </Ul>
+
+                                      </Ul>
 
                         </StyledContainer>
                     ))}
+
 
             </Modal>
         </>

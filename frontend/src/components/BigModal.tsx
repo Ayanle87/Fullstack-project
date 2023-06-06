@@ -124,11 +124,14 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose }) => {
                                             {product.description}
                                         </StyledDescription>
                                     </StyledDescriptionDiv>
-                                </Li>
+                                    <ContactSeller />
+                                   </Li>
+
                             </Ul>
+
                         </StyledContainer>
                     ))}
-                      <ContactSeller />
+
             </Modal>
         </>
     );

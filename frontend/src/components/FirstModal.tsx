@@ -118,7 +118,8 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
             </Modal>
 
             {isBigModalOpen && (
-                <BigModal selectedProductId={selectedProductId} />
+                <BigModal selectedProductId={selectedProductId}       onClose={handleCloseBigModal} />
+
             )}
         </>
     );

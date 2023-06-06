@@ -219,10 +219,7 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
             </Modal>
 
             {isBigModalOpen && (
-                <BigModal
-                    selectedProductId={selectedProductId}
-                     onClose={handleCloseBigModal}
-                />
+                <BigModal selectedProductId={selectedProductId} />
             )}
         </>
     );

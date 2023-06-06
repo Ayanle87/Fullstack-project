@@ -107,10 +107,16 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
                                         </StyledDescription>
                                     </StyledDescriptionDiv>
                                     <ContactSeller />
-                                </Li>
-                            </Ul>
+
+                                   </Li>
+
+
+                                      </Ul>
+
                         </StyledContainer>
                     ))}
+
+
             </Modal>
         </>
     );

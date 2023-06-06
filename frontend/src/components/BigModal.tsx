@@ -67,7 +67,7 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
                     .map((product) => (
                         <StyledContainer key={product.id}>
                             <Ul>
-                                <Li>
+                                <li>
                                     <StyledImgDiv>
                                         <img
                                             src="/ux ikoner/Pins/close-modal.png"
@@ -87,36 +87,31 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
                                             className="imgBigStyle"
                                         />
                                     </StyledImgDiv>
+                                    <StyledDesktopContainer>
+                                        <StyledTopContainer>
+                                            <StyledH1>{product.name}</StyledH1>
 
-                                    <StyledTopContainer>
-                                        <StyledH1>{product.name}</StyledH1>
+                                            <StyledPriceDistanceContainer>
+                                                <StyledPrice>
+                                                    {product.price}kr
+                                                </StyledPrice>
+                                                <StyledDistance>
+                                                    500m bort
+                                                </StyledDistance>
+                                            </StyledPriceDistanceContainer>
+                                        </StyledTopContainer>
 
-                                        <StyledPriceDistanceContainer>
-                                            <StyledPrice>
-                                                {product.price}kr
-                                            </StyledPrice>
-                                            <StyledDistance>
-                                                500m bort
-                                            </StyledDistance>
-                                        </StyledPriceDistanceContainer>
-                                    </StyledTopContainer>
-
-                                    <StyledDescriptionDiv>
-                                        <StyledDescription>
-                                            {product.description}
-                                        </StyledDescription>
-                                    </StyledDescriptionDiv>
-                                    <ContactSeller />
-
-                                   </Li>
-
-
-                                      </Ul>
-
+                                        <StyledDescriptionDiv>
+                                            <StyledDescription>
+                                                {product.description}
+                                            </StyledDescription>
+                                        </StyledDescriptionDiv>
+                                        <ContactSeller />
+                                    </StyledDesktopContainer>
+                                </li>
+                            </Ul>
                         </StyledContainer>
                     ))}
-
-
             </Modal>
         </>
     );
@@ -148,8 +143,20 @@ const StyledContainer = styled.div`
         display: flex;
         flex-direction: row;
 
-        // align-items: start;
-        // justify-content: start;
+        align-items: start;
+        justify-content: start;
+    }
+`;
+
+const StyledDesktopContainer = styled.div`
+    @media (min-width: 1500px) {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        margin-left: 50px;
+        height: 570px;
+        right: 0;
     }
 `;
 
@@ -165,37 +172,10 @@ const StyledImgDiv = styled.div`
 
     @media (min-width: 1500px) {
         width: 677px;
-        height: 100%;
-        left: 0;
-        top: 0;
+        height: 570px;
+        // left: 0;
+        // top: 0;
     }
-`;
-
-const StyledTopContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-
-    @media (min-width: 1500px) {
-        width: 677px;
-        height: 100%;
-        right: 0;
-        top: 0;
-    }
-`;
-
-const StyledH1 = styled.h1`
-
-    font-family: "Open Sans", bold, sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0.25px;
-    margin-left: 15px;
-    margin-bottom; 15px;
-    margin-top: 15px;
-
-    color: #000000;
 `;
 
 const StyledPriceDistanceContainer = styled.div`
@@ -204,45 +184,26 @@ const StyledPriceDistanceContainer = styled.div`
     flex-direction: column;
     margin-left: 15px;
     margin-right: 15px;
+
+    @media (min-width: 1500px) {
+        // display: flex;
+        // flex-direction: column;
+
+        justify-content: space-between;
+        align-items: space-between;
+    }
 `;
 
-const StyledPrice = styled.p`
-    font-family: "Open Sans", bold, sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0.25px;
+const StyledTopContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
 
-    // display: flex;
-    // align-items: center;
-    // text-align: right;
-`;
-const StyledDistance = styled.p`
-    font-family: "Open Sans", sans-serif;
-
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 12px;
-
-    letter-spacing: 0.135894px;
-
-    color: #000000;
-`;
-
-const StyledDescription = styled.p`
-    position: relative;
-
-    font-family: "Open Sans", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 19px;
-    letter-spacing: 0.25px;
-
-    //     display: flex;
-    // align-items: center;
+    @media (min-width: 1500px) {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+    }
 `;
 
 const StyledDescriptionDiv = styled.div`
@@ -260,6 +221,57 @@ const StyledDescriptionDiv = styled.div`
     border-radius: 2.71787px;
 `;
 
+const StyledH1 = styled.h1`
+
+    font-family: "Open Sans", bold, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+    margin-left: 15px;
+    margin-bottom; 15px;
+    margin-top: 15px;
+
+    color: #000000;
+
+    @media (min-width: 1500px) {
+
+        font-size: 25.89px;
+        line-height: 35px;
+        letter-spacing: -0.06em;
+    }
+`;
+
+const StyledPrice = styled.p`
+    font-family: "Open Sans", bold, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.25px;
+`;
+const StyledDistance = styled.p`
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.135894px;
+    color: #000000;
+`;
+
+const StyledDescription = styled.p`
+    position: relative;
+
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0.25px;
+`;
+
 const Ul = styled.ul`
     display: flex;
     flex-direction: column;
@@ -272,10 +284,6 @@ const Ul = styled.ul`
     height: 733.38px;
     left: 13px;
     top: 50.57px;
-`;
-
-const Li = styled.li`
-    list-style: none;
 `;
 
 export default BigModal;

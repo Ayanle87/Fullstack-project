@@ -20,35 +20,22 @@ interface Product {
 
 interface BigModalProps {
     selectedProductId: number | null;
-
-    // onClose: () => void;
 }
-
-// const BigModal: React.FC<BigModalProps> = ({ selectedProductId, onClose, }) => {
-
-// }
 
 const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
     const [result, setResult] = useState<Product[]>([]);
     const [isBigModalOpen, setBigModalOpen] = useState(true);
 
+    const { products, setProducts } = useContext(ProductContext);
     const location = useLocation();
     const { productId } = queryString.parse(location.search);
 
-    const { products, setProducts } = useContext(ProductContext);
-
     useEffect(() => {
         Modal.setAppElement("#root");
-
-        axios
-            .get("http://localhost:8080/")
-            .then((response) => {
-                setResult(response.data);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }, []);
+        setResult(
+            products.filter((product) => product.id === Number(productId))
+        );
+    }, [productId, products]);
 
     const handleClose = () => {
         // setBigModalOpen(false);

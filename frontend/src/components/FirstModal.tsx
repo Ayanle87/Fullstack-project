@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 import BigModal from "./BigModal";
+import queryString from "query-string";
 
 const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
     selectedProductId,
@@ -35,10 +36,19 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
     const handleOpenBigModal = () => {
         console.log("Öppnar stor modal");
 
-        navigate(`/big-modal?productId=${selectedProductId}`);
+        const queryParams = queryString.stringify({
+            productId: selectedProductId,
+        });
+
+        navigate(`/big-modal?${queryParams}`);
+
+        setFirstModalOpen(false);
+        // console.log("Öppnar stor modal");
+
+        // navigate(`/big-modal?productId=${selectedProductId}`);
 
         setIsBigModalOpen(true);
-        setFirstModalOpen(false);
+        // setFirstModalOpen(false);
     };
 
     const handleCloseBigModal = () => {

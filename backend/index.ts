@@ -65,6 +65,7 @@ app.get("/:id", async (request, response) => {
     }
 });
 
+
 app.post("/contact", async (req, res) => {
   try {
     const { email, message } = req.body;
@@ -72,12 +73,12 @@ app.post("/contact", async (req, res) => {
     console.log("Message:", message);
 
     const query = 'INSERT INTO contact (email, message) VALUES ($1, $2)';
-    console.log(email, message)
     const values = [email, message];
 
     await client.query(query, values);
 
-    res.status(200).json({ success: true });
+    // Skicka tillbaka den sparade informationen som svar
+    res.status(200).json({ email, message });
   } catch (error) {
     console.error('Fel vid kontakt:', error);
     res.status(404).json({ error: 'kontakt kom inte fram' });

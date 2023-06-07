@@ -101,7 +101,9 @@ img {
   }
 }
 @media (min-width: 781px) {
-  header {
-    display: none;
+  img {
+    position: relative;
+    left: -100px;
+    top: 0;
   }
 }

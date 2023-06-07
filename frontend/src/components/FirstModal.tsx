@@ -78,7 +78,7 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
                                                 <img
                                                     src="/ux ikoner/Pins/close-modal.png"
                                                     alt="Kryss för att stänga annonsen"
-                                                    className="closeStyle"
+                                                    className="closeStyleFirstModal"
                                                     style={closeStyle}
                                                     onClick={
                                                         handleCloseFirstModal
@@ -152,7 +152,6 @@ const imgStyle = {
 
 const StyledContainer = styled.div`
     display: flex;
-    // align-items: center;
     justify-content: center;
 `;
 

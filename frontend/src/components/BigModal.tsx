@@ -20,6 +20,8 @@ interface Product {
 
 interface BigModalProps {
     selectedProductId: number | null;
+    onClose: () => void;
+
 }
 
 const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
@@ -89,14 +91,21 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
                                     </StyledImgDiv>
                                     <StyledDesktopContainer>
                                         <StyledTopContainer>
+                                            <img
+                                                src="/ux ikoner/Pins/close-modal.png"
+                                                alt=""
+                                                className="closeStyleDesktop"
+                                                style={closeStyleDesktop}
+                                                onClick={handleClose}
+                                            />
                                             <StyledH1>{product.name}</StyledH1>
 
                                             <StyledPriceDistanceContainer>
                                                 <StyledPrice>
-                                                    {product.price}kr
+                                                    {product.price} kr
                                                 </StyledPrice>
                                                 <StyledDistance>
-                                                    500m bort
+                                                    Avstånd
                                                 </StyledDistance>
                                             </StyledPriceDistanceContainer>
                                         </StyledTopContainer>
@@ -119,12 +128,26 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
 
 // CSS
 
+const closeStyleMobile = {
+    width: "17.74px",
+    height: "17.74px",
+    top: "5px",
+    right: "10px",
+    zIndex: "1",
+};
+
 const closeStyle = {
     width: "17.74px",
     height: "17.74px",
     top: "5px",
     right: "10px",
     zIndex: "1",
+};
+
+const closeStyleDesktop = {
+    width: "17.74px",
+    height: "17.74px",
+    marginTop: "10px",
 };
 
 const imgStyle = {
@@ -138,8 +161,9 @@ const StyledContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #fbfaf9;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1200px) {
         display: flex;
         flex-direction: row;
 
@@ -149,7 +173,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledDesktopContainer = styled.div`
-    @media (min-width: 1500px) {
+    @media (min-width: 1200px) {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -170,7 +194,7 @@ const StyledImgDiv = styled.div`
 
     z-index: 0;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1200px) {
         width: 677px;
         height: 570px;
         // left: 0;
@@ -185,9 +209,9 @@ const StyledPriceDistanceContainer = styled.div`
     margin-left: 15px;
     margin-right: 15px;
 
-    @media (min-width: 1500px) {
-        // display: flex;
-        // flex-direction: column;
+    @media (min-width: 1200px) {
+        display: flex;
+        flex-direction: row;
 
         justify-content: space-between;
         align-items: space-between;
@@ -198,7 +222,7 @@ const StyledTopContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1200px) {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -219,6 +243,11 @@ const StyledDescriptionDiv = styled.div`
 
     border: 0.543575px solid #c0d0b9;
     border-radius: 2.71787px;
+
+    @media (min-width: 1200px) {
+        border: 1px solid #c0d0b9;
+        border-radius: 5px;
+    }
 `;
 
 const StyledH1 = styled.h1`
@@ -235,8 +264,8 @@ const StyledH1 = styled.h1`
 
     color: #000000;
 
-    @media (min-width: 1500px) {
-
+    @media (min-width: 1200px) {
+        margin-top:50px;
         font-size: 25.89px;
         line-height: 35px;
         letter-spacing: -0.06em;
@@ -258,7 +287,12 @@ const StyledDistance = styled.p`
     font-size: 14px;
     line-height: 12px;
     letter-spacing: 0.135894px;
-    color: #000000;
+    color: red;
+
+    @media (min-width: 1200px) {
+        margin-left: 200px;
+        font-size: 16px;
+    }
 `;
 
 const StyledDescription = styled.p`
@@ -284,6 +318,8 @@ const Ul = styled.ul`
     height: 733.38px;
     left: 13px;
     top: 50.57px;
+
+    list-style: none;
 `;
 
 export default BigModal;

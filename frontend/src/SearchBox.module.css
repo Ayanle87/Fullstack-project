@@ -17,8 +17,11 @@
   align-items: center;
   background-color: #fff;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 20px; 
+  position: fixed;
+  bottom: 100px;
 }
+
 .searchForm {
   display: flex;
   justify-content: center;
@@ -30,17 +33,19 @@
   margin-right: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: 200px; 
 }
 
 .searchButton {
   padding: 5px 10px;
-  background-color: #007bff;
+  background-color: #41464a;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 20px; 
   cursor: pointer;
 }
 
 .searchButton:hover {
   background-color: #0056b3;
 }
+

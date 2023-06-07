@@ -77,7 +77,7 @@ app.post("/contact", async (req, res) => {
 
     await client.query(query, values);
 
-    // Skicka tillbaka den sparade informationen som svar
+
     res.status(200).json({ email, message });
   } catch (error) {
     console.error('Fel vid kontakt:', error);

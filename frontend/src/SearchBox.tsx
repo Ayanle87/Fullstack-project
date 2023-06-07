@@ -18,6 +18,7 @@ interface Product {
   category: string;
 }
 
+
 // interface ProductProps {
 //   // id: number;
 //   // category: string;
@@ -31,13 +32,30 @@ interface Product {
 // const SearchBox: React.FC<ProductProps> = ({products}) => {
 
 
+  // const categoryImages: { [key: string]: string } = {
+  //   Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
+  //   Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
+  //   Fritid: "/ux ikoner/76h/SportPin76vh.png",
+  //   Hushåll: "/ux ikoner/76h/HomePin76vh.png",
+  //   Kläder: "/ux ikoner/76h/ClothesPin76vh.png",
+  //   Övrigt: "/ux ikoner/76h/OtherPin76vh.png",
+  // };
+
+  // const categoryImagesVisited: { [key: string]: string } = {
+  //   Elektronik: "/ux ikoner/76h/ElectronicsPinVisited76vh.png",
+  //   Fordon: "/ux ikoner/76h/VehiclePinVisited76vh.png",
+  //   Fritid: "/ux ikoner/76h/SportPinVisited76vh.png",
+  //   Hushåll: "/ux ikoner/76h/HomePinVisited76vh.png",
+  //   Kläder: "/ux ikoner/76h/ClothesPinVisited76vh.png",
+  //   Övrigt: "/ux ikoner/76h/OtherPinVisited76vh.png",
+  // };
+
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
-  const [visitedPins, setVisitedPins] = useState<{ [key: number]: boolean }>(
-    {}
-  );
+  const [visitedPins, setVisitedPins] = useState<{ [key: number]: boolean }>({});
+  const [isSearching, setIsSearching] = useState(false);
 
   let { products, setProducts } = useContext(ProductContext);
   console.log("products: " + products);
@@ -51,6 +69,16 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+
+    if (isSearching) {
+      abortSearch();
+    } else {
+      executeSearch();
+    }
+  };
+
+  const executeSearch = async () => {
+    setIsSearching(true);
     if (onSearch) {
       onSearch(searchQuery);
     }
@@ -75,39 +103,27 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
       // setSearchResults(filteredProducts);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsSearching(false);
     }
+  };
+
+  const abortSearch = () => {
+    setSearchQuery("");
+    setIsSearching(false);
+    setProducts([]);
   };
 
   const handleClick = (id: number) => {
     console.log("Clicked product with ID:", id);
-    // Implement your logic for handling the click event here
     setVisitedPins((prevState) => ({
       ...prevState,
       [id]: true,
     }));
   };
 
-  // const categoryImages: { [key: string]: string } = {
-  //   Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
-  //   Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
-  //   Fritid: "/ux ikoner/76h/SportPin76vh.png",
-  //   Hushåll: "/ux ikoner/76h/HomePin76vh.png",
-  //   Kläder: "/ux ikoner/76h/ClothesPin76vh.png",
-  //   Övrigt: "/ux ikoner/76h/OtherPin76vh.png",
-  // };
-
-  // const categoryImagesVisited: { [key: string]: string } = {
-  //   Elektronik: "/ux ikoner/76h/ElectronicsPinVisited76vh.png",
-  //   Fordon: "/ux ikoner/76h/VehiclePinVisited76vh.png",
-  //   Fritid: "/ux ikoner/76h/SportPinVisited76vh.png",
-  //   Hushåll: "/ux ikoner/76h/HomePinVisited76vh.png",
-  //   Kläder: "/ux ikoner/76h/ClothesPinVisited76vh.png",
-  //   Övrigt: "/ux ikoner/76h/OtherPinVisited76vh.png",
-  // };
-
   return (
     <div className={styles.searchBox}>
-      
       <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
         <input
           type="text"
@@ -115,9 +131,14 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
           onChange={handleSearchChange}
           className={styles.searchInput}
           placeholder="Search..."
+          disabled={isSearching}
         />
         <button type="submit" className={styles.searchButton}>
-        <span>&#8594;</span>
+          {isSearching ? (
+            <span>X</span>
+          ) : (
+            <span>&#8594;</span>
+          )}
         </button>
       </form>
 

@@ -20,8 +20,6 @@ interface Product {
 
 interface BigModalProps {
     selectedProductId: number | null;
-    onClose: () => void;
-
 }
 
 const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
@@ -163,7 +161,7 @@ const StyledContainer = styled.div`
     justify-content: center;
     background: #fbfaf9;
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1500px) {
         display: flex;
         flex-direction: row;
 
@@ -173,7 +171,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledDesktopContainer = styled.div`
-    @media (min-width: 1200px) {
+    @media (min-width: 1500px) {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -194,7 +192,7 @@ const StyledImgDiv = styled.div`
 
     z-index: 0;
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1500px) {
         width: 677px;
         height: 570px;
         // left: 0;
@@ -209,7 +207,7 @@ const StyledPriceDistanceContainer = styled.div`
     margin-left: 15px;
     margin-right: 15px;
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1500px) {
         display: flex;
         flex-direction: row;
 
@@ -222,7 +220,7 @@ const StyledTopContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1500px) {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -244,7 +242,7 @@ const StyledDescriptionDiv = styled.div`
     border: 0.543575px solid #c0d0b9;
     border-radius: 2.71787px;
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1500px) {
         border: 1px solid #c0d0b9;
         border-radius: 5px;
     }
@@ -264,7 +262,7 @@ const StyledH1 = styled.h1`
 
     color: #000000;
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1500px) {
         margin-top:50px;
         font-size: 25.89px;
         line-height: 35px;
@@ -289,7 +287,7 @@ const StyledDistance = styled.p`
     letter-spacing: 0.135894px;
     color: red;
 
-    @media (min-width: 1200px) {
+    @media (min-width: 1500px) {
         margin-left: 200px;
         font-size: 16px;
     }

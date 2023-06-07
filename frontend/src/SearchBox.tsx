@@ -30,6 +30,8 @@ interface Product {
 // Huvudfunktionen
 // const SearchBox: React.FC<ProductProps> = ({products}) => {
 
+
+
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
@@ -85,23 +87,23 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     }));
   };
 
-  const categoryImages: { [key: string]: string } = {
-    Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
-    Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
-    Fritid: "/ux ikoner/76h/SportPin76vh.png",
-    Hushåll: "/ux ikoner/76h/HomePin76vh.png",
-    Kläder: "/ux ikoner/76h/ClothesPin76vh.png",
-    Övrigt: "/ux ikoner/76h/OtherPin76vh.png",
-  };
+  // const categoryImages: { [key: string]: string } = {
+  //   Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
+  //   Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
+  //   Fritid: "/ux ikoner/76h/SportPin76vh.png",
+  //   Hushåll: "/ux ikoner/76h/HomePin76vh.png",
+  //   Kläder: "/ux ikoner/76h/ClothesPin76vh.png",
+  //   Övrigt: "/ux ikoner/76h/OtherPin76vh.png",
+  // };
 
-  const categoryImagesVisited: { [key: string]: string } = {
-    Elektronik: "/ux ikoner/76h/ElectronicsPinVisited76vh.png",
-    Fordon: "/ux ikoner/76h/VehiclePinVisited76vh.png",
-    Fritid: "/ux ikoner/76h/SportPinVisited76vh.png",
-    Hushåll: "/ux ikoner/76h/HomePinVisited76vh.png",
-    Kläder: "/ux ikoner/76h/ClothesPinVisited76vh.png",
-    Övrigt: "/ux ikoner/76h/OtherPinVisited76vh.png",
-  };
+  // const categoryImagesVisited: { [key: string]: string } = {
+  //   Elektronik: "/ux ikoner/76h/ElectronicsPinVisited76vh.png",
+  //   Fordon: "/ux ikoner/76h/VehiclePinVisited76vh.png",
+  //   Fritid: "/ux ikoner/76h/SportPinVisited76vh.png",
+  //   Hushåll: "/ux ikoner/76h/HomePinVisited76vh.png",
+  //   Kläder: "/ux ikoner/76h/ClothesPinVisited76vh.png",
+  //   Övrigt: "/ux ikoner/76h/OtherPinVisited76vh.png",
+  // };
 
   return (
     <div className={styles.searchBox}>
@@ -115,7 +117,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
           placeholder="Search..."
         />
         <button type="submit" className={styles.searchButton}>
-          Search
+        <span>&#8594;</span>
         </button>
       </form>
 

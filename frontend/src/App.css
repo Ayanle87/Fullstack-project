@@ -13,6 +13,7 @@ body {
 .imgStyle {
     object-fit: cover;
     position: absolute;
+    /* left: 100px; */
     border-top-left-radius: 8.33684px;
     border-top-right-radius: 8.33684px;
 }
@@ -20,6 +21,8 @@ body {
 .imgBigStyle {
     object-fit: cover;
     position: absolute;
+    /* left: 100px; */
+
     border-top-left-radius: 5.43575px;
     border-top-right-radius: 5.43575px;
 }
@@ -41,7 +44,7 @@ body {
     border-radius: 5.43575px;
 }
 
-@media (min-width: 375px) {
+@media (max-width: 780px) {
     .closeStyleDesktop {
         visibility: hidden;
     }

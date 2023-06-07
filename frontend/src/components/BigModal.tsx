@@ -145,7 +145,10 @@ const closeStyle = {
 const closeStyleDesktop = {
     width: "17.74px",
     height: "17.74px",
-    marginTop: "10px",
+    top: "5px",
+
+    // zIndex: "1",
+    // visibility: "hidden",
 };
 
 const imgStyle = {

@@ -20,7 +20,7 @@ client.connect();
 const app = express();
 app.use(cors());
 
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", async (request, response) => {
+app.get("/products", async (request, response) => {
     try {
         console.log(request.params);
         console.log(request);
@@ -77,7 +77,7 @@ app.post("/contact", async (req, res) => {
 
     await client.query(query, values);
 
-    // Skicka tillbaka den sparade informationen som svar
+
     res.status(200).json({ email, message });
   } catch (error) {
     console.error('Fel vid kontakt:', error);

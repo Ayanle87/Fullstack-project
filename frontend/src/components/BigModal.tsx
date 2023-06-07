@@ -20,6 +20,8 @@ interface Product {
 
 interface BigModalProps {
     selectedProductId: number | null;
+    onClose: () => void;
+
 }
 
 const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {

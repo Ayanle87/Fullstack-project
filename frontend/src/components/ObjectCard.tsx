@@ -67,7 +67,7 @@ const ObjectCard: React.FC = () => {
         Modal.setAppElement("#root");
 
         axios
-            .get("http://localhost:8080/")
+            .get("http://localhost:8080/products")
             .then((response) => {
                 setResult(response.data);
             })
@@ -245,7 +245,7 @@ const StyledTopContainer = styled.div`
 `;
 
 const StyledH1 = styled.h1`
-   
+
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;

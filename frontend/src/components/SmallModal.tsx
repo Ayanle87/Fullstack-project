@@ -74,7 +74,7 @@ const SmallModal: React.FC<ProductProps> = ({ products }) => {
 
         axios
 
-            .get("http://localhost:8080/")
+            .get("http://localhost:8080/products")
 
             .then((response) => {
                 setResult(response.data);

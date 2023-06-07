@@ -102,6 +102,7 @@ const MobileFooter: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [prevPressedIndex, setPrevPressedIndex] = useState(-1);
 
+
   // const allProducts = products;
 
   // allProducts = products;

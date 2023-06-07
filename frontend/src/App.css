@@ -41,17 +41,28 @@ body {
     border-radius: 5.43575px;
 }
 
-@media (min-width: 1500px) {
+@media (max-width: 1200px) {
+    .closeStyleDesktop {
+        visibility: hidden;
+    }
+}
+
+@media (min-width: 1200px) {
     .modalclass {
         display: flex;
         flex-direction: row;
         /* position: relative; */
 
         position: absolute;
+
         width: 1165px;
         height: 570px;
-        left: 227px;
+        left: 17px;
         top: 100px;
+    }
+
+    .closeStyle {
+        visibility: hidden;
     }
 
     .modalclass li {
@@ -60,12 +71,14 @@ body {
         list-style: none;
         padding: 0;
         margin: 0;
-        list-style: none;
     }
 
     .firstModalclass {
         width: 228px;
         height: 293px;
+        margin-left: 680px;
+        background-color: blue;
+        top: 150px;
     }
 }
 
@@ -77,21 +90,6 @@ body {
     right: 10px;
 }
 
-/* .smallModalclass {
-    display: flex;
-    flex-direction: column;
-
-    position: relative;
-    width: 374px;
-    height: 337px;
-    left: 8px;
-    top: 100px;
-
-    background: #fbfaf9;
-    border: 0.2px solid #2c5559;
-    border-radius: 8.33684px;
-} */
-
 .firstModalclass {
     display: flex;
     flex-direction: column;
@@ -99,19 +97,9 @@ body {
     width: 374px;
     height: 337px;
     left: 8px;
-
-    /* margin-left: 50px; */
-    /* margin-right: 50px; */
     position: absolute;
     top: 250px;
-
-    /* bottom: 0; */
     z-index: 10000;
-
-    /* position: relative; */
-
-    /* top: 400px; */
-
     background: #fbfaf9;
     border: 0.2px solid #2c5559;
     border-radius: 8.33684px;
@@ -127,5 +115,21 @@ body {
     height: 30px;
     position: absolute;
     top: 5px;
+    z-index: 1;
+}
+
+.closeStyleFirstModal {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    z-index: 1;
+}
+
+.closeStyleDesktop {
+    width: 17.74px;
+    height: 17.74px;
+    top: 30px;
+    left: 400px;
     z-index: 1;
 }

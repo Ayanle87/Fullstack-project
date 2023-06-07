@@ -18,7 +18,6 @@ interface Product {
   category: string;
 }
 
-
 // interface ProductProps {
 //   // id: number;
 //   // category: string;
@@ -31,35 +30,36 @@ interface Product {
 // Huvudfunktionen
 // const SearchBox: React.FC<ProductProps> = ({products}) => {
 
+// const categoryImages: { [key: string]: string } = {
+//   Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
+//   Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
+//   Fritid: "/ux ikoner/76h/SportPin76vh.png",
+//   Hushåll: "/ux ikoner/76h/HomePin76vh.png",
+//   Kläder: "/ux ikoner/76h/ClothesPin76vh.png",
+//   Övrigt: "/ux ikoner/76h/OtherPin76vh.png",
+// };
 
-  // const categoryImages: { [key: string]: string } = {
-  //   Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
-  //   Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
-  //   Fritid: "/ux ikoner/76h/SportPin76vh.png",
-  //   Hushåll: "/ux ikoner/76h/HomePin76vh.png",
-  //   Kläder: "/ux ikoner/76h/ClothesPin76vh.png",
-  //   Övrigt: "/ux ikoner/76h/OtherPin76vh.png",
-  // };
-
-  // const categoryImagesVisited: { [key: string]: string } = {
-  //   Elektronik: "/ux ikoner/76h/ElectronicsPinVisited76vh.png",
-  //   Fordon: "/ux ikoner/76h/VehiclePinVisited76vh.png",
-  //   Fritid: "/ux ikoner/76h/SportPinVisited76vh.png",
-  //   Hushåll: "/ux ikoner/76h/HomePinVisited76vh.png",
-  //   Kläder: "/ux ikoner/76h/ClothesPinVisited76vh.png",
-  //   Övrigt: "/ux ikoner/76h/OtherPinVisited76vh.png",
-  // };
+// const categoryImagesVisited: { [key: string]: string } = {
+//   Elektronik: "/ux ikoner/76h/ElectronicsPinVisited76vh.png",
+//   Fordon: "/ux ikoner/76h/VehiclePinVisited76vh.png",
+//   Fritid: "/ux ikoner/76h/SportPinVisited76vh.png",
+//   Hushåll: "/ux ikoner/76h/HomePinVisited76vh.png",
+//   Kläder: "/ux ikoner/76h/ClothesPinVisited76vh.png",
+//   Övrigt: "/ux ikoner/76h/OtherPinVisited76vh.png",
+// };
 
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
-  const [visitedPins, setVisitedPins] = useState<{ [key: number]: boolean }>({});
+  const [visitedPins, setVisitedPins] = useState<{ [key: number]: boolean }>(
+    {}
+  );
   const [isSearching, setIsSearching] = useState(false);
+  const { allProducts } = useContext(ProductContext);
 
   let { products, setProducts } = useContext(ProductContext);
-  console.log("products: " + products);
-  // setSearchResults(products);
+  console.log("products: ", products);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -76,7 +76,6 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
       executeSearch();
     }
   };
-
   const executeSearch = async () => {
     setIsSearching(true);
     if (onSearch) {
@@ -84,42 +83,38 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     }
 
     try {
-      // const response = await axios.get("http://localhost:8080/");
+       // const response = await axios.get("http://localhost:8080/");
       // const allProducts = response.data;
 
       // const filteredProducts = allProducts.filter(
       // const filteredProducts = products.filter(
-      setProducts(
-        products.filter(
-          (product: Product) =>
-            product.category
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase()) ||
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
-        )
+      const filteredProducts = allProducts.filter(
+        (product: Product) =>
+          product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
-      console.log(products);
-      // setSearchResults(filteredProducts);
+      setProducts(filteredProducts);
+      setSearchResults(filteredProducts);
     } catch (error) {
       console.error(error);
     } finally {
       setIsSearching(false);
+      setSearchQuery("");
     }
   };
+  // const handleClick = (id: number) => {
+  //   console.log("Clicked product with ID:", id);
+  //   setVisitedPins((prevState) => ({
+  //     ...prevState,
+  //     [id]: true,
+  //   }));
+  // };
 
   const abortSearch = () => {
     setSearchQuery("");
     setIsSearching(false);
     setProducts([]);
-  };
-
-  const handleClick = (id: number) => {
-    console.log("Clicked product with ID:", id);
-    setVisitedPins((prevState) => ({
-      ...prevState,
-      [id]: true,
-    }));
   };
 
   return (
@@ -134,18 +129,12 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
           disabled={isSearching}
         />
         <button type="submit" className={styles.searchButton}>
-          {isSearching ? (
-            <span>X</span>
-          ) : (
-            <span>&#8594;</span>
-          )}
+          {isSearching ? <span>X</span> : <span>&#8594;</span>}
         </button>
       </form>
 
       {/* {searchResults.length > 0 &&
-        searchResults.map((product) => ( */}
-      {/* {products.length > 0 &&
-          products.map((product) => (
+        searchResults.map((product) => (
           <img
             className="styledPins"
             key={product.id}

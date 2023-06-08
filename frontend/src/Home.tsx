@@ -63,7 +63,7 @@ const Home: React.FC = () => {
 
     const mapContainerStyle = {
         width: "100%",
-        height: "100vh",
+        height: "95vh",
         marginTop: "-100px",
     };
 

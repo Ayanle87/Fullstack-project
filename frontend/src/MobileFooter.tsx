@@ -164,9 +164,9 @@ const MobileFooter: React.FC = () => {
         }
     }, [selectedCategory, setProducts, prevPressedIndex]);
 
-    if (!isMobile) {
-        return null;
-    }
+    // if (!isMobile) {
+    //     return null;
+    // }
 
     return (
         <div className={styles.footerContainer}>

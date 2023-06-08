@@ -144,9 +144,8 @@ const Home: React.FC = () => {
     }
 
     const center = {
-        lat: 57.70090604681059,
-
-        lng: 11.974023638297332,
+        lat:57.70399615681416,
+        lng: 11.982771486438951
     };
 
     const yourMapStyle = [
@@ -330,7 +329,7 @@ const Home: React.FC = () => {
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
                     center={center}
-                    zoom={12}
+                    zoom={13}
                     options={{
                         styles: yourMapStyle,
 
@@ -351,11 +350,10 @@ const Home: React.FC = () => {
                                 handleProductClick(
                                     product.id,
 
-                                    57.70090604681059,
+                                    57.64830564055332,
+                                    12.015885887454772,
 
-                                    11.974023638297332,
-
-                                    "Varbergsgatan"
+                                    "Mölndal"
                                 );
                             }}
                         ></Marker>

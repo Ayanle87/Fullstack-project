@@ -65,26 +65,25 @@ app.get("/:id", async (request, response) => {
     }
 });
 
-
 app.post("/contact", async (req, res) => {
-  try {
-    const { email, message } = req.body;
-    console.log("Email:", email);
-    console.log("Message:", message);
+    try {
+        const { email, message } = req.body;
+        console.log("Email:", email);
+        console.log("Message:", message);
 
-    const query = 'INSERT INTO contact (email, message) VALUES ($1, $2)';
-    const values = [email, message];
+        const query = "INSERT INTO contact (email, message) VALUES ($1, $2)";
+        const values = [email, message];
 
-    await client.query(query, values);
+        await client.query(query, values);
 
-
-    res.status(200).json({ email, message });
-  } catch (error) {
-    console.error('Fel vid kontakt:', error);
-    res.status(404).json({ error: 'kontakt kom inte fram' });
-  }
+        res.status(200).json({ email, message });
+    } catch (error) {
+        console.error("Fel vid kontakt:", error);
+        res.status(404).json({ error: "kontakt kom inte fram" });
+    }
 });
 
-app.listen(8080, () => {
-    console.log("Webbtjänsten kan nu ta emot anrop.");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+    console.log(`Redo på http://localhost:${port}/`);
 });

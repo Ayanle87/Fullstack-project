@@ -1,7 +1,4 @@
 node_modules
 node_modules
-index.js
+*.js
 public
-database.js
-.env
-.DS_Store

@@ -106,6 +106,9 @@ body {
     }
 }
 
+@media (min-width: 370px) and (max-width: 500px) {
+}
+
 @media (min-width: 500px) and (max-width: 780px) {
     .firstModalclass {
         left: 20%;

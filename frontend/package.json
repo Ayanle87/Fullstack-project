@@ -1,5 +1,6 @@
 {
     "name": "frontend",
+    "proxy": "http://localhost:8080",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -58,6 +59,5 @@
     "devDependencies": {
         "@types/react-modal": "^3.16.0",
         "@types/styled-components": "^5.1.26"
-    },
-    "proxy": "http://localhost:8080"
+    }
 }

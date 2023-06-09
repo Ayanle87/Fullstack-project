@@ -20,7 +20,7 @@ const ContactSeller: React.FC = () => {
         setSubmitted(true);
 
         try {
-            const response = await axios.post("http://localhost:8080/", {
+            const response = await axios.post("/contact", {
                 email,
                 message,
             });

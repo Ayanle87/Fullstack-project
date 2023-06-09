@@ -37,7 +37,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:8080/products")
+            .get("/products")
             .then((response) => {
                 response.data.forEach((pr: Product) => {
                     pr.latitude = Math.random() * 0.03 + 57.70090604681059;

@@ -65,35 +65,37 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
                             <StyledContainer key={product.id}>
                                 <Ul>
                                     <Li>
-                                        <StyledImgDiv>
-                                            <img
-                                                src="/ux ikoner/Pins/close-modal.png"
-                                                alt=""
-                                                className="closeStyle"
-                                                style={closeStyle}
-                                                onClick={handleClose}
-                                            />
+                                        <div>
+                                            {" "}
+                                            <StyledImgDiv>
+                                                <img
+                                                    src="/ux ikoner/Pins/close-modal.png"
+                                                    alt=""
+                                                    className="closeStyle"
+                                                    style={closeStyle}
+                                                    onClick={handleClose}
+                                                />
 
-                                            <img
-                                                alt="product"
-                                                src={
-                                                    "http://localhost:8080" +
-                                                    product.image
-                                                }
-                                                style={imgStyle}
-                                                className="imgBigStyle"
-                                            />
-                                        </StyledImgDiv>
+                                                <img
+                                                    alt="product"
+                                                    src={
+                                                        "http://localhost:8080" +
+                                                        product.image
+                                                    }
+                                                    style={imgStyle}
+                                                    className="imgBigStyle"
+                                                />
+                                            </StyledImgDiv>
+                                        </div>
                                         <StyledDesktopContainer>
                                             <StyledTopContainer>
-                                                <div>
-                                                    <img
-                                                        src="/ux ikoner/Pins/close-modal.png"
-                                                        alt=""
-                                                        className="closeStyleDesktop"
-                                                        onClick={handleClose}
-                                                    />
-                                                </div>
+                                                <img
+                                                    src="/ux ikoner/Pins/close-modal.png"
+                                                    alt=""
+                                                    className="closeStyleDesktop"
+                                                    onClick={handleClose}
+                                                />
+
                                                 <StyledH1>
                                                     {product.name}
                                                 </StyledH1>
@@ -138,28 +140,20 @@ const closeStyleMobile = {
 const closeStyle = {
     width: "17.74px",
     height: "17.74px",
-    top: "5px",
-    right: "10px",
+    top: "2px",
+    right: "5px",
     zIndex: "1",
-};
-
-const imgStyle = {
-    width: "100%",
-
-    height: "100%",
-    right: "0",
-    zIndex: "0",
 };
 
 const StyledContainer = styled.div`
     display: flex;
     justify-content: center;
-    object-fit: contain;
+    object-fit: fill;
 
     @media (min-width: 1000px) and (max-width: 1300px) {
         display: flex;
         flex-direction: row;
-        height: 100%;
+        height: 400px;
 
         align-items: start;
         justify-content: start;
@@ -182,7 +176,7 @@ const StyledDesktopContainer = styled.div`
         align-items: start;
         justify-content: start;
         margin-left: 50px;
-        height: 570px;
+        height: 100%;
         right: 0;
     }
     @media (min-width: 1300px) {
@@ -191,46 +185,60 @@ const StyledDesktopContainer = styled.div`
         align-items: start;
         justify-content: start;
         margin-left: 50px;
-        height: 570px;
+        height: 100%;
         right: 0;
     }
 `;
+const imgStyle = {
+    width: "100%",
+    height: "100%",
+
+    padding: "0",
+    zIndex: "0",
+};
 
 const StyledImgDiv = styled.div`
     width: 100%;
     // width: 374px;
+    display: flex;
     border-radius: 8.33684px;
-
+    align-items: center;
+    justify-content: center;
     height: 224px;
     position: relative;
     background: #495057;
-    object-fit: contain;
-    top: 0px;
+    object-fit: fill;
+    top: 0.5px;
+    bottom: 0;
 
     z-index: 0;
 
     @media (min-width: 1000px) and (max-width: 1300px) {
         width: 400px;
-        height: 100%;
+        height: 450px;
+        margin-top: -30px;
+
+        // height: 100%;
     }
     @media (min-width: 1300px) {
         width: 677px;
-        height: 100%;
+        height: 450px;
+        margin-top: 0px;
     }
 `;
 
 const StyledPriceDistanceContainer = styled.div`
     padding: 10px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
-
-    margin-left: 15px;
-    margin-right: 15px;
+    // margin-left: 15px;
+    // margin-right: 15px;
 
     @media (min-width: 1000px) and (max-width: 1300px) {
         display: flex;
         flex-direction: row;
-
+        padding: 0;
         justify-content: space-between;
         align-items: space-between;
     }
@@ -238,6 +246,7 @@ const StyledPriceDistanceContainer = styled.div`
     @media (min-width: 1300px) {
         display: flex;
         flex-direction: row;
+        padding: 0;
 
         justify-content: space-between;
         align-items: space-between;
@@ -247,16 +256,20 @@ const StyledPriceDistanceContainer = styled.div`
 const StyledTopContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-left: 10px;
 
     @media (min-width: 1000px) and (max-width: 1300px) {
         display: flex;
         flex-direction: column;
         align-items: start;
+        margin-left: 10px;
         justify-content: start;
     }
 
     @media (min-width: 1300px) {
         display: flex;
+        margin-left: 10px;
+
         flex-direction: column;
         align-items: start;
         justify-content: start;
@@ -268,8 +281,9 @@ const StyledDescriptionDiv = styled.div`
     display: flex;
 
     width: 322.15px;
-    height: 150px;
+    height: 150px auto;
     padding: 10px;
+    margin-left: 10px;
 
     margin-top: 10px;
 
@@ -279,11 +293,13 @@ const StyledDescriptionDiv = styled.div`
     @media (min-width: 1000px) and (max-width: 1300px) {
         border: 1px solid #c0d0b9;
         border-radius: 5px;
+        height: auto;
     }
 
     @media (min-width: 1300px) {
         border: 1px solid #c0d0b9;
         border-radius: 5px;
+        height: auto;
     }
 `;
 
@@ -295,52 +311,57 @@ const StyledH1 = styled.h1`
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0.25px;
-    margin-left: 15px;
     margin-bottom; 15px;
     margin-top: 15px;
+    margin-left: 10px;
+
 
     color: #000000;
 
     @media (min-width: 1000px) and (max-width: 1300px) {
-        margin-top:50px;
-        font-size: 25.89px;
+        font-size: 18px;
         line-height: 35px;
         letter-spacing: -0.06em;
+        margin-left: 10px;
+        margin-bottom; 5px;
+        margin-top: 5px;
     }
 
     @media (min-width: 1300px) {
-        margin-top:50px;
-        font-size: 25.89px;
+        // margin-top:50px;
+        font-size: 18px;
         line-height: 35px;
         letter-spacing: -0.06em;
+
+        margin-bottom; 5px;
+        margin-top: 5px;
     }
 `;
 
 const StyledPrice = styled.p`
+    display: flex;
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 12px;
     letter-spacing: 0.25px;
 `;
 const StyledDistance = styled.p`
     font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 12px;
+    font-size: 12px;
     letter-spacing: 0.135894px;
     color: red;
 
     @media (min-width: 1000px) and (max-width: 1300px) {
         margin-left: 200px;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     @media (min-width: 1300px) {
         margin-left: 200px;
-        font-size: 16px;
+        font-size: 12px;
     }
 `;
 
@@ -350,18 +371,18 @@ const StyledDescription = styled.p`
     font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 19px;
     letter-spacing: 0.25px;
 
     @media (min-width: 1000px) and (max-width: 1300px) {
         width: 428px;
-        height: 259px;
+        height: auto;
     }
 
     @media (min-width: 1300px) {
         width: 428px;
-        height: 259px;
+        height: auto;
     }
 `;
 
@@ -371,13 +392,12 @@ const Ul = styled.ul`
     align-items: center;
     padding: 0px;
 
-    height: 500px;
-
     top: 50.57px;
 `;
 
 const Li = styled.li`
     list-style: none;
+    height: 800px;
 `;
 
 export default BigModal;

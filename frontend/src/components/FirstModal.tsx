@@ -44,11 +44,6 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
         setIsBigModalOpen(true);
     };
 
-    // const handleCloseBigModal = () => {
-    //     setIsBigModalOpen(false);
-    //     setFirstModalOpen(false);
-    // };
-
     return (
         <>
             <div className="firstmodalcontainer">
@@ -181,7 +176,7 @@ const StyledH1 = styled.h1`
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 22px;
     letter-spacing: 0.25px;
     margin-left: 15px;
@@ -194,7 +189,7 @@ const StyledPrice = styled.p`
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 22px;
     letter-spacing: 0.25px;
 `;
@@ -203,11 +198,10 @@ const StyledDistance = styled.p`
     font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px;
     line-height: 12px;
     letter-spacing: 0.135894px;
     color: red;
-    padding-top: 10px;
 `;
 
 const Ul = styled.ul`

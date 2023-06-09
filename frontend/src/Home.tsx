@@ -144,8 +144,8 @@ const Home: React.FC = () => {
     }
 
     const center = {
-        lat:57.70399615681416,
-        lng: 11.982771486438951
+        lat: 57.70399615681416,
+        lng: 11.982771486438951,
     };
 
     const yourMapStyle = [
@@ -306,7 +306,7 @@ const Home: React.FC = () => {
 
     return (
         <>
-            {products.length > -1 &&
+            {products.length > 0 &&
                 products.map(
                     (product) =>
                         product.isOpen === true && (
@@ -316,15 +316,7 @@ const Home: React.FC = () => {
                             />
                         )
                 )}
-            {/* {products.map(
-                (product) =>
-                    product.isOpen === true && (
-                        <FirstModal
-                            key={product.id}
-                            selectedProductId={selectedProductId}
-                        />
-                    )
-            )} */}
+
             <LoadScript googleMapsApiKey="AIzaSyD4PHr_hX_LqK6x9AHG_heaXXrgKNIlDDk">
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}

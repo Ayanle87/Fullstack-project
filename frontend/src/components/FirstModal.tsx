@@ -14,19 +14,16 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
 
     const [isFirstModalOpen, setFirstModalOpen] = useState(true);
     const [isBigModalOpen, setIsBigModalOpen] = useState(false);
-    console.log("FirstModal öppen");
 
     const navigate = useNavigate();
 
     const handleCloseFirstModal = () => {
         console.log("stäng");
-        // setFirstModalOpen(false);
-        // setIsBigModalOpen(false);
 
         products.forEach((product) => {
             if (product.id === selectedProductId) {
                 product.isOpen = false;
-                console.log("rad 24", product.id, product.isOpen);
+                console.log("Öppnad produkt;", product.id, product.isOpen);
             }
         });
 
@@ -43,18 +40,14 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
         navigate(`/big-modal?${queryParams}`);
 
         setFirstModalOpen(false);
-        // console.log("Öppnar stor modal");
-
-        // navigate(`/big-modal?productId=${selectedProductId}`);
 
         setIsBigModalOpen(true);
-        // setFirstModalOpen(false);
     };
 
-    const handleCloseBigModal = () => {
-        setIsBigModalOpen(false);
-        setFirstModalOpen(false);
-    };
+    // const handleCloseBigModal = () => {
+    //     setIsBigModalOpen(false);
+    //     setFirstModalOpen(false);
+    // };
 
     return (
         <>
@@ -103,7 +96,7 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
 
                                                     <StyledPriceDistanceContainer>
                                                         <StyledPrice>
-                                                            {product.price}kr
+                                                            {product.price} kr
                                                         </StyledPrice>
 
                                                         <StyledDistance>
@@ -151,7 +144,6 @@ const imgStyle = {
     height: "100%",
     right: "0",
     zIndex: "0",
-    // borderRadius: "8.33684px",
 };
 
 const StyledContainer = styled.div`

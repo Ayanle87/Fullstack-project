@@ -37,10 +37,12 @@ app.get("/products", async (request, response) => {
 
         const rows = (await client.query("SELECT * FROM products")).rows;
 
-        response.json(rows);
+        response.status(200).json(rows);
         console.log(rows);
     } catch (err) {
-        response.status(500).json({ error: "error" });
+        response
+            .status(500)
+            .json({ error: "Superduper-fel, Internal Server Error" });
         console.log(err);
     }
     console.log("hej");
@@ -55,13 +57,15 @@ app.get("/:id", async (request, response) => {
         if (rows.length > 0) {
             console.log("id hittat");
 
-            response.json(rows[0]);
+            response.status(200).json(rows[0]);
         } else {
             response.status(404).json({ error: "Produkten hittades inte" });
         }
     } catch (err) {
         console.log({ error: "hoppsan" });
-        response.status(500).json({ error: "Nejnejnej" });
+        response
+            .status(500)
+            .json({ error: "Superduper-fel, Internal Server Error" });
     }
 });
 
@@ -88,7 +92,3 @@ const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`Redo på http://localhost:${port}/`);
 });
-
-// app.listen(8080, () => {
-//     console.log("Webbtjänsten kan nu ta emot anrop.");
-// });

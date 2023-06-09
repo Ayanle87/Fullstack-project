@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import ProductContext from "./ProductContext";
 import Home from "./Home";
 import "./navbar.css";
 import "./MobileNavbar.css";
-import ContactSeller from "./ContactSeller";
 import "./ContactSeller.css";
 import CustomNavbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
@@ -28,12 +27,6 @@ const App: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [pins, setPins] = useState<number[]>([]);
-    const [visitedPins, setVisitedPins] = useState<number[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string>("");
-    const [selectedPinId, setSelectedPinId] = useState<number | null>(null);
-    const openModal = () => {
-        setSelectedPinId(pins[pins.length - 1]);
-    };
 
     useEffect(() => {
         axios
@@ -58,7 +51,7 @@ const App: React.FC = () => {
                 <div>
                     <MobileNavbar />
                 </div>
-                {/* userContext funkar på alla komponenter som ligger i denna. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
+                {/* userContext funkar på alla komponenter som ligger i provider. Products, pins, setProducts och setPins bestäms i ProductContext. Behöver ni lägga till ngt där så måste det också skrivas här. */}
                 <ProductContext.Provider
                     value={{
                         allProducts,

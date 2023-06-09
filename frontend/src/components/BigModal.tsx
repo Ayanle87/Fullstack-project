@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { ProductContext } from "../ProductContext";
 import Modal from "react-modal";
-import axios from "axios";
 import styled from "styled-components";
 import ContactSeller from "../ContactSeller";
 
@@ -38,8 +37,6 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
     }, [productId, products]);
 
     const handleClose = () => {
-        // setBigModalOpen(false);
-
         products.forEach((product) => {
             if (product.id === selectedProductId) {
                 product.isOpen = false;
@@ -55,7 +52,6 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
             <div className="modalcontainer">
                 <Modal
                     isOpen={isBigModalOpen}
-                    // onRequestClose={() => setBigModalOpen(false)}
                     className="modalclass"
                     style={{
                         overlay: {
@@ -95,9 +91,6 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
                                                         src="/ux ikoner/Pins/close-modal.png"
                                                         alt=""
                                                         className="closeStyleDesktop"
-                                                        style={
-                                                            closeStyleDesktop
-                                                        }
                                                         onClick={handleClose}
                                                     />
                                                 </div>
@@ -150,15 +143,7 @@ const closeStyle = {
     zIndex: "1",
 };
 
-const closeStyleDesktop = {
-    // width: "30px",
-    // height: "30px",
-    // top: "5px",
-    // zIndex: "1",
-};
-
 const imgStyle = {
-    // width: "677px",
     width: "100%",
 
     height: "100%",

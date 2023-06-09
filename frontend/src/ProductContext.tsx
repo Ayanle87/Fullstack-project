@@ -45,10 +45,6 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [pins, setPins] = useState<number[]>([]);
 
-    const CreateProduct = (products: Product[]) => {
-        localStorage.setItem("user", JSON.stringify({ products }));
-    };
-
     return (
         <ProductContext.Provider
             value={{ allProducts, products, pins, setProducts, setPins }}

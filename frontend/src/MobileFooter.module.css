@@ -24,6 +24,9 @@
     gap: 20px;
 }
 
+  
+  
+
 .iconButton {
     border: none;
     background-color: transparent;
@@ -45,10 +48,13 @@
     color: #222121;
 }
 
+
+
 @media (max-width: 780px) {
     .footerContainer {
         justify-content: flex-start;
     }
+    
 }
 
 @media (min-width: 500px) and (max-width: 780px) {
@@ -59,42 +65,41 @@
 
 @media (min-width: 781px) {
     .footerContainer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #fbfaf9;
-        z-index: 1;
-        padding: 10px 0px;
-        margin-bottom: auto;
-        overflow-x: auto;
-        white-space: nowrap;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 10px;
+      gap: 10px;
+      height: auto;
+      width: fit-content;
+      max-width: 200px;
+      left: 10px;
+      top: 200px;
+      bottom: auto;
+      background-color: transparent;
+    }
+  
+    
+    .iconsContainer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      overflow-x: visible;
+      white-space: normal;
     }
 
-    .iconsContainer {
-        display: flex;
-        justify-content: flex-start;
-        padding: 0 10px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        gap: 20px;
-    }
+    .loadedIconImage {
+        width: 110px; 
+        height: auto; 
+      }
 
     .iconButton {
-        border: none;
-        background-color: transparent;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 5px;
+      margin-bottom: 0;
     }
+  
+    .iconText {
+      margin-top: 0;
+      display: none;
+    }
+  }
 
-    .iconImage {
-        width: 50px;
-        height: 50px;
-    }
-}

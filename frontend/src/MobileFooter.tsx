@@ -74,6 +74,46 @@ const initialIcons = [
     },
 ];
 
+const loadedIcons = [
+    {
+      src:
+        process.env.PUBLIC_URL +
+        "/ux ikoner/Toggles50h/ElectronicsToggleLargeOn50px.png",
+      alt: "",
+    },
+    {
+      src:
+        process.env.PUBLIC_URL +
+        "/ux ikoner/Toggles50h/VehicleToggleLargeOn50px.png",
+      alt: "",
+    },
+    {
+      src:
+        process.env.PUBLIC_URL +
+        "/ux ikoner/Toggles50h/SportToggleLargeOn50px.png",
+      alt: "",
+    },
+    {
+      src:
+        process.env.PUBLIC_URL +
+        "/ux ikoner/Toggles50h/HomeToggleLargeOn50px.png",
+      alt: "",
+    },
+    {
+      src:
+        process.env.PUBLIC_URL +
+        "/ux ikoner/Toggles50h/ClothesToggleLargeOn50px.png",
+      alt: "",
+    },
+    {
+      src:
+        process.env.PUBLIC_URL +
+        "/ux ikoner/Toggles50h/OtherToggleLargeOn50px.png",
+      alt: "",
+    },
+  ];
+  
+
 interface Product {
     id: number;
     name: string;
@@ -102,114 +142,150 @@ const MobileFooter: React.FC = () => {
     const [showSearchBox, setShowSearchBox] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [prevPressedIndex, setPrevPressedIndex] = useState(-1);
-
-    // const allProducts = products;
-
-    // allProducts = products;
-
-    // console.log("all products: " + allProducts)
-
+    const [showLoadedIcons, setShowLoadedIcons] = useState(true); 
+  
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 780);
-        };
-
-        handleResize();
-
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 780);
+      };
+  
+      handleResize();
+  
+      window.addEventListener("resize", handleResize);
+  
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
     }, []);
-
-    const handleIconClick = (index: number) => {
-        setIcons((prevIcons) => {
-            const updatedIcons = prevIcons.map((icon, i) => ({
-                ...icon,
-                isActive: i === index || prevPressedIndex === index,
-            }));
-            return updatedIcons;
-        });
-
-        setProducts(allProducts);
-        console.log("resetting products to: " + allProducts);
-
-        if (index === prevPressedIndex) {
-            setPrevPressedIndex(-1);
-        } else {
-            setPrevPressedIndex(index);
-        }
-
-        setSelectedCategory(initialIcons[index].alt);
-    };
-
-    const handleSearchClick = () => {
-        console.log("click");
-        setShowSearchBox(!showSearchBox);
-    };
-
-    const handleSearchClose = () => {
-        setShowSearchBox(false);
-    };
-
+  
     useEffect(() => {
-        console.log("b");
-        if (selectedCategory && prevPressedIndex !== -1) {
-            // console.log("a: " + selectedCategory + " products: " + products)
-            const filteredProducts = products.filter(
-                (product) => product.category === selectedCategory
-            );
-            setProducts(filteredProducts);
-        }
+      const handlePageInteraction = () => {
+        setShowLoadedIcons(false); 
+        window.removeEventListener("click", handlePageInteraction); 
+      };
+  
+      window.addEventListener("click", handlePageInteraction);
+  
+      return () => {
+        window.removeEventListener("click", handlePageInteraction);
+      };
+    }, []);
+  
+    const handleIconClick = (index: number) => {
+      setIcons((prevIcons) => {
+        const updatedIcons = prevIcons.map((icon, i) => ({
+          ...icon,
+          isActive: i === index || prevPressedIndex === index,
+        }));
+        return updatedIcons;
+      });
+  
+      setProducts(allProducts);
+      console.log("resetting products to: " + allProducts);
+  
+      if (index === prevPressedIndex) {
+        setPrevPressedIndex(-1);
+      } else {
+        setPrevPressedIndex(index);
+      }
+  
+      setSelectedCategory(initialIcons[index].alt);
+    };
+  
+    const handleSearchClick = () => {
+      console.log("click");
+      setShowSearchBox(!showSearchBox);
+    };
+  
+    const handleSearchClose = () => {
+      setShowSearchBox(false);
+    };
+  
+    useEffect(() => {
+      console.log("b");
+      if (selectedCategory && prevPressedIndex !== -1) {
+        const filteredProducts = products.filter(
+          (product) => product.category === selectedCategory
+        );
+        setProducts(filteredProducts);
+      }
     }, [selectedCategory, setProducts, prevPressedIndex]);
-
-    // if (!isMobile) {
-    //     return null;
-    // }
-
+  
     return (
         <div className={styles.footerContainer}>
+          {showLoadedIcons ? ( 
             <div className={styles.iconsContainer}>
-                {icons.map((icon, index) => (
-                    <Button
-                        key={index}
-                        variant="light"
-                        className={`${styles.iconButton} ${
-                            icon.isActive ? styles.active : ""
-                        }`}
-                        onClick={() => handleIconClick(index)}
-                    >
-                        <img
-                            src={
-                                icon.isActive
-                                    ? icon.activeSrc
-                                    : icon.inactiveSrc
-                            }
-                            alt={icon.alt}
-                            className={styles.iconImage}
-                        />
-                        <span className={styles.iconText}>{icon.alt}</span>
-                    </Button>
-                ))}
+              {loadedIcons.map((icon, index) => (
                 <Button
-                    variant="light"
-                    className={styles.iconButton}
-                    onClick={handleSearchClick}
+                  key={index}
+                  variant="light"
+                  className={styles.iconButton}
+                  onClick={() => handleIconClick(index)}
                 >
-                    <img
-                        src={searchIcon.src}
-                        alt={searchIcon.alt}
-                        className={styles.iconImage}
-                    />
-                    <span className={styles.iconText}>{searchIcon.alt}</span>
+                  <img
+                    src={icon.src}
+                    alt={icon.alt}
+                    className={`${styles.iconImage} ${
+                      styles.loadedIconImage
+                    }`}
+                  />
+                  <span className={styles.iconText}>{icon.alt}</span>
                 </Button>
+              ))}
+              <Button
+                variant="light"
+                className={styles.iconButton}
+                onClick={handleSearchClick}
+              >
+                <img
+                  src={searchIcon.src}
+                  alt={searchIcon.alt}
+                  className={styles.iconImage}
+                />
+                <span className={styles.iconText}>{searchIcon.alt}</span>
+              </Button>
             </div>
-            {showSearchBox && (
-                <SearchBox products={allProducts} onClose={handleSearchClose} />
-            )}
+          ) : (
+            <div className={styles.iconsContainer}>
+              {icons.map((icon, index) => (
+                <Button
+                  key={index}
+                  variant="light"
+                  className={`${styles.iconButton} ${
+                    icon.isActive ? styles.active : ""
+                  }`}
+                  onClick={() => handleIconClick(index)}
+                >
+                  <img
+                    src={
+                      icon.isActive ? icon.activeSrc : icon.inactiveSrc
+                    }
+                    alt={icon.alt}
+                    className={styles.iconImage}
+                  />
+                  <span className={styles.iconText}>{icon.alt}</span>
+                </Button>
+              ))}
+              <Button
+                variant="light"
+                className={styles.iconButton}
+                onClick={handleSearchClick}
+              >
+                <img
+                  src={searchIcon.src}
+                  alt={searchIcon.alt}
+                  className={styles.iconImage}
+                />
+                <span className={styles.iconText}>{searchIcon.alt}</span>
+              </Button>
+            </div>
+          )}
+          {showSearchBox && (
+            <SearchBox products={allProducts} onClose={handleSearchClose} />
+          )}
         </div>
-    );
-};
-
-export default MobileFooter;
+      );
+      
+  };
+  
+  export default MobileFooter;

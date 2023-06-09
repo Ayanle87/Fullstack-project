@@ -12,8 +12,8 @@ interface Product {
     image: string;
     category: string;
 }
-// Kategori-ikonerna. Rubrikerna (Elektronik etc) matchar databasen och därför fattar koden vilken bild som tillhör vilken produkt
 
+// Kategori-ikonerna. Rubrikerna (Elektronik etc) matchar databasen och därför fattar koden vilken bild som tillhör vilken produkt
 const categoryImages: { [key: string]: string } = {
     Elektronik: "/ux ikoner/76h/ElectronicsPin76vh.png",
     Fordon: "/ux ikoner/76h/VehiclePin76vh.png",
@@ -23,7 +23,7 @@ const categoryImages: { [key: string]: string } = {
     Övrigt: "/ux ikoner/76h/OtherPin76vh.png",
 };
 
-// Om e pin blivit klickad på så byts den ut till en av dessa.
+// Om en pin blivit klickad på så byts den ut till en av dessa.
 const categoryImagesVisited: { [key: string]: string } = {
     Elektronik: "/ux ikoner/76h/ElectronicsPinVisited76vh.png",
     Fordon: "/ux ikoner/76h/VehiclePinVisited76vh.png",

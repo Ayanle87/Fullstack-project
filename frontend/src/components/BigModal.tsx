@@ -268,7 +268,7 @@ const StyledDescriptionDiv = styled.div`
     display: flex;
 
     width: 322.15px;
-    height: 265.18px;
+    height: 150px;
     padding: 10px;
 
     margin-top: 10px;
@@ -371,7 +371,7 @@ const Ul = styled.ul`
     align-items: center;
     padding: 0px;
 
-    height: 733.38px;
+    height: 500px;
 
     top: 50.57px;
 `;

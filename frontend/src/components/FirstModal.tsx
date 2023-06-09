@@ -155,7 +155,7 @@ const StyledImgDiv = styled.div`
     width: 100%;
     // width: 374px;
     border-radius: 8.33684px;
-
+    object-fit: contain;
     height: 224px;
     position: relative;
     background: #495057;

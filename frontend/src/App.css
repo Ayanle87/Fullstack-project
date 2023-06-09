@@ -51,10 +51,10 @@ body {
 .firstModalclass {
     display: flex;
     /* flex-direction: column; */
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
     width: 374px;
-    height: 337px;
+    height: 300px;
     left: 10px;
     position: absolute;
     top: 150px;
@@ -89,10 +89,10 @@ body {
 
     position: absolute;
     left: 1%;
-    top: 5%;
+    top: 1%;
     width: 374px;
     align-items: center;
-    height: 733.38px;
+    height: 550px;
     margin-right: 8px;
     background: #fbfaf9;
 }

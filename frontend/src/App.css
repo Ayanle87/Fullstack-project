@@ -13,99 +13,18 @@ body {
 .imgStyle {
     object-fit: cover;
     position: absolute;
-    /* left: 100px; */
-    border-top-left-radius: 8.33684px;
-    border-top-right-radius: 8.33684px;
 }
 
 .imgBigStyle {
     object-fit: cover;
     position: absolute;
-    /* left: 100px; */
-
-    border-top-left-radius: 5.43575px;
-    border-top-right-radius: 5.43575px;
 }
-
-.modalclass {
-    display: flex;
-    flex-direction: column;
-
-    position: relative;
-    width: 374px;
-    height: 733.38px;
-    left: 8px;
-    /* left: 13px; */
-    top: 38px;
-    /* top: 50.57px; */
-
-    background: #fbfaf9;
-    border: 0.2px solid #2c5559;
-    border-radius: 5.43575px;
-}
-
-@media (max-width: 780px) {
-    .closeStyleDesktop {
-        visibility: hidden;
-    }
-}
-
-@media (min-width: 1500px) {
-    .modalclass {
-        display: flex;
-        flex-direction: row;
-        /* position: relative; */
-
-        position: absolute;
-
-        width: 1165px;
-        height: 570px;
-        left: 227px;
-        top: 100px;
-    }
-
-    .closeStyle {
-        visibility: hidden;
-    }
-
-    .modalclass li {
-        display: flex;
-        width: 100%;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .firstModalclass {
-        width: 228px;
-        height: 293px;
-        margin-left: 680px;
-        background-color: blue;
-        top: 150px;
-    }
-}
-
 .arrowStyle {
     width: 28px;
     height: 18px;
     position: absolute;
     bottom: 10px;
     right: 10px;
-}
-
-.firstModalclass {
-    display: flex;
-    flex-direction: column;
-
-    width: 374px;
-    height: 337px;
-    left: 8px;
-    position: absolute;
-    top: 250px;
-    z-index: 10000;
-    background: #fbfaf9;
-    border: 0.2px solid #2c5559;
-    border-radius: 8.33684px;
 }
 
 .modalclass:focus,
@@ -129,30 +48,151 @@ body {
     z-index: 1;
 }
 
-/* .closeStyleDesktop {
-    width: 30px;
-    height: 30px;
+.firstModalclass {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    width: 374px;
+    height: 337px;
+    left: 10px;
     position: absolute;
-    top: 5px;
-    z-index: 1;
-    background-color: red;
-
-    visibility: hidden;
+    top: 150px;
+    z-index: 10000;
+    background: #fbfaf9;
+    border: 0.2px solid #2c5559;
+    border-radius: 8.33684px;
 }
 
-.closeStyleMobile {
-    width: 17.74px;
-    height: 17.74px;
-    top: 5px;
-    z-index: 1;
-    visibility: visible;
-    background-color: green;
-} */
+.firstmodalcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.modalcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
+.modalclass {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #2c5559;
+    border-radius: 5.43575px;
+
+    position: absolute;
+    left: 1%;
+    top: 5%;
+    width: 374px;
+    align-items: center;
+    height: 733.38px;
+    margin-right: 8px;
+    background: #fbfaf9;
+}
 .closeStyleDesktop {
     width: 17.74px;
     height: 17.74px;
-    top: 30px;
+    top: 10px;
     left: 400px;
     z-index: 1;
+}
+
+@media (max-width: 1000px) {
+    .closeStyleDesktop {
+        display: none;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 780px) {
+    .firstModalclass {
+        left: 20%;
+        top: 10%;
+    }
+    .modalclass {
+        left: 20%;
+        top: 10%;
+    }
+}
+
+@media (min-width: 780px) and (max-width: 1000px) {
+    .firstModalclass {
+        left: 20%;
+        top: 10%;
+    }
+    .modalclass {
+        left: 40%;
+        top: 5%;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+    .closeStyle {
+        visibility: hidden;
+    }
+
+    .closeStyleDesktop {
+        top: 14px;
+        left: 340px;
+    }
+
+    .firstModalclass {
+        left: 20%;
+        top: 10%;
+    }
+    .modalclass {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        margin: 100px;
+        width: 800px;
+        height: 570px;
+        left: 50px;
+        top: -50px;
+    }
+
+    .modalclass li {
+        display: flex;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media (min-width: 1300px) {
+    .modalclass {
+        display: flex;
+        flex-direction: row;
+
+        position: absolute;
+        margin: 100px;
+        width: 1165px;
+        height: 570px;
+        left: 10px;
+        top: -50px;
+    }
+
+    .closeStyle {
+        visibility: hidden;
+    }
+
+    .closeStyleDesktop {
+        top: 14px;
+        left: 400px;
+    }
+
+    .modalclass li {
+        display: flex;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 }

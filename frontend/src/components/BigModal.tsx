@@ -52,74 +52,82 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
 
     return (
         <>
-            <Modal
-                isOpen={isBigModalOpen}
-                // onRequestClose={() => setBigModalOpen(false)}
-                className="modalclass"
-                style={{
-                    overlay: {
-                        zIndex: 9999,
-                    },
-                }}
-            >
-                {result
-                    .filter((product) => product.id === Number(productId))
-                    .map((product) => (
-                        <StyledContainer key={product.id}>
-                            <Ul>
-                                <li>
-                                    <StyledImgDiv>
-                                        <img
-                                            src="/ux ikoner/Pins/close-modal.png"
-                                            alt=""
-                                            className="closeStyle"
-                                            style={closeStyle}
-                                            onClick={handleClose}
-                                        />
-
-                                        <img
-                                            alt="product"
-                                            src={
-                                                "http://localhost:8080" +
-                                                product.image
-                                            }
-                                            style={imgStyle}
-                                            className="imgBigStyle"
-                                        />
-                                    </StyledImgDiv>
-                                    <StyledDesktopContainer>
-                                        <StyledTopContainer>
+            <div className="modalcontainer">
+                <Modal
+                    isOpen={isBigModalOpen}
+                    // onRequestClose={() => setBigModalOpen(false)}
+                    className="modalclass"
+                    style={{
+                        overlay: {
+                            zIndex: 9999,
+                        },
+                    }}
+                >
+                    {result
+                        .filter((product) => product.id === Number(productId))
+                        .map((product) => (
+                            <StyledContainer key={product.id}>
+                                <Ul>
+                                    <Li>
+                                        <StyledImgDiv>
                                             <img
                                                 src="/ux ikoner/Pins/close-modal.png"
                                                 alt=""
-                                                className="closeStyleDesktop"
-                                                style={closeStyleDesktop}
+                                                className="closeStyle"
+                                                style={closeStyle}
                                                 onClick={handleClose}
                                             />
-                                            <StyledH1>{product.name}</StyledH1>
 
-                                            <StyledPriceDistanceContainer>
-                                                <StyledPrice>
-                                                    {product.price} kr
-                                                </StyledPrice>
-                                                <StyledDistance>
-                                                    Avstånd
-                                                </StyledDistance>
-                                            </StyledPriceDistanceContainer>
-                                        </StyledTopContainer>
+                                            <img
+                                                alt="product"
+                                                src={
+                                                    "http://localhost:8080" +
+                                                    product.image
+                                                }
+                                                style={imgStyle}
+                                                className="imgBigStyle"
+                                            />
+                                        </StyledImgDiv>
+                                        <StyledDesktopContainer>
+                                            <StyledTopContainer>
+                                                <div>
+                                                    <img
+                                                        src="/ux ikoner/Pins/close-modal.png"
+                                                        alt=""
+                                                        className="closeStyleDesktop"
+                                                        style={
+                                                            closeStyleDesktop
+                                                        }
+                                                        onClick={handleClose}
+                                                    />
+                                                </div>
+                                                <StyledH1>
+                                                    {product.name}
+                                                </StyledH1>
 
-                                        <StyledDescriptionDiv>
-                                            <StyledDescription>
-                                                {product.description}
-                                            </StyledDescription>
-                                        </StyledDescriptionDiv>
-                                        <ContactSeller />
-                                    </StyledDesktopContainer>
-                                </li>
-                            </Ul>
-                        </StyledContainer>
-                    ))}
-            </Modal>
+                                                <StyledPriceDistanceContainer>
+                                                    <StyledPrice>
+                                                        {product.price} kr
+                                                    </StyledPrice>
+                                                    <StyledDistance>
+                                                        Avstånd
+                                                    </StyledDistance>
+                                                </StyledPriceDistanceContainer>
+                                            </StyledTopContainer>
+
+                                            <StyledDescriptionDiv>
+                                                <StyledDescription>
+                                                    {product.description}
+                                                </StyledDescription>
+                                            </StyledDescriptionDiv>
+                                            <ContactSeller />
+                                        </StyledDesktopContainer>
+                                    </Li>
+                                </Ul>
+                            </StyledContainer>
+                        ))}
+                </Modal>
+            </div>
         </>
     );
 };
@@ -143,16 +151,16 @@ const closeStyle = {
 };
 
 const closeStyleDesktop = {
-    width: "17.74px",
-    height: "17.74px",
-    top: "5px",
-
+    // width: "30px",
+    // height: "30px",
+    // top: "5px",
     // zIndex: "1",
-    // visibility: "hidden",
 };
 
 const imgStyle = {
+    // width: "677px",
     width: "100%",
+
     height: "100%",
     right: "0",
     zIndex: "0",
@@ -160,13 +168,22 @@ const imgStyle = {
 
 const StyledContainer = styled.div`
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: #fbfaf9;
+    object-fit: contain;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1000px) and (max-width: 1300px) {
         display: flex;
         flex-direction: row;
+        height: 100%;
+
+        align-items: start;
+        justify-content: start;
+    }
+
+    @media (min-width: 1300px) {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
 
         align-items: start;
         justify-content: start;
@@ -174,7 +191,16 @@ const StyledContainer = styled.div`
 `;
 
 const StyledDesktopContainer = styled.div`
-    @media (min-width: 1500px) {
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        margin-left: 50px;
+        height: 570px;
+        right: 0;
+    }
+    @media (min-width: 1300px) {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -187,19 +213,24 @@ const StyledDesktopContainer = styled.div`
 
 const StyledImgDiv = styled.div`
     width: 100%;
+    // width: 374px;
+    border-radius: 8.33684px;
 
-    height: 309.84px;
+    height: 224px;
     position: relative;
     background: #495057;
     object-fit: contain;
+    top: 0px;
 
     z-index: 0;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        width: 400px;
+        height: 100%;
+    }
+    @media (min-width: 1300px) {
         width: 677px;
-        height: 570px;
-        // left: 0;
-        // top: 0;
+        height: 100%;
     }
 `;
 
@@ -207,10 +238,19 @@ const StyledPriceDistanceContainer = styled.div`
     padding: 10px;
     display: flex;
     flex-direction: column;
+
     margin-left: 15px;
     margin-right: 15px;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+        align-items: space-between;
+    }
+
+    @media (min-width: 1300px) {
         display: flex;
         flex-direction: row;
 
@@ -223,7 +263,14 @@ const StyledTopContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+    }
+
+    @media (min-width: 1300px) {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -234,18 +281,22 @@ const StyledTopContainer = styled.div`
 const StyledDescriptionDiv = styled.div`
     box-sizing: border-box;
     display: flex;
-    // object-fit: contain;
+
     width: 322.15px;
     height: 265.18px;
     padding: 10px;
-    // align-items: center;
-    margin-left: 15px;
+
     margin-top: 10px;
 
     border: 0.543575px solid #c0d0b9;
     border-radius: 2.71787px;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        border: 1px solid #c0d0b9;
+        border-radius: 5px;
+    }
+
+    @media (min-width: 1300px) {
         border: 1px solid #c0d0b9;
         border-radius: 5px;
     }
@@ -265,7 +316,14 @@ const StyledH1 = styled.h1`
 
     color: #000000;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        margin-top:50px;
+        font-size: 25.89px;
+        line-height: 35px;
+        letter-spacing: -0.06em;
+    }
+
+    @media (min-width: 1300px) {
         margin-top:50px;
         font-size: 25.89px;
         line-height: 35px;
@@ -290,7 +348,12 @@ const StyledDistance = styled.p`
     letter-spacing: 0.135894px;
     color: red;
 
-    @media (min-width: 1500px) {
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        margin-left: 200px;
+        font-size: 16px;
+    }
+
+    @media (min-width: 1300px) {
         margin-left: 200px;
         font-size: 16px;
     }
@@ -305,6 +368,16 @@ const StyledDescription = styled.p`
     font-size: 14px;
     line-height: 19px;
     letter-spacing: 0.25px;
+
+    @media (min-width: 1000px) and (max-width: 1300px) {
+        width: 428px;
+        height: 259px;
+    }
+
+    @media (min-width: 1300px) {
+        width: 428px;
+        height: 259px;
+    }
 `;
 
 const Ul = styled.ul`
@@ -312,14 +385,13 @@ const Ul = styled.ul`
     flex-direction: column;
     align-items: center;
     padding: 0px;
-    gap: 75.62px;
-    isolation: isolate;
 
-    width: 100%;
     height: 733.38px;
-    left: 13px;
-    top: 50.57px;
 
+    top: 50.57px;
+`;
+
+const Li = styled.li`
     list-style: none;
 `;
 

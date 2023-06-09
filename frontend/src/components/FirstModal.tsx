@@ -58,74 +58,78 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
 
     return (
         <>
-            <Modal
-                show={isFirstModalOpen}
-                onHide={handleCloseFirstModal}
-                className="firstModalclass"
-            >
-                {products.length > 0 &&
-                    products.map((product) => {
-                        const isSelectedProduct =
-                            selectedProductId !== null &&
-                            selectedProductId === product.id;
+            <div className="firstmodalcontainer">
+                <Modal
+                    show={isFirstModalOpen}
+                    onHide={handleCloseFirstModal}
+                    className="firstModalclass"
+                >
+                    {products.length > 0 &&
+                        products.map((product) => {
+                            const isSelectedProduct =
+                                selectedProductId !== null &&
+                                selectedProductId === product.id;
 
-                        return (
-                            <StyledContainer key={product.id}>
-                                {isSelectedProduct && (
-                                    <Ul>
-                                        <Li>
-                                            <StyledImgDiv>
-                                                <img
-                                                    src="/ux ikoner/Pins/close-modal.png"
-                                                    alt="Kryss för att stänga annonsen"
-                                                    className="closeStyleFirstModal"
-                                                    style={closeStyle}
-                                                    onClick={
-                                                        handleCloseFirstModal
-                                                    }
-                                                />
+                            return (
+                                <StyledContainer key={product.id}>
+                                    {isSelectedProduct && (
+                                        <Ul>
+                                            <Li>
+                                                <StyledImgDiv>
+                                                    <img
+                                                        src="/ux ikoner/Pins/close-modal.png"
+                                                        alt="Kryss för att stänga annonsen"
+                                                        className="closeStyleFirstModal"
+                                                        style={closeStyle}
+                                                        onClick={
+                                                            handleCloseFirstModal
+                                                        }
+                                                    />
 
-                                                <img
-                                                    alt="product"
-                                                    src={
-                                                        "http://localhost:8080" +
-                                                        product.image
-                                                    }
-                                                    style={imgStyle}
-                                                    className="imgStyle"
-                                                />
-                                            </StyledImgDiv>
-                                            <StyledTopContainer>
-                                                <StyledH1>
-                                                    {product.name}
-                                                </StyledH1>
+                                                    <img
+                                                        alt="product"
+                                                        src={
+                                                            "http://localhost:8080" +
+                                                            product.image
+                                                        }
+                                                        style={imgStyle}
+                                                        className="imgStyle"
+                                                    />
+                                                </StyledImgDiv>
+                                                <StyledTopContainer>
+                                                    <StyledH1>
+                                                        {product.name}
+                                                    </StyledH1>
 
-                                                <StyledPriceDistanceContainer>
-                                                    <StyledPrice>
-                                                        {product.price}kr
-                                                    </StyledPrice>
+                                                    <StyledPriceDistanceContainer>
+                                                        <StyledPrice>
+                                                            {product.price}kr
+                                                        </StyledPrice>
 
-                                                    <StyledDistance>
-                                                        Avstånd
-                                                    </StyledDistance>
-                                                </StyledPriceDistanceContainer>
-                                            </StyledTopContainer>
+                                                        <StyledDistance>
+                                                            Avstånd
+                                                        </StyledDistance>
+                                                    </StyledPriceDistanceContainer>
+                                                </StyledTopContainer>
 
-                                            <div>
-                                                <img
-                                                    src="/ux ikoner/arrow.png"
-                                                    alt="Pil för att öppna annonsen"
-                                                    className="arrowStyle"
-                                                    onClick={handleOpenBigModal}
-                                                />
-                                            </div>
-                                        </Li>
-                                    </Ul>
-                                )}
-                            </StyledContainer>
-                        );
-                    })}
-            </Modal>
+                                                <div>
+                                                    <img
+                                                        src="/ux ikoner/arrow.png"
+                                                        alt="Pil för att öppna annonsen"
+                                                        className="arrowStyle"
+                                                        onClick={
+                                                            handleOpenBigModal
+                                                        }
+                                                    />
+                                                </div>
+                                            </Li>
+                                        </Ul>
+                                    )}
+                                </StyledContainer>
+                            );
+                        })}
+                </Modal>
+            </div>
 
             {isBigModalOpen && (
                 <BigModal selectedProductId={selectedProductId} />
@@ -164,7 +168,7 @@ const StyledImgDiv = styled.div`
     position: relative;
     background: #495057;
     object-fit: contain;
-    top: -0.11px;
+    top: 0px;
 
     z-index: 0;
 `;

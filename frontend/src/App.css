@@ -2,6 +2,16 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 130%; */
+}
+
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .styledPins {
@@ -50,12 +60,12 @@ body {
 
 .firstModalclass {
     display: flex;
-    width: 374px;
+    width: auto;
     height: 340px;
-    left: 10px;
+    /* left: 10px; */
     position: absolute;
-    top: 150px;
-    z-index: 10000;
+    /* top: 150px;
+    z-index: 10000; */
     background: #fbfaf9;
     border: 0.2px solid #2c5559;
     border-radius: 8.33684px;
@@ -65,7 +75,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 600px;
 }
 .modalcontainer {
     display: flex;
@@ -84,11 +94,11 @@ body {
     border: 1px solid #2c5559;
     border-radius: 5.43575px;
     position: absolute;
-    left: 1%;
+    left: 5%;
     top: 1%;
-    width: 374px;
+    width: 340px;
     align-items: center;
-    height: 550px;
+    height: 520px;
     margin-right: 8px;
     background: #fbfaf9;
 }

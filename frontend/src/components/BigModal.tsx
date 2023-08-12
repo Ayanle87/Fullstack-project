@@ -104,9 +104,9 @@ const BigModal: React.FC<BigModalProps> = ({ selectedProductId }) => {
                                                     <StyledPrice>
                                                         {product.price} kr
                                                     </StyledPrice>
-                                                    <StyledDistance>
+                                                    {/* <StyledDistance>
                                                         Avstånd
-                                                    </StyledDistance>
+                                                    </StyledDistance> */}
                                                 </StyledPriceDistanceContainer>
                                             </StyledTopContainer>
 
@@ -198,7 +198,7 @@ const imgStyle = {
 };
 
 const StyledImgDiv = styled.div`
-    width: 100%;
+    width: auto;
     // width: 374px;
     display: flex;
     border-radius: 8.33684px;
@@ -232,6 +232,10 @@ const StyledPriceDistanceContainer = styled.div`
     padding-top: 20px;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    align-items: space-between;
+
     // margin-left: 15px;
     // margin-right: 15px;
 
@@ -280,7 +284,7 @@ const StyledDescriptionDiv = styled.div`
     box-sizing: border-box;
     display: flex;
 
-    width: 322.15px;
+    width: 310px;
     height: 150px auto;
     padding: 10px;
     margin-left: 10px;
@@ -339,7 +343,10 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledPrice = styled.p`
+    // display: flex;
     display: flex;
+    justify-content: end;
+    align-items: end;
     font-family: "Open Sans", bold, sans-serif;
     font-style: normal;
     font-weight: 600;

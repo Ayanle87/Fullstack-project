@@ -94,9 +94,9 @@ const FirstModal: React.FC<{ selectedProductId: number | null }> = ({
                                                             {product.price} kr
                                                         </StyledPrice>
 
-                                                        <StyledDistance>
+                                                        {/* <StyledDistance>
                                                             Avstånd
-                                                        </StyledDistance>
+                                                        </StyledDistance> */}
                                                     </StyledPriceDistanceContainer>
                                                 </StyledTopContainer>
 
@@ -144,11 +144,13 @@ const imgStyle = {
 const StyledContainer = styled.div`
     display: flex;
     justify-content: center;
+
+    width: 200px;
 `;
 
 const StyledImgDiv = styled.div`
     width: 100%;
-    // width: 374px;
+    // width: 340px;
     border-radius: 8.33684px;
     object-fit: contain;
     height: 224px;
